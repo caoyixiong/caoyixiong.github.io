@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hook 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="Hook 备忘单是 Hook 编程语言的一页参考表。 入门介绍 GitHub 在线运行 示例 VSCode 扩展  Hook 看起来是什么样的？fn factorial(n) &#123;  if (n &#x3D;&#x3D; 0)    return 1;  return n * factorial(n - 1);&#125;  Hook 具有类似于 C 的现代语法。 Hello, Worldprintln(&amp;q">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hook 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/hook/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="Hook 备忘单是 Hook 编程语言的一页参考表。 入门介绍 GitHub 在线运行 示例 VSCode 扩展  Hook 看起来是什么样的？fn factorial(n) &#123;  if (n &#x3D;&#x3D; 0)    return 1;  return n * factorial(n - 1);&#125;  Hook 具有类似于 C 的现代语法。 Hello, Worldprintln(&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.743Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.743Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/hook/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hook 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Hook 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>Hook 备忘单是 <a target="_blank" rel="noopener" href="https://github.com/hook-lang/hook/">Hook</a> 编程语言的一页参考表。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/hook-lang/hook">GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://hook-lang.github.io/hook-playground">在线运行</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hook-lang/hook/tree/main/examples">示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=fabiosvm.hook">VSCode 扩展</a></li>
+</ul>
+<h3 id="Hook-看起来是什么样的？"><a href="#Hook-看起来是什么样的？" class="headerlink" title="Hook 看起来是什么样的？"></a>Hook 看起来是什么样的？</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">factorial</span>(n) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * <span class="title function_ invoke__">factorial</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Hook 具有类似于 <code>C</code> 的现代语法。</p>
+<h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World"></a>Hello, World</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line"><span class="comment">// Hello, World!</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 中的 <code>Hello, World!</code> 程序。</p>
+<h3 id="使用-Homebrew-安装"><a href="#使用-Homebrew-安装" class="headerlink" title="使用 Homebrew 安装"></a>使用 Homebrew 安装</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">brew tap hook-lang/hook</span><br><span class="line">brew install hook</span><br><span class="line">hook --help</span><br></pre></td></tr></table></figure>
+
+<p>解释器可以通过 <a target="_blank" rel="noopener" href="https://brew.sh/"><code>Homebrew</code></a> 获取。</p>
+<h3 id="在-Windows-上安装"><a href="#在-Windows-上安装" class="headerlink" title="在 Windows 上安装"></a>在 Windows 上安装</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> %tmp%</span><br><span class="line">curl -sSLO https://raw.githubusercontent.com/hook-lang/hook/main/scripts/install.bat install</span><br></pre></td></tr></table></figure>
+
+<p>这是你在 <code>Windows</code> 上安装的方法。</p>
+<h2 id="类型和值"><a href="#类型和值" class="headerlink" title="类型和值"></a>类型和值</h2><h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Nil</code></td>
+<td align="left"><code>Bool</code></td>
+</tr>
+<tr>
+<td><code>Number</code></td>
+<td align="left"><code>String</code></td>
+</tr>
+<tr>
+<td><code>Range</code></td>
+<td align="left"><code>Array</code></td>
+</tr>
+<tr>
+<td><code>Record</code></td>
+<td align="left"><code>Closure</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<p>基本类型列表。</p>
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Bool 是布尔类型。所以，它可以是 <code>true</code> 或 <code>false</code></p>
+<h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> degree = <span class="number">45</span>; <span class="comment">// 整数</span></span><br><span class="line"><span class="keyword">let</span> pi = <span class="number">3.14</span>;   <span class="comment">// 浮点数</span></span><br></pre></td></tr></table></figure>
+
+<p>数字可以是整数或浮点数</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> empty = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">&quot;John&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> message = <span class="string">&#x27;Hello, &quot;John&quot;!&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>字符串可以用单引号或双引号表示</p>
+<h3 id="区间"><a href="#区间" class="headerlink" title="区间"></a>区间</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> range = <span class="number">1.</span><span class="number">.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(range);</span><br><span class="line"><span class="comment">// 1..5</span></span><br></pre></td></tr></table></figure>
+
+<p>区间是整数的序列</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cherry&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(fruits);</span><br><span class="line"><span class="comment">// [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>数组是元素的序列</p>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p = &#123; <span class="attr">x</span>: <span class="number">5</span>, <span class="attr">y</span>: <span class="number">10</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(p);</span><br><span class="line"><span class="comment">// &#123;x: 5, y: 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>记录将字段映射到值</p>
+<h3 id="nil-值"><a href="#nil-值" class="headerlink" title="nil 值"></a><strong>nil</strong> 值</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x <span class="operator">=</span> <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">var</span> y;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(x); <span class="comment">// nil</span></span><br><span class="line"><span class="title function_">println</span>(y); <span class="comment">// nil</span></span><br></pre></td></tr></table></figure>
+
+<p><code>nil</code> 表示没有值</p>
+<h3 id="假值"><a href="#假值" class="headerlink" title="假值"></a>假值</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">nil</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;   <span class="comment">// false</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>; <span class="comment">// false</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;  <span class="comment">// true</span></span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;     <span class="comment">// true</span></span><br><span class="line"><span class="keyword">if</span> (<span class="number">1</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;     <span class="comment">// true</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;&quot;</span>) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;    <span class="comment">// true</span></span><br><span class="line"><span class="keyword">if</span> ([]) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;    <span class="comment">// true</span></span><br><span class="line"><span class="keyword">if</span> (&#123;&#125;) <span class="string">&quot;true&quot;</span> <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>;    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>只有 <code>nil</code> 和 <code>false</code> 是假值。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// This is a single-line comment.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// And this is</span></span><br><span class="line"><span class="comment">// a multi-line</span></span><br><span class="line"><span class="comment">// comment. ;)</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 只支持单行注释。抱歉！</p>
+<h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><!--rehype:wrap-class=col-span-2-->
+
+<!-- prettier-ignore -->
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="number">1</span>) ; <span class="title function_">println</span>(<span class="number">2</span>) ; <span class="title function_">println</span>(<span class="number">3</span>) ;</span><br><span class="line"><span class="title function_">println</span>(<span class="number">4</span>) ; <span class="title function_">println</span>(<span class="number">5</span>)</span><br><span class="line">; <span class="title function_">println</span>(<span class="number">6</span>) ;</span><br><span class="line">;                                      <span class="comment">// error: unexpected token `;`</span></span><br></pre></td></tr></table></figure>
+
+<p>需要使用分号，不允许空语句。</p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="title function_">println</span>(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="title function_">println</span>(<span class="string">&quot;World&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用代码块定义作用域。</p>
+<h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>as</code></td>
+<td align="left"><code>break</code></td>
+<td align="left"><code>continue</code></td>
+<td align="left"><code>do</code></td>
+</tr>
+<tr>
+<td><code>else</code></td>
+<td align="left"><code>false</code></td>
+<td align="left"><code>fn</code></td>
+<td align="left"><code>for</code></td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td align="left"><code>if</code></td>
+<td align="left"><code>import</code></td>
+<td align="left"><code>in</code></td>
+</tr>
+<tr>
+<td><code>inout</code></td>
+<td align="left"><code>let</code></td>
+<td align="left"><code>loop</code></td>
+<td align="left"><code>match</code></td>
+</tr>
+<tr>
+<td><code>nil</code></td>
+<td align="left"><code>return</code></td>
+<td align="left"><code>struct</code></td>
+<td align="left"><code>trait</code></td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td align="left"><code>var</code></td>
+<td align="left"><code>while</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<p>有少量保留字。</p>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> lowercase;</span><br><span class="line"><span class="keyword">var</span> CAPS_LOCK;</span><br><span class="line"><span class="keyword">var</span> camelCase;</span><br><span class="line"><span class="keyword">var</span> PascalCase;</span><br><span class="line"><span class="keyword">var</span> snake_case;</span><br><span class="line"><span class="keyword">var</span> _123;</span><br></pre></td></tr></table></figure>
+
+<p>标识符是区分大小写的。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x; <span class="comment">// x contains nil</span></span><br><span class="line">x = <span class="number">5</span>; <span class="comment">// now, x contains a number</span></span><br><span class="line">x = <span class="string">&quot;foo&quot;</span>; <span class="comment">// a string</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(x);</span><br></pre></td></tr></table></figure>
+
+<p>数值有类型，但变量没有。</p>
+<h3 id="不可变变量"><a href="#不可变变量" class="headerlink" title="不可变变量"></a>不可变变量</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">x = <span class="number">10</span>; <span class="comment">// error: cannot assign to immutable variable `x`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> y; <span class="comment">// error: unexpected token `;`</span></span><br></pre></td></tr></table></figure>
+
+<p>不可变变量在声明时必须初始化。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> y = <span class="number">15</span>;</span><br><span class="line">  <span class="title function_">println</span>(x); <span class="comment">// 10</span></span><br><span class="line">  <span class="title function_">println</span>(y); <span class="comment">// 15</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">println</span>(x); <span class="comment">// 5</span></span><br><span class="line"><span class="title function_">println</span>(y); <span class="comment">// error: variable `y` is used but not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>当堆分配的变量超出作用域时，会自动释放。</p>
+<h3 id="遮蔽"><a href="#遮蔽" class="headerlink" title="遮蔽"></a>遮蔽</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">10</span>; <span class="comment">// shadows the outer `x`</span></span><br><span class="line">  <span class="title function_">println</span>(x); <span class="comment">// 10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">println</span>(x); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>变量可以被遮蔽。</p>
+<h2 id="运算符和表达式"><a href="#运算符和表达式" class="headerlink" title="运算符和表达式"></a>运算符和表达式</h2><h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="number">5</span> + <span class="number">10</span>); <span class="comment">// 15</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> - <span class="number">10</span>); <span class="comment">// -5</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> * <span class="number">10</span>); <span class="comment">// 50</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> / <span class="number">10</span>); <span class="comment">// 0.5</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> % <span class="number">10</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="title function_">println</span>(-<span class="number">5</span>); <span class="comment">// -5</span></span><br></pre></td></tr></table></figure>
+
+<p>基本算术运算符。</p>
+<h3 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a>比较运算</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="number">5</span> == <span class="number">10</span>); <span class="comment">// false</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> != <span class="number">10</span>); <span class="comment">// true</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &lt; <span class="number">10</span>); <span class="comment">// true</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &gt; <span class="number">10</span>); <span class="comment">// false</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &lt;= <span class="number">10</span>); <span class="comment">// true</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &gt;= <span class="number">10</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>比较运算符。</p>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="literal">true</span> &amp;&amp; <span class="literal">false</span>); <span class="comment">// false</span></span><br><span class="line"><span class="title function_">println</span>(<span class="literal">true</span> || <span class="literal">false</span>); <span class="comment">// true</span></span><br><span class="line"><span class="title function_">println</span>(!<span class="literal">true</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>逻辑运算符。</p>
+<h3 id="位运算和移位"><a href="#位运算和移位" class="headerlink" title="位运算和移位"></a>位运算和移位</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &amp; <span class="number">10</span>); <span class="comment">// 0</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> | <span class="number">10</span>); <span class="comment">// 15</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> ^ <span class="number">10</span>); <span class="comment">// 15</span></span><br><span class="line"><span class="title function_">println</span>(~<span class="number">5</span>); <span class="comment">// -6</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &lt;&lt; <span class="number">1</span>); <span class="comment">// 10</span></span><br><span class="line"><span class="title function_">println</span>(<span class="number">5</span> &gt;&gt; <span class="number">1</span>); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>位运算和移位运算符。</p>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>; <span class="comment">// 5</span></span><br><span class="line">x += <span class="number">10</span>; <span class="comment">// 15</span></span><br><span class="line">x -= <span class="number">10</span>; <span class="comment">// 5</span></span><br><span class="line">x *= <span class="number">10</span>; <span class="comment">// 50</span></span><br><span class="line">x /= <span class="number">10</span>; <span class="comment">// 5</span></span><br><span class="line">x %= <span class="number">10</span>; <span class="comment">// 5</span></span><br><span class="line">x &amp;= <span class="number">10</span>; <span class="comment">// 0</span></span><br><span class="line">x |= <span class="number">10</span>; <span class="comment">// 10</span></span><br><span class="line">x ^= <span class="number">5</span>; <span class="comment">// 15</span></span><br><span class="line">x &lt;&lt;= <span class="number">5</span>; <span class="comment">// 480</span></span><br><span class="line">x &gt;&gt;= <span class="number">5</span>; <span class="comment">// 15</span></span><br><span class="line">x++; <span class="comment">// 16</span></span><br><span class="line">x--; <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>赋值运算符。</p>
+<h3 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="keyword">if</span> (x &gt; <span class="number">5</span>) <span class="number">10</span> <span class="keyword">else</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(y);</span><br><span class="line"><span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Hook 中，三元运算符是 <code>if else</code>。</p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="如果"><a href="#如果" class="headerlink" title="如果"></a>如果</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="title function_">println</span>(<span class="string">&quot;x is greater than 5&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// x is greater than 5</span></span><br></pre></td></tr></table></figure>
+
+<p><code>if</code> 语句。</p>
+<h3 id="如果否则"><a href="#如果否则" class="headerlink" title="如果否则"></a>如果否则</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x == <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="title function_">println</span>(<span class="string">&quot;x is 5&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (x == <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="title function_">println</span>(<span class="string">&quot;x is 10&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="title function_">println</span>(<span class="string">&quot;x is neither 5 nor 10&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// x is neither 5 nor 10</span></span><br></pre></td></tr></table></figure>
+
+<p><code>if else</code> 语句。</p>
+<h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">match</span> (x) &#123;</span><br><span class="line">  <span class="number">1</span> =&gt; <span class="title function_ invoke__">println</span>(<span class="string">&quot;one&quot;</span>);</span><br><span class="line">  <span class="number">2</span> =&gt; <span class="title function_ invoke__">println</span>(<span class="string">&quot;two&quot;</span>);</span><br><span class="line">  <span class="number">3</span> =&gt; <span class="title function_ invoke__">println</span>(<span class="string">&quot;three&quot;</span>);</span><br><span class="line">  _ =&gt; <span class="title function_ invoke__">println</span>(<span class="string">&quot;other&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// other</span></span><br></pre></td></tr></table></figure>
+
+<p><code>match</code> 语句。</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (x &lt; <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="title function_">print</span>(x);</span><br><span class="line">  x += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 01234</span></span><br></pre></td></tr></table></figure>
+
+<p><code>while</code> 循环。</p>
+<h3 id="do-while"><a href="#do-while" class="headerlink" title="do while"></a>do while</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="title function_">print</span>(x);</span><br><span class="line">  x += <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">while</span> (x &lt; <span class="number">5</span>);</span><br><span class="line"><span class="comment">// 01234</span></span><br></pre></td></tr></table></figure>
+
+<p><code>do while</code> 循环。</p>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="title function_ invoke__">print</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 01234</span></span><br></pre></td></tr></table></figure>
+
+<p>经典的 <code>for</code> 循环。</p>
+<h3 id="循环-1"><a href="#循环-1" class="headerlink" title="循环"></a>循环</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">loop</span> &#123;</span><br><span class="line">  <span class="title function_ invoke__">println</span>(<span class="string">&quot;Press Ctrl+C to stop&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>无条件的 <code>loop</code> 循环。</p>
+<h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">loop</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_ invoke__">print</span>(i);</span><br><span class="line">  i += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 01234</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>break</code> 退出循环。</p>
+<h3 id="继续"><a href="#继续" class="headerlink" title="继续"></a>继续</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">loop</span> &#123;</span><br><span class="line">  i += <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_ invoke__">print</span>(i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 135</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>continue</code> 跳过循环体的剩余部分。</p>
+<h2 id="字符串-1"><a href="#字符串-1" class="headerlink" title="字符串"></a>字符串</h2><h3 id="索引字符串"><a href="#索引字符串" class="headerlink" title="索引字符串"></a>索引字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(s[<span class="number">0</span>]); <span class="comment">// H</span></span><br><span class="line"><span class="title function_">println</span>(s[<span class="number">1</span>]); <span class="comment">// e</span></span><br><span class="line"><span class="title function_">println</span>(s[<span class="number">4</span>]); <span class="comment">// o</span></span><br></pre></td></tr></table></figure>
+
+<p>对字符串进行索引返回一个包含1个字符的字符串。</p>
+<h3 id="切片字符串"><a href="#切片字符串" class="headerlink" title="切片字符串"></a>切片字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(s[<span class="number">0.</span><span class="number">.5</span>]);        <span class="comment">// Hello,</span></span><br><span class="line"><span class="title function_">println</span>(s[<span class="number">7.</span><span class="number">.12</span>]);       <span class="comment">// World!</span></span><br></pre></td></tr></table></figure>
+
+<p>通过传递一个区间来切片字符串。</p>
+<h3 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> greeting = <span class="string">&quot;Hi&quot;</span> + <span class="string">&quot; there!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(greeting);</span><br><span class="line"><span class="comment">// Hi there!</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>+</code> 运算符连接字符串。</p>
+<h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><h3 id="索引数组"><a href="#索引数组" class="headerlink" title="索引数组"></a>索引数组</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">0</span>]); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">1</span>]); <span class="comment">// 2</span></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">2</span>]); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>对数组进行索引返回一个元素</p>
+<h3 id="切片数组"><a href="#切片数组" class="headerlink" title="切片数组"></a>切片数组</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">0.</span><span class="number">.2</span>]);            <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">1.</span><span class="number">.3</span>]);            <span class="comment">// [2, 3, 4]</span></span><br><span class="line"><span class="title function_">println</span>(a[<span class="number">2</span> .. <span class="title function_">len</span>(a) - <span class="number">1</span>]); <span class="comment">// [3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>数组从零开始索引</p>
+<h3 id="附加元素"><a href="#附加元素" class="headerlink" title="附加元素"></a>附加元素</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">a[] = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(a);</span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>数组是可变的。使用 <code>[]</code> 来附加一个元素</p>
+<h3 id="元素赋值"><a href="#元素赋值" class="headerlink" title="元素赋值"></a>元素赋值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(a);</span><br><span class="line"><span class="comment">// [4, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>更新数组中的元素</p>
+<h3 id="连接数组"><a href="#连接数组" class="headerlink" title="连接数组"></a>连接数组</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> c = a + b;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(c);</span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>+</code> 运算符来连接数组</p>
+<h3 id="数组相减"><a href="#数组相减" class="headerlink" title="数组相减"></a>数组相减</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> c = a - b;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(c);</span><br><span class="line"><span class="comment">// [1, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>获取两个数组之间的差异。</p>
+<h2 id="函数和闭包"><a href="#函数和闭包" class="headerlink" title="函数和闭包"></a>函数和闭包</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">sum</span>(a, b) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">println</span>(<span class="title function_ invoke__">sum</span>(<span class="number">5</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>函数是一等公民</p>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">greet</span>(name) &#123;</span><br><span class="line">  <span class="title function_ invoke__">println</span>(<span class="string">&quot;Hi, &quot;</span> + name + <span class="string">&quot;!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">greet</span>(<span class="string">&quot;John&quot;</span>, <span class="string">&quot;Doe&quot;</span>);</span><br><span class="line"><span class="comment">// Hi, John!</span></span><br></pre></td></tr></table></figure>
+
+<p>参数的数量可以调整</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> sum = |a, b| &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(<span class="title function_">sum</span>(<span class="number">5</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 也支持匿名函数</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> pi = <span class="number">3.14</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">area</span>(r) &#123;</span><br><span class="line">  <span class="keyword">return</span> pi * r * r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">println</span>(<span class="title function_ invoke__">area</span>(<span class="number">5</span>));</span><br><span class="line"><span class="comment">// 78.5</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 中的闭包只捕获数值</p>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">apply</span>(f, x) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_ invoke__">f</span>(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">double</span>(x) &#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">println</span>(<span class="title function_ invoke__">apply</span>(double, <span class="number">5</span>));</span><br><span class="line"><span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>函数可以作为参数传递或返回</p>
+<h3 id="函数的语法糖"><a href="#函数的语法糖" class="headerlink" title="函数的语法糖"></a>函数的语法糖</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">factorial</span>(n) =&gt;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span> n * <span class="title function_ invoke__">factorial</span>(n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">println</span>(<span class="title function_ invoke__">factorial</span>(<span class="number">5</span>));</span><br><span class="line"><span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+
+<p>当函数体是单个表达式时使用 <code>=&gt;</code></p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">fib</span>(n) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_ invoke__">fib</span>(n - <span class="number">1</span>) + <span class="title function_ invoke__">fib</span>(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">println</span>(<span class="title function_ invoke__">fib</span>(<span class="number">10</span>));</span><br><span class="line"><span class="comment">// 55</span></span><br></pre></td></tr></table></figure>
+
+<p>支持递归</p>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="title function_">type</span>(<span class="number">5</span>));</span><br><span class="line"><span class="comment">// number</span></span><br><span class="line"><span class="title function_">println</span>(<span class="string">&quot;1&quot;</span> + <span class="title function_">to_string</span>(<span class="number">2</span>));</span><br><span class="line"><span class="comment">// 12</span></span><br><span class="line"><span class="title function_">println</span>(<span class="title function_">len</span>(<span class="string">&quot;foo&quot;</span>));</span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>有许多内置函数</p>
+<h3 id="更多内置函数"><a href="#更多内置函数" class="headerlink" title="更多内置函数"></a>更多内置函数</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>print</code></td>
+<td align="left"><code>println</code></td>
+<td align="left"><code>type</code></td>
+</tr>
+<tr>
+<td><code>is_nil</code></td>
+<td align="left"><code>is_bool</code></td>
+<td align="left"><code>to_number</code></td>
+</tr>
+<tr>
+<td><code>to_string</code></td>
+<td align="left"><code>hex</code></td>
+<td align="left"><code>len</code></td>
+</tr>
+<tr>
+<td><code>exit</code></td>
+<td align="left"><code>assert</code></td>
+<td align="left"><code>panic</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<p>参见：<a target="_blank" rel="noopener" href="https://github.com/hook-lang/hook/blob/main/docs/built-in.md">内置函数</a></p>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">  x, y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="title class_">Point</span> &#123; <span class="number">5</span>, <span class="number">10</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(p);</span><br><span class="line"><span class="comment">// &#123;x: 5, y: 10&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>结构体是记录的原型</p>
+<h3 id="访问字段"><a href="#访问字段" class="headerlink" title="访问字段"></a>访问字段</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(p.<span class="property">x</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="title function_">println</span>(p.<span class="property">y</span>); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>.</code> 来访问记录中的字段</p>
+<h3 id="字段赋值"><a href="#字段赋值" class="headerlink" title="字段赋值"></a>字段赋值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">p.<span class="property">x</span> = <span class="number">10</span>;</span><br><span class="line">p.<span class="property">y</span> = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(p);</span><br><span class="line"><span class="comment">// &#123;x: 10, y: 20&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>更新记录中字段的值。</p>
+<h2 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h2><h3 id="解构数组"><a href="#解构数组" class="headerlink" title="解构数组"></a>解构数组</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> [x, y] = a;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(x); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">println</span>(y); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>变量被声明并赋值</p>
+<h3 id="解构记录"><a href="#解构记录" class="headerlink" title="解构记录"></a>解构记录</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p = &#123; <span class="attr">x</span>: <span class="number">5</span>, <span class="attr">y</span>: <span class="number">10</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; x &#125; = p;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(x);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>&#123;&#125;</code> 来解构记录</p>
+<h3 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> [x] = a;</span><br><span class="line"><span class="keyword">let</span> [_, y] = a;</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(x); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">println</span>(y); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>_</code> 跳过前导或中间元素。</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(math.<span class="title function_">sqrt</span>(<span class="number">25</span>));</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>import</code> 将一个模块引入作用域。</p>
+<h3 id="导出符号"><a href="#导出符号" class="headerlink" title="导出符号"></a>导出符号</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// my_module.hk</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">useful_fn</span>() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;Nothing&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> &#123; useful: useful_fn &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>返回一个包含要导出符号的记录。</p>
+<h3 id="导入本地模块"><a href="#导入本地模块" class="headerlink" title="导入本地模块"></a>导入本地模块</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;./my_module.hk&quot;</span> <span class="keyword">as</span> my;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(my.<span class="title function_">useful</span>());</span><br><span class="line"><span class="comment">// Nothing</span></span><br></pre></td></tr></table></figure>
+
+<p>指定本地模块的路径。</p>
+<h3 id="选择性导入"><a href="#选择性导入" class="headerlink" title="选择性导入"></a>选择性导入</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; pow, sqrt &#125; <span class="keyword">from</span> math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [ b, c ] = [ <span class="number">4</span>, <span class="number">3</span> ];</span><br><span class="line"><span class="keyword">let</span> a = <span class="title function_">sqrt</span>(<span class="title function_">pow</span>(b, <span class="number">2</span>) + <span class="title function_">pow</span>(c, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(a);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>&#123;&#125;</code> 导入特定的符号。</p>
+<h3 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>math</code></td>
+<td align="left"><code>os</code></td>
+<td align="left"><code>io</code></td>
+<td align="left"><code>numbers</code></td>
+</tr>
+<tr>
+<td><code>strings</code></td>
+<td align="left"><code>arrays</code></td>
+<td align="left"><code>utf8</code></td>
+<td align="left"><code>hashing</code></td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td align="left"><code>socket</code></td>
+<td align="left"><code>json</code></td>
+<td align="left"><code>lists</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<p>参见：<a target="_blank" rel="noopener" href="https://github.com/hook-lang/hook/blob/main/docs/core-modules.md">核心模块</a></p>
+<h3 id="扩展模块"><a href="#扩展模块" class="headerlink" title="扩展模块"></a>扩展模块</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bigint</code></td>
+<td align="left"><code>crypto</code></td>
+<td align="left"><code>curl</code></td>
+<td align="left"><code>fastcgi</code></td>
+</tr>
+<tr>
+<td><code>geohash</code></td>
+<td align="left"><code>leveldb</code></td>
+<td align="left"><code>mysql</code></td>
+<td align="left"><code>redis</code></td>
+</tr>
+<tr>
+<td><code>regex</code></td>
+<td align="left"><code>sqlite</code></td>
+<td align="left"><code>uuid</code></td>
+<td align="left"><code>zeromq</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<p>这是扩展模块的列表。</p>
+<h3 id="io-模块"><a href="#io-模块" class="headerlink" title="io 模块"></a><strong>io</strong> 模块</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; stderr, writeln &#125; <span class="keyword">from</span> io;</span><br><span class="line"></span><br><span class="line"><span class="title function_">writeln</span>(stderr, <span class="string">&quot;Something went wrong&quot;</span>);</span><br><span class="line"><span class="comment">// Something went wrong</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>io</code> 模块将内容输出到 <code>stderr</code></p>
+<h3 id="hashing-模块"><a href="#hashing-模块" class="headerlink" title="hashing 模块"></a><strong>hashing</strong> 模块</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> hashing <span class="keyword">as</span> h;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> d = h.<span class="title function_">sha256</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(<span class="title function_">hex</span>(d));</span><br><span class="line"><span class="comment">// 315f5bdb76d078c43b8ac0064e4a...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>hashing</code> 模块提供哈希函数</p>
+<h3 id="json-模块"><a href="#json-模块" class="headerlink" title="json 模块"></a><strong>json</strong> 模块</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> j = <span class="string">&#x27;&#123;&quot;x&quot;: 1, &quot;y&quot;: 2&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> p = json.<span class="title function_">decode</span>(j);</span><br><span class="line"></span><br><span class="line"><span class="title function_">println</span>(p.<span class="property">x</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> k = json.<span class="title function_">encode</span>(p);</span><br><span class="line"><span class="title function_">println</span>(<span class="title function_">type</span>(k)); <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>json</code> 模块处理 JSON。</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="title function_">to_int</span>(<span class="string">&quot;foo&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// runtime error: type error: argument #1 is not a convertible string</span></span><br><span class="line"><span class="comment">//   at to_int() in &lt;native&gt;</span></span><br><span class="line"><span class="comment">//   at main() in example.hk:1</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 使用 panic 模式进行错误处理。当出现错误时，解释器会停止运行</p>
+<h3 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">println</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// syntax error: unexpected end of file</span></span><br><span class="line"><span class="comment">//   at main() in example.hk:1,25</span></span><br></pre></td></tr></table></figure>
+
+<p>Hook 具有严格的语法</p>
+<h3 id="崩溃"><a href="#崩溃" class="headerlink" title="崩溃"></a>崩溃</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">panic</span>(<span class="string">&quot;Something went wrong&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// panic: Something went wrong</span></span><br><span class="line"><span class="comment">//   at main() in example.hk:1</span></span><br></pre></td></tr></table></figure>
+
+<p>使用内置函数 <code>panic</code> 来引发错误</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">assert</span>(<span class="number">5</span> &gt; <span class="number">10</span>, <span class="string">&quot;5 is not greater than 10&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// assert: 5 is not greater than 10</span></span><br><span class="line"><span class="comment">//   at main() in example.hk:1</span></span><br></pre></td></tr></table></figure>
+
+<p>使用内置函数 <code>assert</code> 来检查条件</p>
+<h3 id="返回错误"><a href="#返回错误" class="headerlink" title="返回错误"></a>返回错误</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">divide</span>(a, b) &#123;</span><br><span class="line">  <span class="keyword">if</span> (b == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> [nil, <span class="string">&quot;division by zero&quot;</span>];</span><br><span class="line">  <span class="keyword">return</span> a / b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">let</span> [ok, err] = <span class="title function_ invoke__">divide</span>(<span class="number">5</span>, <span class="number">0</span>); ok) &#123;</span><br><span class="line">  <span class="title function_ invoke__">println</span>(ok);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="title function_ invoke__">println</span>(err);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// division by zero</span></span><br></pre></td></tr></table></figure>
+
+<p>使用一对来返回一个值和一个错误</p>
+<h3 id="传递错误"><a href="#传递错误" class="headerlink" title="传递错误"></a>传递错误</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">let</span> [ok, err] = <span class="title function_ invoke__">divide</span>(<span class="number">5</span>, <span class="number">0</span>); err) &#123;</span><br><span class="line">  <span class="keyword">return</span> [nil, err];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>传递错误而不处理它</p>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

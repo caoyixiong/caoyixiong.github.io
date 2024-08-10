@@ -1,0 +1,2101 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Vim 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="Vim 8.2 快速参考备忘单的有用集合，可帮助您更快地学习 vim 编辑器。 入门运动图  ▼&#x2F;▶ 光标   ▽&#x2F;▷ 目标  左右动作╭┈┈┈┈┈┈┈┈┈┈┈┈┈ |      ├┈┈┈┈┈┈┈┈┈┈┈┈┈ 0      $ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮┆  ╭┈┈┈┈┈┈┈┈┈┈ ^      fe ┈┈┈┈┈┈┈┈╮       ┆┆  ┆  ╭┈┈┈┈┈┈┈ Fo     te ┈">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vim 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/vim/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="Vim 8.2 快速参考备忘单的有用集合，可帮助您更快地学习 vim 编辑器。 入门运动图  ▼&#x2F;▶ 光标   ▽&#x2F;▷ 目标  左右动作╭┈┈┈┈┈┈┈┈┈┈┈┈┈ |      ├┈┈┈┈┈┈┈┈┈┈┈┈┈ 0      $ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮┆  ╭┈┈┈┈┈┈┈┈┈┈ ^      fe ┈┈┈┈┈┈┈┈╮       ┆┆  ┆  ╭┈┈┈┈┈┈┈ Fo     te ┈">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:16.273Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:16.273Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/vim/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vim 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Vim 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p><a target="_blank" rel="noopener" href="http://www.vim.org/">Vim</a> 8.2 快速参考备忘单的有用集合，可帮助您更快地学习 vim 编辑器。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="运动图"><a href="#运动图" class="headerlink" title="运动图"></a>运动图</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">▼/▶ 光标   ▽/▷ 目标</span><br></pre></td></tr></table></figure>
+
+<h4 id="左右动作"><a href="#左右动作" class="headerlink" title="左右动作"></a>左右动作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">╭┈┈┈┈┈┈┈┈┈┈┈┈┈ |      </span><br><span class="line">├┈┈┈┈┈┈┈┈┈┈┈┈┈ 0      $ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮</span><br><span class="line">┆  ╭┈┈┈┈┈┈┈┈┈┈ ^      fe ┈┈┈┈┈┈┈┈╮       ┆</span><br><span class="line">┆  ┆  ╭┈┈┈┈┈┈┈ Fo     te ┈┈┈┈┈┈┈╮┆       ┆</span><br><span class="line">┆  ┆  ┆╭┈┈┈┈┈┈ To     30| ┈┈┈╮  ┆┆       ┆</span><br><span class="line">┆  ┆  ┆┆ ╭┈┈┈┈ ge     w ┈┈┈╮ ┆  ┆┆       ┆</span><br><span class="line">┆  ┆  ┆┆ ┆ ╭┈┈ b      e ┈╮ ┆ ┆  ┆┆       ┆</span><br><span class="line">┆  ┆  ┆┆ ┆ ┆  ╭h      l╮ ┆ ┆ ┆  ┆┆       ┆</span><br><span class="line">▽  ▽  ▽▽ ▽ ▽  ▽▼      ▼▽ ▽ ▽ ▽  ▽▽       ▽</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;A cheatsheet from quickReference&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="上下动作"><a href="#上下动作" class="headerlink" title="上下动作"></a>上下动作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">                  - SCREEN 1 START</span><br><span class="line">   ╭┈┬┈┈┈┈┈┈┈┈┈▷  <span class="comment">#!/usr/bin/python</span></span><br><span class="line">   ┆ ┆     ╭┈┈┈▷      </span><br><span class="line">   ┆ ┆     ┆      <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">   ┆ ┆     &#123; &#125; ▶  <span class="built_in">print</span>(<span class="string">&quot;Vim&quot;</span>)</span><br><span class="line">   ┆ ┆       ┆    <span class="built_in">print</span>(<span class="string">&quot;!&quot;</span>)</span><br><span class="line">   ┆ ┆       └┈▷     </span><br><span class="line">   ┆ ┆ ╭┈┈┈┬┈┈┈▷  <span class="built_in">print</span>(<span class="string">&quot;Welcome&quot;</span>)</span><br><span class="line">G gg H M L k j ▶  <span class="built_in">print</span>(<span class="string">&quot;to&quot;</span>)</span><br><span class="line">┆        ┆   └┈▷  <span class="built_in">print</span>(<span class="string">&quot;Quick Reference&quot;</span>)</span><br><span class="line">┆        ┆        <span class="built_in">print</span>(<span class="string">&quot;/vim&quot;</span>)</span><br><span class="line">┆        ┆     </span><br><span class="line">┆        ╰┈┈┈┈┈▷ </span><br><span class="line">┆                 - SCREEN 1 END</span><br><span class="line">╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈▷  <span class="built_in">print</span>(<span class="string">&quot;SCREEN 2&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>h</code> | <code>j</code> | <code>k</code> | <code>l</code></td>
+<td>方向键</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-u&gt;</code> <em>&#x2F;</em> <code>&lt;C-d&gt;</code></td>
+<td>上&#x2F;下半页</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-b&gt;</code> <em>&#x2F;</em> <code>&lt;C-f&gt;</code></td>
+<td>向上&#x2F;向下翻页</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="字-词"><a href="#字-词" class="headerlink" title="字(词)"></a>字(词)</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>b</code> <em>&#x2F;</em> <code>w</code></td>
+<td>上一个&#x2F;下一个单词</td>
+</tr>
+<tr>
+<td align="left"><code>ge</code> <em>&#x2F;</em> <code>e</code></td>
+<td>上一个&#x2F;下一个词尾</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="行"><a href="#行" class="headerlink" title="行"></a>行</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>0</code> <em>(zero)</em> <em>&#x2F;</em> <code>$</code></td>
+<td>行的开始&#x2F;结束</td>
+</tr>
+<tr>
+<td align="left"><code>^</code></td>
+<td>行开头 <em>(非空白)</em></td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Fe</code> <em>&#x2F;</em> <code>fe</code></td>
+<td>移动到上一个&#x2F;下一个<code>e</code></td>
+</tr>
+<tr>
+<td align="left"><code>To</code> <em>&#x2F;</em> <code>to</code></td>
+<td>在上一个&#x2F;下一个<code>o</code>之前&#x2F;之后移动</td>
+</tr>
+<tr>
+<td align="left"><code>|</code> <em>&#x2F;</em> <code>n|</code></td>
+<td>转到第一个&#x2F;<code>n</code>列</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>gg</code> <em>&#x2F;</em> <code>G</code></td>
+<td>第一行&#x2F;最后一行</td>
+</tr>
+<tr>
+<td align="left"><code>:n</code> | <code>nG</code></td>
+<td>转到第 <code>n</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>&#125;</code> <em>&#x2F;</em> <code>&#123;</code></td>
+<td>下一个&#x2F;上一个空行</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>H</code> <em>&#x2F;</em> <code>M</code> <em>&#x2F;</em> <code>L</code></td>
+<td>上&#x2F;中&#x2F;下屏幕</td>
+</tr>
+<tr>
+<td align="left"><code>zt</code> <em>&#x2F;</em> <code>zz</code> <em>&#x2F;</em>  <code>zb</code></td>
+<td>上&#x2F;中&#x2F;下这条线</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>i</code> <em>&#x2F;</em> <code>a</code></td>
+<td>在光标之前&#x2F;之后插入</td>
+</tr>
+<tr>
+<td align="left"><code>I</code> <em>&#x2F;</em> <code>A</code></td>
+<td>插入行的开始&#x2F;结束</td>
+</tr>
+<tr>
+<td align="left"><code>o</code> <em>&#x2F;</em> <code>O</code> <em>(letter)</em></td>
+<td>在下方&#x2F;上方插入新行</td>
+</tr>
+<tr>
+<td align="left"><code>s</code> <em>&#x2F;</em> <code>S</code></td>
+<td>删除字符&#x2F;行并插入</td>
+</tr>
+<tr>
+<td align="left"><code>C</code> <em>&#x2F;</em> <code>cc</code></td>
+<td>更改到&#x2F;当前行的结尾</td>
+</tr>
+<tr>
+<td align="left"><code>gi</code></td>
+<td>在最后一个插入点插入</td>
+</tr>
+<tr>
+<td align="left"><code>Esc</code> | <code>&lt;C-[&gt;</code></td>
+<td>退出插入模式</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="保存和退出"><a href="#保存和退出" class="headerlink" title="保存和退出"></a>保存和退出</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:w</code></td>
+<td>保存</td>
+</tr>
+<tr>
+<td align="left"><code>:q</code></td>
+<td>关闭文件</td>
+</tr>
+<tr>
+<td align="left"><code>:wq</code> | <code>:x</code> | <code>ZZ</code></td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td align="left"><code>:wqa</code></td>
+<td>保存并退出所有文件</td>
+</tr>
+<tr>
+<td align="left"><code>:q!</code> | <code>ZQ</code></td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td align="left"><code>:qa</code></td>
+<td>关闭所有文件</td>
+</tr>
+<tr>
+<td align="left"><code>:qa!</code></td>
+<td>强制退出所有文件</td>
+</tr>
+<tr>
+<td align="left"><code>:w</code> new.txt</td>
+<td>写入<code>new.txt</code></td>
+</tr>
+<tr>
+<td align="left"><code>:sav</code> new.txt</td>
+<td>保存并编辑<code>new.txt</code></td>
+</tr>
+<tr>
+<td align="left"><code>:w</code> !sudo tee %</td>
+<td>写入只读文件</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="正常模式"><a href="#正常模式" class="headerlink" title="正常模式"></a>正常模式</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>r</code></td>
+<td>替换一个字符</td>
+</tr>
+<tr>
+<td align="left"><code>R</code></td>
+<td>进入替换模式</td>
+</tr>
+<tr>
+<td align="left"><code>u</code> <em>&#x2F;</em> <code>3u</code></td>
+<td>撤消更改<code>1</code>&#x2F;<code>3</code>次</td>
+</tr>
+<tr>
+<td align="left"><code>U</code></td>
+<td>在一行上撤消更改</td>
+</tr>
+<tr>
+<td align="left"><code>J</code></td>
+<td>加入下一行</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-r&gt;</code> <em>&#x2F;</em> 5 <code>&lt;C-r&gt;</code></td>
+<td>重做更改<code>1</code>&#x2F;<code>5</code>次</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="剪切和粘贴"><a href="#剪切和粘贴" class="headerlink" title="剪切和粘贴"></a>剪切和粘贴</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>x</code></td>
+<td>删除字符 <em>(剪切)</em></td>
+</tr>
+<tr>
+<td align="left"><code>p</code> <em>&#x2F;</em> <code>P</code></td>
+<td>在之后&#x2F;之前粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>xp</code></td>
+<td>交换两个字符</td>
+</tr>
+<tr>
+<td align="left"><code>D</code></td>
+<td>删除到行尾 <em>(剪切)</em></td>
+</tr>
+<tr>
+<td align="left"><code>dw</code></td>
+<td>删除单词 <em>(剪切)</em></td>
+</tr>
+<tr>
+<td align="left"><code>dd</code></td>
+<td>删除线 <em>(剪切)</em></td>
+</tr>
+<tr>
+<td align="left"><code>ddp</code></td>
+<td>交换两条线</td>
+</tr>
+<tr>
+<td align="left"><code>yy</code></td>
+<td>拉线 <em>(复制)</em></td>
+</tr>
+<tr>
+<td align="left"><code>&quot;*p</code> | <code>&quot;+p</code></td>
+<td>从系统剪贴板粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>&quot;*y</code> | <code>&quot;+y</code></td>
+<td>粘贴到系统剪贴板</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h4 id="在可视化模式下"><a href="#在可视化模式下" class="headerlink" title="在可视化模式下"></a>在可视化模式下</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>d</code> <em>|</em> <code>x</code></td>
+<td>删除选择 <em>(剪切)</em></td>
+</tr>
+<tr>
+<td align="left"><code>s</code></td>
+<td>替换选择</td>
+</tr>
+<tr>
+<td align="left"><code>y</code></td>
+<td>Yank 选择 <em>(复制)</em></td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>.</code></td>
+<td>重复上一个命令</td>
+</tr>
+<tr>
+<td align="left"><code>;</code></td>
+<td>重复最新的 <code>f</code>、<code>t</code>、<code>F</code> 或 <code>T</code></td>
+</tr>
+<tr>
+<td align="left"><code>,</code></td>
+<td>重复最新的<code>f</code>、<code>t</code>、<code>F</code>或<code>T</code>颠倒</td>
+</tr>
+<tr>
+<td align="left"><code>&amp;</code></td>
+<td>重复最后一个<code>:s</code></td>
+</tr>
+<tr>
+<td align="left"><code>@:</code></td>
+<td>重复命令行命令</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="可视化模式"><a href="#可视化模式" class="headerlink" title="可视化模式"></a>可视化模式</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>v</code></td>
+<td>进入可视化模式</td>
+</tr>
+<tr>
+<td align="left"><code>V</code></td>
+<td>进入视线模式</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-v&gt;</code></td>
+<td>进入可视块模式</td>
+</tr>
+<tr>
+<td align="left"><code>ggVG</code></td>
+<td>选择所有文本</td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code> <em>&#x2F;</em> <code>&lt;</code></td>
+<td>向右&#x2F;向左移动文本</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>qi</code></td>
+<td>录制宏 <code>i</code></td>
+</tr>
+<tr>
+<td align="left"><code>q</code></td>
+<td>停止录制宏</td>
+</tr>
+<tr>
+<td align="left"><code>@i</code></td>
+<td>运行宏<code>i</code></td>
+</tr>
+<tr>
+<td align="left"><code>7@i</code></td>
+<td>运行宏 <code>i</code> 7 次</td>
+</tr>
+<tr>
+<td align="left"><code>@@</code></td>
+<td>重复上一个宏</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<p>您可以为任何字母保存宏，而不仅仅是 <code>i</code></p>
+<h2 id="Vim-运算符"><a href="#Vim-运算符" class="headerlink" title="Vim 运算符"></a>Vim 运算符</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><!--rehype:style=background:#d7a100;-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>d</code></td>
+<td><yel>w</yel></td>
+</tr>
+<tr>
+<td align="left">运算符</td>
+<td>动作</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<p>将 <a href="#%E5%8F%AF%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6">可用运算符</a> 与 <a href="#%E5%8A%A8%E4%BD%9C">动作</a> 结合使用以使用它们</p>
+<h3 id="可用运算符"><a href="#可用运算符" class="headerlink" title="可用运算符"></a>可用运算符</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>d</code></td>
+<td>删除</td>
+</tr>
+<tr>
+<td align="left"><code>y</code></td>
+<td>Yank <em>(复制)</em></td>
+</tr>
+<tr>
+<td align="left"><code>c</code></td>
+<td>更改 <em>(删除然后插入)</em></td>
+</tr>
+<tr>
+<td align="left"><code>p</code></td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>=</code></td>
+<td>格式代码</td>
+</tr>
+<tr>
+<td align="left"><code>g~</code></td>
+<td>切换案例</td>
+</tr>
+<tr>
+<td align="left"><code>gU</code></td>
+<td>大写</td>
+</tr>
+<tr>
+<td align="left"><code>gu</code></td>
+<td>小写</td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code></td>
+<td>右缩进</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;</code></td>
+<td>左缩进</td>
+</tr>
+<tr>
+<td align="left"><code>!</code></td>
+<td>通过外部程序过滤</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">组合</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>d</code><yel>d</yel></td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><yel>j</yel></td>
+<td>删除两行</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><yel>w</yel></td>
+<td>删除到下一个单词</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><yel>b</yel></td>
+<td>删除到单词的开头</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><yel>fa</yel></td>
+<td>删除直到 <code>a</code> 字符</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><yel>&#x2F;hello</yel></td>
+<td>删除直到 <code>hello</code></td>
+</tr>
+<tr>
+<td align="left"><code>c</code><yel>c</yel></td>
+<td>更改当前行，与 <code>S</code> 同义</td>
+</tr>
+<tr>
+<td align="left"><code>y</code><yel>y</yel></td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code><yel>j</yel></td>
+<td>缩进 2 行</td>
+</tr>
+<tr>
+<td align="left">gg<code>d</code><yel>G</yel></td>
+<td>删除完整的文档</td>
+</tr>
+<tr>
+<td align="left">gg<code>=</code><yel>G</yel></td>
+<td>缩进一个完整的文档</td>
+</tr>
+<tr>
+<td align="left">gg<code>y</code><yel>G</yel></td>
+<td>复制整个文档</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[数字] &lt;运算符&gt; &lt;动作&gt;</span><br><span class="line">&lt;运算符&gt; [数字] &lt;动作&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">组合</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2<code>d</code><yel>d</yel></td>
+<td>删除 <code>2</code> 行</td>
+</tr>
+<tr>
+<td align="left">6<code>y</code><yel>y</yel></td>
+<td>复制 <code>6</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>d</code>3<yel>w</yel></td>
+<td>删除 <code>3</code> 字</td>
+</tr>
+<tr>
+<td align="left"><code>d</code>5<yel>j</yel></td>
+<td>向下删除 <code>5</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code>4<yel>k</yel></td>
+<td>向上缩进 <code>4</code> 行</td>
+</tr>
+</tbody></table>
+<h2 id="Vim-文本对象"><a href="#Vim-文本对象" class="headerlink" title="Vim 文本对象"></a>Vim 文本对象</h2><h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><!--rehype:style=background:#d7a100;-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>v</code></td>
+<td>&nbsp; &nbsp; &nbsp; &nbsp; <pur>i</pur> <em>&#x2F;</em> <pur>a</pur></td>
+</tr>
+<tr>
+<td align="left">Operator</td>
+<td><pur>i</pur>nner(内部) <em>&#x2F;</em> <pur>a</pur>round(周围)</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<p>文本块内部或周围使用 <a href="#%E5%8F%AF%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6">operator</a> 进行操作</p>
+<h3 id="文本对象"><a href="#文本对象" class="headerlink" title="文本对象"></a>文本对象</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><yel>p</yel></td>
+<td>段落</td>
+</tr>
+<tr>
+<td align="left"><yel>w</yel></td>
+<td>单词</td>
+</tr>
+<tr>
+<td align="left"><yel>W</yel></td>
+<td>WORD <br/> <em>(被空格包围)</em></td>
+</tr>
+<tr>
+<td align="left"><yel>s</yel></td>
+<td>句子</td>
+</tr>
+<tr>
+<td align="left"><yel>[</yel> <yel>(</yel> <yel>{</yel> <yel>&lt;</yel></td>
+<td>[]、() 或 {} 块</td>
+</tr>
+<tr>
+<td align="left"><yel>]</yel> <yel>)</yel> <yel>}</yel> <yel>&gt;</yel></td>
+<td>[]、() 或 {} 块</td>
+</tr>
+<tr>
+<td align="left"><yel>‘</yel> <yel>“</yel> <yel>`</yel></td>
+<td>带引号的字符串</td>
+</tr>
+<tr>
+<td align="left"><yel>b</yel></td>
+<td>一个块 [(</td>
+</tr>
+<tr>
+<td align="left"><yel>B</yel></td>
+<td>[{中的一个块</td>
+</tr>
+<tr>
+<td align="left"><yel>t</yel></td>
+<td>一个 HTML 标签块</td>
+</tr>
+</tbody></table>
+<p>查看 <code>:help text-objects</code></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>d</code><pur>i</pur><yel>w</yel></td>
+<td>删除内词</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><pur>i</pur><yel>s</yel></td>
+<td>删除内句</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><pur>i</pur><yel>“</yel></td>
+<td>引号中删除</td>
+</tr>
+<tr>
+<td align="left"><code>d</code><pur>a</pur><yel>“</yel></td>
+<td>删除引号 <em>(包括引号)</em></td>
+</tr>
+<tr>
+<td align="left"><code>d</code><pur>i</pur><yel>p</yel></td>
+<td>删除段落</td>
+</tr>
+</tbody></table>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>v</code><pur>i</pur><yel>“</yel></td>
+<td>选择内引号“<code>...</code>{.underline}”</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>a</pur><yel>“</yel></td>
+<td>选择引号<code>&quot;...&quot;</code>{.underline}</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>i</pur><yel>[</yel></td>
+<td>选择内括号 [<code>...</code>{.underline}]</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>a</pur><yel>[</yel></td>
+<td>选择括号<code>[...]</code>{.underline}</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>i</pur><yel>w</yel></td>
+<td>选择内词</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>i</pur><yel>p</yel></td>
+<td>选择内部段落</td>
+</tr>
+<tr>
+<td align="left"><code>v</code><pur>i</pur><yel>p</yel><pur>i</pur><yel>p</yel></td>
+<td>选择更多段落</td>
+</tr>
+</tbody></table>
+<h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>c</code><pur>i</pur><yel>w</yel></td>
+<td>换内字</td>
+</tr>
+<tr>
+<td align="left"><code>c</code><pur>i</pur><yel>“</yel></td>
+<td>更改内部引号</td>
+</tr>
+<tr>
+<td align="left"><code>c</code><pur>i</pur><yel>t</yel></td>
+<td>更改内部标签 (HTML)</td>
+</tr>
+<tr>
+<td align="left"><code>c</code><pur>i</pur><yel>p</yel></td>
+<td>更改内部段落</td>
+</tr>
+<tr>
+<td align="left"><code>y</code><pur>i</pur><yel>p</yel></td>
+<td>Yank 段落</td>
+</tr>
+<tr>
+<td align="left"><code>y</code><pur>a</pur><yel>p</yel></td>
+<td>Yank 段落 <em>(包括换行符)</em></td>
+</tr>
+</tbody></table>
+<h2 id="Vim-多个文件"><a href="#Vim-多个文件" class="headerlink" title="Vim 多个文件"></a>Vim 多个文件</h2><h3 id="Buffers-缓冲器"><a href="#Buffers-缓冲器" class="headerlink" title="Buffers (缓冲器)"></a>Buffers (缓冲器)</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:e file</code></td>
+<td>在新缓冲区中编辑文件</td>
+</tr>
+<tr>
+<td align="left"><code>:bn</code></td>
+<td>转到下一个缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>:bp</code></td>
+<td>转到上一个缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>:bd</code></td>
+<td>从缓冲区列表中删除文件</td>
+</tr>
+<tr>
+<td align="left"><code>:b 5</code></td>
+<td>打开缓冲区 #5</td>
+</tr>
+<tr>
+<td align="left"><code>:b file</code></td>
+<td>按文件转到缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>:ls</code></td>
+<td>列出所有打开的缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>:sp file</code></td>
+<td>打开和拆分窗口</td>
+</tr>
+<tr>
+<td align="left"><code>:vs file</code></td>
+<td>打开和垂直拆分窗口</td>
+</tr>
+<tr>
+<td align="left"><code>:hid</code></td>
+<td>隐藏此缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>:wn</code></td>
+<td>写入文件并移至下一个</td>
+</tr>
+<tr>
+<td align="left"><code>:tab ba</code></td>
+<td>将所有缓冲区编辑为选项卡</td>
+</tr>
+</tbody></table>
+<h3 id="窗口-1"><a href="#窗口-1" class="headerlink" title="窗口"></a>窗口</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>s</code></td>
+<td>拆分窗口</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>v</code></td>
+<td>垂直拆分窗口</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>w</code></td>
+<td>切换窗口</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>q</code></td>
+<td>退出一个窗口</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>T</code></td>
+<td>拆分成一个新标签</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>x</code></td>
+<td>用下一个交换当前</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>-</code>  <em>&#x2F;</em> <code>+</code></td>
+<td>减少&#x2F;增加高度</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>&lt;</code>  <em>&#x2F;</em> <code>&gt;</code></td>
+<td>减少&#x2F;增加宽度</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>|</code></td>
+<td>最大宽度</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>=</code></td>
+<td>同样高和宽</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>h</code> <em>&#x2F;</em> <code>l</code></td>
+<td>转到左&#x2F;右窗口</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-w&gt;</code> <code>j</code> <em>&#x2F;</em> <code>k</code></td>
+<td>转到上&#x2F;下窗口</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:tabe [file]</code></td>
+<td><yel>E</yel>在新选项卡中编辑文件</td>
+</tr>
+<tr>
+<td align="left"><code>:tabf [file]</code></td>
+<td>如果在新选项卡中存在则打开</td>
+</tr>
+<tr>
+<td align="left"><code>:tabc</code></td>
+<td><yel>C</yel>失去当前选项卡</td>
+</tr>
+<tr>
+<td align="left"><code>:tabo</code></td>
+<td>关闭<yel>o</yel>其他选项卡</td>
+</tr>
+<tr>
+<td align="left"><code>:tabs</code></td>
+<td>列出所有<yel>标签</yel></td>
+</tr>
+<tr>
+<td align="left"><code>:tabr</code></td>
+<td>转到第一个<yel>r</yel>标签</td>
+</tr>
+<tr>
+<td align="left"><code>:tabl</code></td>
+<td>转到 <yel>l</yel>ast 选项卡</td>
+</tr>
+<tr>
+<td align="left"><code>:tabm 0</code></td>
+<td><yel>我</yel>转到位置 <code>0</code></td>
+</tr>
+<tr>
+<td align="left"><code>:tabn</code></td>
+<td>转到 <yel>n</yel>ext 选项卡</td>
+</tr>
+<tr>
+<td align="left"><code>:tabp</code></td>
+<td>转到<yel>p</yel>上一个标签</td>
+</tr>
+</tbody></table>
+<h4 id="正常模式-1"><a href="#正常模式-1" class="headerlink" title="正常模式"></a>正常模式</h4><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>gt</code></td>
+<td>转到 <yel>n</yel>ext 选项卡</td>
+</tr>
+<tr>
+<td align="left"><code>gT</code></td>
+<td>转到<yel>p</yel>上一个标签</td>
+</tr>
+<tr>
+<td align="left"><code>2gt</code></td>
+<td>转到标签编号 <code>2</code></td>
+</tr>
+</tbody></table>
+<h2 id="Vim-搜索和替换"><a href="#Vim-搜索和替换" class="headerlink" title="Vim 搜索和替换"></a>Vim 搜索和替换</h2><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/foo</code></td>
+<td>向后搜索</td>
+</tr>
+<tr>
+<td align="left"><code>/foo\c</code></td>
+<td>向后搜索 <em>(不区分大小写)</em></td>
+</tr>
+<tr>
+<td align="left"><code>?foo</code></td>
+<td>向前搜索</td>
+</tr>
+<tr>
+<td align="left"><code>/\v\d+</code></td>
+<td>使用 <a href="./regex.md">regex</a> 搜索</td>
+</tr>
+<tr>
+<td align="left"><code>n</code></td>
+<td>下一个匹配的搜索模式</td>
+</tr>
+<tr>
+<td align="left"><code>N</code></td>
+<td>上一个匹配的搜索</td>
+</tr>
+<tr>
+<td align="left"><code>*</code></td>
+<td>向前搜索当前单词</td>
+</tr>
+<tr>
+<td align="left"><code>#</code></td>
+<td>向后搜索当前单词</td>
+</tr>
+</tbody></table>
+<h3 id="更换行"><a href="#更换行" class="headerlink" title="更换行"></a>更换行</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">:[<span class="built_in">range</span>]s/&#123;pattern&#125;/&#123;str&#125;/[flags]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:s/old/new</code></td>
+<td>先更换</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new/g</code></td>
+<td>全部替换</td>
+</tr>
+<tr>
+<td align="left"><code>:s/\vold/new/g</code></td>
+<td>全部替换为 <a href="./regex.md">regex</a></td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new/gc</code></td>
+<td>全部替换_(确认)_</td>
+</tr>
+<tr>
+<td align="left"><code>:s/old/new/i</code></td>
+<td>先忽略大小写替换</td>
+</tr>
+<tr>
+<td align="left"><code>:2,6s/old/new/g</code></td>
+<td>在 <code>2</code>-<code>6</code> 行之间替换</td>
+</tr>
+</tbody></table>
+<h3 id="替换文件"><a href="#替换文件" class="headerlink" title="替换文件"></a>替换文件</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">:%s/&#123;pattern&#125;/&#123;str&#125;/[flags]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:%s/old/new</code></td>
+<td>先更换</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new/g</code></td>
+<td>全部替换</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new/gc</code></td>
+<td>全部替换 <em>(确认)</em></td>
+</tr>
+<tr>
+<td align="left"><code>:%s/old/new/gi</code></td>
+<td>全部替换 <em>(忽略大小写)</em></td>
+</tr>
+<tr>
+<td align="left"><code>:%s/\vold/new/g</code></td>
+<td>全部替换为 <a href="./regex.md">regex</a></td>
+</tr>
+</tbody></table>
+<h3 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>%</code></td>
+<td>整个文件</td>
+</tr>
+<tr>
+<td align="left"><code>’&lt;,’&gt;</code></td>
+<td>当前选择</td>
+</tr>
+<tr>
+<td align="left"><code>5</code></td>
+<td>第 <code>5</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>5,10</code></td>
+<td>第 <code>5</code> 行到第 <code>10</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>$</code></td>
+<td>最后一行</td>
+</tr>
+<tr>
+<td align="left"><code>2,$</code></td>
+<td>第 <code>2</code> 行到最后</td>
+</tr>
+<tr>
+<td align="left"><code>.</code></td>
+<td>当前行</td>
+</tr>
+<tr>
+<td align="left"><code>,3</code></td>
+<td>接下来的 <code>3</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>-3,</code></td>
+<td>转发 <code>3</code> 行</td>
+</tr>
+</tbody></table>
+<h3 id="全局命令"><a href="#全局命令" class="headerlink" title="全局命令"></a>全局命令</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">:[<span class="built_in">range</span>]g/&#123;pattern&#125;/[<span class="keyword">command</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:g/foo/d</code></td>
+<td>删除包含 <code>foo</code> 的行</td>
+</tr>
+<tr>
+<td align="left"><code>:g!/foo/d</code></td>
+<td>删除不包含 <code>foo</code> 的行</td>
+</tr>
+<tr>
+<td align="left"><code>:g/^\s*$/d</code></td>
+<td>删除所有空行</td>
+</tr>
+<tr>
+<td align="left"><code>:g/foo/t$</code></td>
+<td>将包含 <code>foo</code> 的行复制到 EOF</td>
+</tr>
+<tr>
+<td align="left"><code>:g/foo/m$</code></td>
+<td>将包含 <code>foo</code> 的行移动到 EOF</td>
+</tr>
+<tr>
+<td align="left"><code>:g/^/m0</code></td>
+<td>反转文件</td>
+</tr>
+<tr>
+<td align="left"><code>:g/^/t.</code></td>
+<td>复制每一行</td>
+</tr>
+</tbody></table>
+<h3 id="Inverse-逆-g"><a href="#Inverse-逆-g" class="headerlink" title="Inverse(逆) :g"></a>Inverse(逆) :g</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">:[<span class="built_in">range</span>]v/&#123;pattern&#125;/[<span class="keyword">command</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:v/foo/d</code></td>
+<td>删除不包含<code>foo</code>的行 <br/> <em>(还有<code>:g!/foo/d</code>)</em></td>
+</tr>
+</tbody></table>
+<h3 id="Flags-标志"><a href="#Flags-标志" class="headerlink" title="Flags(标志)"></a>Flags(标志)</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>g</code></td>
+<td>替换所有出现</td>
+</tr>
+<tr>
+<td align="left"><code>i</code></td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td align="left"><code>I</code></td>
+<td>不要忽略大小写</td>
+</tr>
+<tr>
+<td align="left"><code>c</code></td>
+<td>确认每个替换</td>
+</tr>
+</tbody></table>
+<h3 id="替换表达式（魔术）"><a href="#替换表达式（魔术）" class="headerlink" title="替换表达式（魔术）"></a>替换表达式（魔术）</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&amp;</code> <em>|</em> <code>\0</code></td>
+<td>替换为整个匹配的</td>
+</tr>
+<tr>
+<td align="left"><code>\1</code>…<code>\9</code></td>
+<td>替换为 0-9 组</td>
+</tr>
+<tr>
+<td align="left"><code>\u</code></td>
+<td>大写下一个字母</td>
+</tr>
+<tr>
+<td align="left"><code>\U</code></td>
+<td>后面的大写字符</td>
+</tr>
+<tr>
+<td align="left"><code>\l</code></td>
+<td>小写下一个字母</td>
+</tr>
+<tr>
+<td align="left"><code>\L</code></td>
+<td>后面的字符小写</td>
+</tr>
+<tr>
+<td align="left"><code>\e</code></td>
+<td><code>\u</code>、<code>\U</code>、<code>\l</code> 和 <code>\L</code> 的结尾</td>
+</tr>
+<tr>
+<td align="left"><code>\E</code></td>
+<td><code>\u</code>、<code>\U</code>、<code>\l</code> 和 <code>\L</code> 的结尾</td>
+</tr>
+</tbody></table>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:s/a\|b/xxx\0xxx/g               # 将 &quot;a b&quot;      修改为 &quot;xxxaxxx xxxbxxx&quot;</span><br><span class="line">:s/test/\U&amp; file/                # 将 &quot;test&quot;     修改为 &quot;TEST FILE&quot;</span><br><span class="line">:s/\(test\)/\U\1\e file/         # 将 &quot;test&quot;     修改为 &quot;TEST file&quot;</span><br><span class="line">:s/\v([abc])([efg])/\2\1/g       # 将 &quot;af fa bg&quot; 修改为 &quot;fa fa gb&quot;</span><br><span class="line">:s/\v\w+/\u\0/g                  # 将 &quot;bla bla&quot;  修改为 &quot;Bla Bla&quot;</span><br><span class="line">:s/\v([ab])|([cd])/\1x/g         # 将 &quot;a b c d&quot;  修改为 &quot;ax bx x x&quot;</span><br><span class="line">:%s/.*/\L&amp;/                      # 将 &quot;HTML&quot;     修改为 &quot;html&quot;</span><br><span class="line">:s/\v&lt;(.)(\w*)/\u\1\L\2/g        # 将单词的每个首字母大写</span><br><span class="line">:%s/^\(.*\)\n\1/\1/              # 删除重复行</span><br><span class="line">:%s/&lt;\/\=\(\w\+\)\&gt;/\U&amp;/g        # 将 HTML 标记转换为大写</span><br><span class="line">:g/^pattern/s/$/mytext           # 查找文本并将其附加到末尾</span><br><span class="line">:g/pattern/norm! @i              # 在匹配行上运行宏</span><br><span class="line">/^\(.*\)\(\r\?\n\1\)\+$          # 查看重复行</span><br><span class="line">/\v^(.*)(\r?\n\1)+$              # 查看重复行（非常神奇）</span><br><span class="line">:v/./,/./-j                      # 将空行压缩成空行</span><br><span class="line">:g/&lt;p1&gt;/,/&lt;p2&gt;/d                 # 从 &lt;p1&gt; 到 &lt;p2&gt; 包含删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vimdiff"><a href="#Vimdiff" class="headerlink" title="Vimdiff"></a>Vimdiff</h2><h3 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h3><!--rehype:style=background:#d7a100;-->
+
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vimdiff file1 file2 [file3]</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vim -d file1 file2 [file3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:[range]diffget [bufspec]</span><br><span class="line">:[range]diffput [bufspec]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>do</code> <em>&#x2F;</em> <code>:diffget</code></td>
+<td>获取（get）差异</td>
+</tr>
+<tr>
+<td align="left"><code>dp</code> <em>&#x2F;</em> <code>:diffput</code></td>
+<td>放差价</td>
+</tr>
+<tr>
+<td align="left"><code>:dif</code></td>
+<td>重新扫描差异</td>
+</tr>
+<tr>
+<td align="left"><code>:diffo</code></td>
+<td>关闭差异模式</td>
+</tr>
+<tr>
+<td align="left"><code>:1,$+1diffget</code></td>
+<td>获取所有差异</td>
+</tr>
+<tr>
+<td align="left"><code>ZQ</code></td>
+<td>不做改动就退出</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<p>请参阅：<a href="#%E8%8C%83%E5%9B%B4">范围</a></p>
+<h3 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>zo</code> <em>&#x2F;</em> <code>zO</code></td>
+<td>打开</td>
+</tr>
+<tr>
+<td align="left"><code>zc</code> <em>&#x2F;</em> <code>zC</code></td>
+<td>关</td>
+</tr>
+<tr>
+<td align="left"><code>za</code> <em>&#x2F;</em> <code>zA</code></td>
+<td>切换</td>
+</tr>
+<tr>
+<td align="left"><code>zv</code></td>
+<td>这条线的打开折叠</td>
+</tr>
+<tr>
+<td align="left"><code>zM</code></td>
+<td>关闭所有</td>
+</tr>
+<tr>
+<td align="left"><code>zR</code></td>
+<td>打开所有</td>
+</tr>
+<tr>
+<td align="left"><code>zm</code></td>
+<td>折叠更多 <em>(折叠级别 +&#x3D; 1)</em></td>
+</tr>
+<tr>
+<td align="left"><code>zr</code></td>
+<td>少折叠 <em>(折叠级别 -&#x3D; 1)</em></td>
+</tr>
+<tr>
+<td align="left"><code>zx</code></td>
+<td>更新折叠</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="跳跃"><a href="#跳跃" class="headerlink" title="跳跃"></a>跳跃</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>]c</code></td>
+<td>下一个区别</td>
+</tr>
+<tr>
+<td align="left"><code>[c</code></td>
+<td>以前的区别</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h2 id="各种各样的"><a href="#各种各样的" class="headerlink" title="各种各样的"></a>各种各样的</h2><h3 id="Case"><a href="#Case" class="headerlink" title="Case"></a>Case</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>vU</code></td>
+<td><em>大写</em> 字母</td>
+</tr>
+<tr>
+<td align="left"><code>vu</code></td>
+<td><em>小写</em> 字符</td>
+</tr>
+<tr>
+<td align="left"><code>~</code></td>
+<td><em>切换案例</em> 字符</td>
+</tr>
+<tr>
+<td align="left"><code>viw</code> <code>U</code></td>
+<td><em>大写</em> 字</td>
+</tr>
+<tr>
+<td align="left"><code>viw</code> <code>u</code></td>
+<td><em>小写</em> 字</td>
+</tr>
+<tr>
+<td align="left"><code>viw</code> <code>~</code></td>
+<td><em>切换案例</em> 字</td>
+</tr>
+<tr>
+<td align="left"><code>VU</code> <em>&#x2F;</em> <code>gUU</code></td>
+<td><em>大写</em> 行</td>
+</tr>
+<tr>
+<td align="left"><code>Vu</code> <em>&#x2F;</em> <code>guu</code></td>
+<td><em>小写</em> 行</td>
+</tr>
+<tr>
+<td align="left"><code>V~</code> <em>&#x2F;</em> <code>g~~</code></td>
+<td><em>切换案例</em> 线</td>
+</tr>
+<tr>
+<td align="left"><code>gggUG</code></td>
+<td><em>大写</em> 所有文本</td>
+</tr>
+<tr>
+<td align="left"><code>ggguG</code></td>
+<td><em>小写</em> 所有文本</td>
+</tr>
+<tr>
+<td align="left"><code>ggg~G</code></td>
+<td><em>切换大小写</em> 所有文本</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="跳跃-1"><a href="#跳跃-1" class="headerlink" title="跳跃"></a>跳跃</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;C-o&gt;</code></td>
+<td>返回上一个</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-i&gt;</code></td>
+<td>向前</td>
+</tr>
+<tr>
+<td align="left"><code>gf</code></td>
+<td>转到光标中的文件</td>
+</tr>
+<tr>
+<td align="left"><code>ga</code></td>
+<td>显示十六进制、ASCII值</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="其他命令行"><a href="#其他命令行" class="headerlink" title="其他命令行"></a>其他命令行</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:h</code></td>
+<td>帮助打开帮助视图</td>
+</tr>
+<tr>
+<td align="left"><code>:edit!</code></td>
+<td>重新加载当前文件</td>
+</tr>
+<tr>
+<td align="left"><code>:2,8m0</code></td>
+<td>将行 <code>2</code>-<code>8</code> 移动到 <code>0</code></td>
+</tr>
+<tr>
+<td align="left"><code>:noh</code></td>
+<td>清除搜索亮点</td>
+</tr>
+<tr>
+<td align="left"><code>:sort</code></td>
+<td>排序行</td>
+</tr>
+<tr>
+<td align="left"><code>:ter</code></td>
+<td>打开终端窗口</td>
+</tr>
+<tr>
+<td align="left"><code>:set paste</code></td>
+<td>启用插入粘贴子模式</td>
+</tr>
+<tr>
+<td align="left"><code>:set nopaste</code></td>
+<td>禁用插入粘贴子模式</td>
+</tr>
+<tr>
+<td align="left"><code>:cq</code></td>
+<td>退出并出现错误<br/> <em>(正在中止 Git)</em></td>
+</tr>
+</tbody></table>
+<h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>%</code></td>
+<td>最近&#x2F;匹配的<code>&#123;[()]&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>[(</code> <em>|</em> <code>[&#123;</code></td>
+<td>上一个 <code>(</code> 或 <code>&#123;</code></td>
+</tr>
+<tr>
+<td align="left"><code>])</code> <em>|</em> <code>]&#123;</code></td>
+<td>下一个<code>)</code>或<code>&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>[m</code></td>
+<td>上一个方法开始</td>
+</tr>
+<tr>
+<td align="left"><code>[M</code></td>
+<td>上一个方法结束</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;C-a&gt;</code></td>
+<td>增加数量</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-x&gt;</code></td>
+<td>减少数量</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="选项卡-1"><a href="#选项卡-1" class="headerlink" title="选项卡"></a>选项卡</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:tag Classname</code></td>
+<td>跳转到 Classname 的第一个定义</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-]&gt;</code></td>
+<td>跳转到定义</td>
+</tr>
+<tr>
+<td align="left"><code>g]</code></td>
+<td>查看所有定义</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-t&gt;</code></td>
+<td>回到最后一个标签</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-o&gt; &lt;C-i&gt;</code></td>
+<td>后退前进</td>
+</tr>
+<tr>
+<td align="left"><code>:tselect Classname</code></td>
+<td>查找类名的定义</td>
+</tr>
+<tr>
+<td align="left"><code>:tjump Classname</code></td>
+<td>查找类名的定义 <em>(自动选择第一个)</em></td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:ce 8</code></td>
+<td><code>8</code> 列之间的中心线</td>
+</tr>
+<tr>
+<td align="left"><code>:ri 4</code></td>
+<td>在 <code>4</code> 列右对齐行</td>
+</tr>
+<tr>
+<td align="left"><code>:le</code></td>
+<td>左对齐线</td>
+</tr>
+</tbody></table>
+<p>查看 <code>:help formatting</code></p>
+<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><!--rehype:wrap-class=row-span-4 col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>`^</code></td>
+<td>插入模式下光标的最后位置</td>
+</tr>
+<tr>
+<td align="left"><code>`.</code></td>
+<td>当前缓冲区的最后更改</td>
+</tr>
+<tr>
+<td align="left"><code>`"</code></td>
+<td>最后退出的当前缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>`0</code></td>
+<td>在上次编辑的文件中</td>
+</tr>
+<tr>
+<td align="left"><code>''</code></td>
+<td>返回当前缓冲区中跳出的行</td>
+</tr>
+<tr>
+<td align="left"><code>``</code></td>
+<td>返回当前缓冲区中跳转的位置</td>
+</tr>
+<tr>
+<td align="left"><code>`[</code></td>
+<td>到先前更改或拉出的文本的开头</td>
+</tr>
+<tr>
+<td align="left"><code>`]</code></td>
+<td>到之前更改或拉出的文本的结尾</td>
+</tr>
+<tr>
+<td align="left"><code>`&lt;</code></td>
+<td>到最后一个可视化选择的开始</td>
+</tr>
+<tr>
+<td align="left"><code>`&gt;</code></td>
+<td>到最后一个可视化选择的结尾</td>
+</tr>
+<tr>
+<td align="left"><code>ma</code></td>
+<td>将此光标位置标记为<code>a</code></td>
+</tr>
+<tr>
+<td align="left"><code>`a</code></td>
+<td>跳转到光标位置<code>a</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#39;a</code></td>
+<td>跳转到位置为 <code>a</code> 的行首</td>
+</tr>
+<tr>
+<td align="left"><code>d'a</code></td>
+<td>从当前行删除到标记 <code>a</code> 的行</td>
+</tr>
+<tr>
+<td align="left"><code>d`a</code></td>
+<td>从当前位置删除到标记 <code>a</code> 的位置</td>
+</tr>
+<tr>
+<td align="left"><code>c'a</code></td>
+<td>将文本从当前行更改为 <code>a</code> 行</td>
+</tr>
+<tr>
+<td align="left"><code>y`a</code></td>
+<td>将文本从当前位置拉到 <code>a</code> 的位置</td>
+</tr>
+<tr>
+<td align="left"><code>:marks</code></td>
+<td>列出所有当前标记</td>
+</tr>
+<tr>
+<td align="left"><code>:delm a</code></td>
+<td>删除标记<code>a</code></td>
+</tr>
+<tr>
+<td align="left"><code>:delm a-d</code></td>
+<td>删除标记<code>a</code>、<code>b</code>、<code>c</code>、<code>d</code></td>
+</tr>
+<tr>
+<td align="left"><code>:delm abc</code></td>
+<td>删除标记<code>a</code>、<code>b</code>、<code>c</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;C-r&gt;</code> <code>=</code> 7*7</td>
+<td>显示结果</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-r&gt;</code> <code>=</code> 10&#x2F;2</td>
+<td>显示结果</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<p>在 INSERT 模式下执行此操作</p>
+<h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:!&lt;shell&gt;</code></td>
+<td>解释 Shell 命令</td>
+</tr>
+<tr>
+<td align="left"><code>:r!&lt;shell&gt;</code></td>
+<td>读入shell的输出</td>
+</tr>
+<tr>
+<td align="left"><code>:r!date</code></td>
+<td>插入日期</td>
+</tr>
+<tr>
+<td align="left"><code>:!!date</code></td>
+<td>用日期替换当前行</td>
+</tr>
+</tbody></table>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><table>
+<thead>
+<tr>
+<th align="left">快捷方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;C-r&gt;&lt;C-w&gt;</code></td>
+<td>将当前单词插入命令行</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-r&gt;&quot;</code></td>
+<td>从 <code>注册</code> 粘贴</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;C-x&gt;&lt;C-f&gt;</code></td>
+<td>在插入模式下自动完成路径</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p>删除重复行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:sort | %!uniq -u</span><br></pre></td></tr></table></figure>
+
+<p>对文件中的行进行编号</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:%!cat -n</span><br></pre></td></tr></table></figure>
+
+<p>将整个文档复制到剪贴板</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:%w !pbcopy            # Mac OS X</span><br><span class="line">:%w !xclip -i -sel c   # GNU/Linux</span><br><span class="line">:%w !xsel -i -b        # GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="理解-Vim"><a href="#理解-Vim" class="headerlink" title="理解 Vim"></a>理解 Vim</h2><h3 id="动词理解"><a href="#动词理解" class="headerlink" title="动词理解"></a>动词理解</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">d  # 表示删除delete</span><br><span class="line">r  # 表示替换replace</span><br><span class="line">c  # 表示修改change</span><br><span class="line">y  # 表示复制yank</span><br><span class="line">v  # 表示选取visual select</span><br></pre></td></tr></table></figure>
+
+<p>动词代表了我们打算对文本进行什么样的操作</p>
+<h3 id="名词理解"><a href="#名词理解" class="headerlink" title="名词理解"></a>名词理解</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">w  # 表示一个单词word</span><br><span class="line">s  # 表示一个句子sentence</span><br><span class="line">p  # 表示一个段落paragraph</span><br><span class="line">t  # 表示一个 HTML 标签tag</span><br></pre></td></tr></table></figure>
+
+<p>名词代表了我们即将处理的文本。引号或者各种括号所包含的文本称作一个文本块。</p>
+<h3 id="介词理解"><a href="#介词理解" class="headerlink" title="介词理解"></a>介词理解</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">i  # 表示在...之内 inside</span><br><span class="line">a  # 表示环绕... around</span><br><span class="line">t  # 表示到...位置前 to</span><br><span class="line">f  # 表示到...位置上 forward</span><br></pre></td></tr></table></figure>
+
+<p>介词界定了待编辑文本的范围或者位置。</p>
+<h3 id="数词理解"><a href="#数词理解" class="headerlink" title="数词理解"></a>数词理解</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>数词指定了待编辑文本对象的数量，从这个角度而言，数词也可以看作是一种介词。引入数词之后，文本编辑命令的语法就升级成了下面这样：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">动词 介词/数词 名词</span><br></pre></td></tr></table></figure>
+
+<p>下面是几个例子：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">c3w  # 修改三个单词：change three words</span><br><span class="line">d2w  # 删除两个单词：delete two words</span><br></pre></td></tr></table></figure>
+
+<p>另外，数词也可以修饰动词，表示将操作执行 <code>n</code> 次。于是，我们又有了下面的语法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">数词 动词 名词</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">2dw # 两次删除单词(等价于删除两个单词): twice delete word</span><br><span class="line">3x  # 三次删除字符(等价于删除三个字符): three times delete character</span><br></pre></td></tr></table></figure>
+
+<h3 id="组词为句理解"><a href="#组词为句理解" class="headerlink" title="组词为句理解"></a>组词为句理解</h3><p>有了这些基本的语言元素，我们就可以着手构造一些简单的命令了。文本编辑命令的基本语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">动词 介词 名词</span><br></pre></td></tr></table></figure>
+
+<p>下面是一些例子</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dip # 删除一个段落: delete inside paragraph</span><br><span class="line">vis # 选取一个句子: visual select inside sentence</span><br><span class="line">ciw # 修改一个单词: change inside word</span><br><span class="line">caw # 修改一个单词: change around word</span><br><span class="line">dtx # 删除文本直到字符“x”(不包括字符“x”): delete to x</span><br><span class="line">dfx # 删除文本直到字符“x”(包括字符“x”): delete forward x</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://jaywcjlove.github.io/vim-web">搞得像IDE一样的 Vim</a> <em>(github.io)</em></li>
+<li><a target="_blank" rel="noopener" href="http://www.vim.org/">Vim 官方网站</a> <em>(vim.org)</em></li>
+<li><a target="_blank" rel="noopener" href="https://devhints.io/vim">Devhints</a> <em>(devhints.io)</em></li>
+<li><a target="_blank" rel="noopener" href="https://vim.rtorr.com/lang/zh_cn/">Vim cheatsheet</a> <em>(vim.rotrr.com)</em></li>
+<li><a target="_blank" rel="noopener" href="http://vimdoc.sourceforge.net/htmldoc/">Vim documentation</a> <em>(vimdoc.sourceforge.net)</em></li>
+<li><a target="_blank" rel="noopener" href="http://openvim.com/">Interactive Vim tutorial</a> <em>(openvim.com)</em></li>
+</ul>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

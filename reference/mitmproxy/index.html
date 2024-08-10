@@ -1,0 +1,981 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mitmproxy 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="Mitmproxy 是一个免费开源的交互式 HTTPS 代理。这是 mitmproxy 的快速参考备忘单。 入门使用     选项 范例 描述    -p mitmproxy -p 8001 在端口 8001 上启动代理   -m mitmproxy -p 8001 -m reverse:http:&#x2F;&#x2F;127.0.0.1:4000 8001 端口反向代理到4000端口   -w mitmproxy">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mitmproxy 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/mitmproxy/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="Mitmproxy 是一个免费开源的交互式 HTTPS 代理。这是 mitmproxy 的快速参考备忘单。 入门使用     选项 范例 描述    -p mitmproxy -p 8001 在端口 8001 上启动代理   -m mitmproxy -p 8001 -m reverse:http:&#x2F;&#x2F;127.0.0.1:4000 8001 端口反向代理到4000端口   -w mitmproxy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.841Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.841Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/mitmproxy/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mitmproxy 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Mitmproxy 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p><a target="_blank" rel="noopener" href="https://mitmproxy.org/">Mitmproxy</a> 是一个免费开源的交互式 HTTPS 代理。这是 mitmproxy 的快速参考备忘单。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th>范例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-p</code></td>
+<td>mitmproxy -p 8001</td>
+<td>在端口 <code>8001</code> 上启动代理</td>
+</tr>
+<tr>
+<td align="left"><code>-m</code></td>
+<td>mitmproxy -p 8001 -m reverse:<a target="_blank" rel="noopener" href="http://127.0.0.1:4000/">http://127.0.0.1:4000</a></td>
+<td><code>8001</code> 端口反向代理到4000端口</td>
+</tr>
+<tr>
+<td align="left"><code>-w</code></td>
+<td>mitmproxy -p 8001 -w traffic.mitm</td>
+<td>流到达时流向文件</td>
+</tr>
+<tr>
+<td align="left"><code>-r</code></td>
+<td>mitmproxy -r traffic.mitm</td>
+<td>从文件中读取流</td>
+</tr>
+<tr>
+<td align="left"><code>-C</code></td>
+<td>mitmproxy -C traffic.mitm</td>
+<td>从保存的文件重放客户端请求</td>
+</tr>
+<tr>
+<td align="left"><code>-S</code></td>
+<td>mitmproxy -S traffic.mitm</td>
+<td>从保存的文件重放服务器响应</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code></td>
+<td>mitmproxy -s myScript.py</td>
+<td>执行脚本</td>
+</tr>
+<tr>
+<td align="left"><code>-h</code></td>
+<td>mitmproxy -h</td>
+<td><code>mitmproxy</code> 快速帮助</td>
+</tr>
+</tbody></table>
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">        k                 Ctrl b</span></span><br><span class="line"><span class="code">        ▲                   ▲▲</span></span><br><span class="line"><span class="code">        │                   ││</span></span><br><span class="line"><span class="code">h ◀ ─── + ─── ▶ l           ││ page</span></span><br><span class="line"><span class="code">        │                   ││</span></span><br><span class="line"><span class="code">        ▼                   ▼▼</span></span><br><span class="line"><span class="code">        j             Ctrl f / Space </span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>h</code>, <code>j</code>, <code>k</code> ,<code>l</code></td>
+<td>左、下、上、右</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code> <code>b</code></td>
+<td>向上翻页</td>
+</tr>
+<tr>
+<td align="left"><code>Space</code> &#x2F; <code>Ctrl</code> <code>f</code></td>
+<td>向下翻页</td>
+</tr>
+<tr>
+<td align="left"><code>g</code> &#x2F; <code>G</code></td>
+<td>转到开头&#x2F;结尾</td>
+</tr>
+<tr>
+<td align="left"><code>Arrows</code></td>
+<td>上下左右</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">mitmproxy 文档</a> <em>(mitmproxy.org)</em></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy">mitmproxy 开源仓库</a> <em>(github.com)</em></li>
+</ul>
+<hr>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install mitmproxy <span class="comment"># macOS</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-R REVERSE_PROXY</code>, <code>--reverse REVERSE_PROXY</code></td>
+<td>将所有请求转发到上游 HTTP 服务器：<code>http[s]://host[:port]</code>。客户端始终可以通过 <code>HTTPS</code> 和 <code>HTTP</code> 进行连接，与服务器的连接由指定的方案决定</td>
+</tr>
+<tr>
+<td align="left"><code>--socks</code></td>
+<td>设置 <code>SOCKS5</code> 代理模式</td>
+</tr>
+<tr>
+<td align="left"><code>-T</code>, <code>--transparent</code></td>
+<td>设置透明代理模式</td>
+</tr>
+<tr>
+<td align="left"><code>-U UPSTREAM_PROXY</code>, <code>--upstream UPSTREAM_PROXY</code></td>
+<td>将所有请求转发到上游代理服务器：<code>http://host[:port]</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="复制到剪贴板"><a href="#复制到剪贴板" class="headerlink" title="复制到剪贴板"></a>复制到剪贴板</h3><p>命令语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:export.clip format flow</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>命令示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 复制为 curl 命令</td>
+<td><code>:export.clip curl @focus</code></td>
+</tr>
+<tr>
+<td>2. 复制为 httpie</td>
+<td><code>:export.clip httpie @focus</code></td>
+</tr>
+<tr>
+<td>3. 复制为原始文件</td>
+<td><code>:export.clip raw @focus</code></td>
+</tr>
+<tr>
+<td>4. 复制为原始 HTTP 请求</td>
+<td><code>:export.clip raw_request @focus</code></td>
+</tr>
+<tr>
+<td>5. 复制为原始 HTTP 响应</td>
+<td><code>:export.clip raw_response @focus</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<p>将流程导出到系统剪贴板</p>
+<h3 id="保存到文件"><a href="#保存到文件" class="headerlink" title="保存到文件"></a>保存到文件</h3><p>命令语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:export.file format flow path</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>命令示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 导出到 <code>/tmp/a.curl</code></td>
+<td><code>:export.file curl @focus /tmp/a.curl</code></td>
+</tr>
+<tr>
+<td>2. 导出到 <code>/tmp/a.httpie</code></td>
+<td><code>:export.file httpie @focus /tmp/a.httpie</code></td>
+</tr>
+<tr>
+<td>3. 导出到 <code>/tmp/a.raw</code></td>
+<td><code>:export.file raw @focus  /tmp/a.raw</code></td>
+</tr>
+<tr>
+<td>4. 导出到 <code>/tmp/a.request</code></td>
+<td><code>:export.file raw_request @focus /tmp/a.request</code></td>
+</tr>
+<tr>
+<td>5. 导出到 <code>/tmp/a.response</code></td>
+<td><code>:export.file raw_response @focus /tmp/a.response</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<p>将流程导出到系统剪贴板</p>
+<h3 id="流（视图）"><a href="#流（视图）" class="headerlink" title="流（视图）"></a>流（视图）</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>A</code></td>
+<td>恢复所有拦截的流</td>
+</tr>
+<tr>
+<td align="left"><code>D</code></td>
+<td>重复流</td>
+</tr>
+<tr>
+<td align="left"><code>F</code></td>
+<td>设置焦点跟随</td>
+</tr>
+<tr>
+<td align="left"><code>L</code></td>
+<td>从文件加载流</td>
+</tr>
+<tr>
+<td align="left"><code>M</code></td>
+<td>切换查看标记流</td>
+</tr>
+<tr>
+<td align="left"><code>S</code></td>
+<td>开始服务器回放</td>
+</tr>
+<tr>
+<td align="left"><code>U</code></td>
+<td>取消设置所有标记</td>
+</tr>
+<tr>
+<td align="left"><code>V</code></td>
+<td>还原对此流的更改</td>
+</tr>
+<tr>
+<td align="left"><code>X</code></td>
+<td>杀死这个流</td>
+</tr>
+<tr>
+<td align="left"><code>Z</code></td>
+<td>清除所有未显示的流</td>
+</tr>
+<tr>
+<td align="left"><code>a</code></td>
+<td>恢复此拦截流</td>
+</tr>
+<tr>
+<td align="left"><code>b</code></td>
+<td>将响应主体保存到文件</td>
+</tr>
+<tr>
+<td align="left"><code>d</code></td>
+<td>从视图中删除流</td>
+</tr>
+<tr>
+<td align="left"><code>e</code></td>
+<td>将此流导出到文件</td>
+</tr>
+<tr>
+<td align="left"><code>f</code></td>
+<td>设置视图过滤器</td>
+</tr>
+<tr>
+<td align="left"><code>m</code></td>
+<td>在此流程上切换标记</td>
+</tr>
+<tr>
+<td align="left"><code>n</code></td>
+<td>创建新流程</td>
+</tr>
+<tr>
+<td align="left"><code>o</code></td>
+<td>设置流列表顺序</td>
+</tr>
+<tr>
+<td align="left"><code>r</code></td>
+<td>重播此流程</td>
+</tr>
+<tr>
+<td align="left"><code>v</code></td>
+<td>反向流列表顺序</td>
+</tr>
+<tr>
+<td align="left"><code>w</code></td>
+<td>将列出的流程保存到文件</td>
+</tr>
+<tr>
+<td align="left"><code>|</code></td>
+<td>在此流上运行脚本</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code> <code>l</code></td>
+<td>将剪辑发送到剪贴板</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="常见的快捷键"><a href="#常见的快捷键" class="headerlink" title="常见的快捷键"></a>常见的快捷键</h3><table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>q</code></td>
+<td>返回&#x2F;退出</td>
+</tr>
+<tr>
+<td align="left"><code>z</code></td>
+<td>清除流列表</td>
+</tr>
+<tr>
+<td align="left"><code>:</code></td>
+<td>命令提示符</td>
+</tr>
+<tr>
+<td align="left"><code>E</code></td>
+<td>查看事件日志</td>
+</tr>
+<tr>
+<td align="left"><code>O</code></td>
+<td>查看选项</td>
+</tr>
+<tr>
+<td align="left"><code>r</code></td>
+<td>重播此流程</td>
+</tr>
+<tr>
+<td align="left"><code>Tab</code></td>
+<td>下一个</td>
+</tr>
+<tr>
+<td align="left"><code>Enter</code></td>
+<td>选择</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="全局键绑定"><a href="#全局键绑定" class="headerlink" title="全局键绑定"></a>全局键绑定</h3><table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-</code></td>
+<td>循环到下一个布局</td>
+</tr>
+<tr>
+<td align="left"><code>?</code></td>
+<td>查看帮助</td>
+</tr>
+<tr>
+<td align="left"><code>B</code></td>
+<td>启动附加的浏览器</td>
+</tr>
+<tr>
+<td align="left"><code>C</code></td>
+<td>查看命令</td>
+</tr>
+<tr>
+<td align="left"><code>I</code></td>
+<td>切换拦截</td>
+</tr>
+<tr>
+<td align="left"><code>K</code></td>
+<td>查看按键绑定</td>
+</tr>
+<tr>
+<td align="left"><code>P</code></td>
+<td>查看流程详细信息</td>
+</tr>
+<tr>
+<td align="left"><code>Q</code></td>
+<td>立即退出</td>
+</tr>
+<tr>
+<td align="left"><code>W</code></td>
+<td>流式传输到文件</td>
+</tr>
+<tr>
+<td align="left"><code>i</code></td>
+<td>设置拦截</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code> <code>right</code></td>
+<td>聚焦下一个布局窗格</td>
+</tr>
+<tr>
+<td align="left"><code>Shift</code> <code>tab</code></td>
+<td>聚焦下一个布局窗格</td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<h3 id="代理选项"><a href="#代理选项" class="headerlink" title="代理选项"></a>代理选项</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-b ADDR</code>, <code>--bind-address ADDR</code></td>
+<td>将代理绑定到的地址（默认为所有接口）</td>
+</tr>
+<tr>
+<td align="left"><code>-I HOST</code>, <code>--ignore HOST</code></td>
+<td>忽略主机并转发所有流量而不对其进行处理。在透明模式下，建议使用 IP 地址（范围），而不是主机名。在常规模式下，仅忽略 SSL 流量并应使用主机名。提供的值被解释为正则表达式并匹配 ip 或主机名。可以多次通过</td>
+</tr>
+<tr>
+<td align="left"><code>--tcp HOST</code></td>
+<td>与模式匹配的所有主机的通用 TCP SSL 代理模式。类似于 <code>--ignore</code>，但 SSL 连接被拦截。通信内容以详细模式打印到日志中</td>
+</tr>
+<tr>
+<td align="left"><code>-n</code>, <code>--no-server</code></td>
+<td>不要启动代理服务器。用于离线分析以前捕获的流</td>
+</tr>
+<tr>
+<td align="left"><code>-p PORT</code>, <code>--port PORT</code></td>
+<td>代理服务端口。默认值：<code>8080</code></td>
+</tr>
+<tr>
+<td align="left"><code>--http2</code>, <code>--no-http2</code></td>
+<td>显式启用&#x2F;禁用 <code>HTTP/2</code> 支持。默认情况下禁用，直到主要网站正确实施规范。默认值将在未来版本中更改</td>
+</tr>
+<tr>
+<td align="left"><code>--no-websocket</code>, <code>--websocket</code></td>
+<td>显式启用&#x2F;禁用 <code>WebSocket</code> 支持。默认启用</td>
+</tr>
+<tr>
+<td align="left"><code>--raw-tcp</code>, <code>--no-raw-tcp</code></td>
+<td>显式启用&#x2F;禁用实验性原始 <code>TCP</code> 支持。默认情况下禁用。默认值将在未来版本中更改</td>
+</tr>
+<tr>
+<td align="left"><code>--spoof-source-address</code></td>
+<td>使用客户端的 IP 进行服务器端连接。与 <code>–upstream-bind-address</code> 结合使用以欺骗固定源地址</td>
+</tr>
+<tr>
+<td align="left"><code>--upstream-bind-address UPSTREAM_BIND_ADDRESS</code></td>
+<td>将上游请求绑定到的地址（默认为无）</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h2 id="Mitmproxy-过滤器"><a href="#Mitmproxy-过滤器" class="headerlink" title="Mitmproxy 过滤器"></a>Mitmproxy 过滤器</h2><h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>f</code></td>
+<td>设置视图过滤器 <em>(在流视图页面上)</em></td>
+</tr>
+</tbody></table>
+<!--rehype:className=shortcuts-->
+
+<hr>
+<ul>
+<li><a href="./regex.md">RegEX 备忘清单</a> <em>(jaywcjlove.github.io)</em></li>
+</ul>
+<p>正则表达式是 Python 风格的，可以指定为带引号的字符串</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>!</code></td>
+<td>一元非</td>
+</tr>
+<tr>
+<td align="left"><code>&amp;</code></td>
+<td>和</td>
+</tr>
+<tr>
+<td align="left"><code>|</code></td>
+<td>或者</td>
+</tr>
+<tr>
+<td align="left"><code>(...)</code></td>
+<td>分组</td>
+</tr>
+</tbody></table>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><!--rehype:wrap-class=row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>~a</code></td>
+<td>响应匹配资源：CSS、Javascript、Flash、图像。</td>
+</tr>
+<tr>
+<td align="left"><code>~b</code> <code>regex</code></td>
+<td>主体 Body</td>
+</tr>
+<tr>
+<td align="left"><code>~bq</code> <code>regex</code></td>
+<td>请求正文</td>
+</tr>
+<tr>
+<td align="left"><code>~bs</code> <code>regex</code></td>
+<td>响应体</td>
+</tr>
+<tr>
+<td align="left"><code>~c</code> <code>int</code></td>
+<td>HTTP 响应代码</td>
+</tr>
+<tr>
+<td align="left"><code>~d</code> <code>regex</code></td>
+<td>域</td>
+</tr>
+<tr>
+<td align="left"><code>~dst</code> <code>regex</code></td>
+<td>匹配目标地址</td>
+</tr>
+<tr>
+<td align="left"><code>~e</code></td>
+<td>匹配错误</td>
+</tr>
+<tr>
+<td align="left"><code>~h</code> <code>regex</code></td>
+<td>标头</td>
+</tr>
+<tr>
+<td align="left"><code>~hq</code> <code>regex</code></td>
+<td>请求头</td>
+</tr>
+<tr>
+<td align="left"><code>~hs</code> <code>regex</code></td>
+<td>响应头</td>
+</tr>
+<tr>
+<td align="left"><code>~http</code></td>
+<td>匹配 HTTP 流</td>
+</tr>
+<tr>
+<td align="left"><code>~m</code> <code>regex</code></td>
+<td>方法</td>
+</tr>
+<tr>
+<td align="left"><code>~marked</code></td>
+<td>匹配标记流</td>
+</tr>
+<tr>
+<td align="left"><code>~q</code></td>
+<td>匹配请求无响应</td>
+</tr>
+<tr>
+<td align="left"><code>~s</code></td>
+<td>匹配响应</td>
+</tr>
+<tr>
+<td align="left"><code>~src</code> <code>regex</code></td>
+<td>匹配源地址</td>
+</tr>
+<tr>
+<td align="left"><code>~t</code> <code>regex</code></td>
+<td>内容类型标头</td>
+</tr>
+<tr>
+<td align="left"><code>~tcp</code></td>
+<td>匹配 TCP 流</td>
+</tr>
+<tr>
+<td align="left"><code>~tq</code> <code>regex</code></td>
+<td>请求 Content-Type 标头</td>
+</tr>
+<tr>
+<td align="left"><code>~ts</code> <code>regex</code></td>
+<td>响应内容类型标头</td>
+</tr>
+<tr>
+<td align="left"><code>~u</code> <code>regex</code></td>
+<td>网址</td>
+</tr>
+<tr>
+<td align="left"><code>~websocket</code></td>
+<td>匹配 WebSocket 流（和 HTTP-WebSocket 握手流）</td>
+</tr>
+</tbody></table>
+<h3 id="流选择器"><a href="#流选择器" class="headerlink" title="流选择器"></a>流选择器</h3><p>表达式</p>
+<table>
+<thead>
+<tr>
+<th align="left">:—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>@all</code></td>
+<td>所有流程</td>
+</tr>
+<tr>
+<td align="left"><code>@focus</code></td>
+<td>目前关注的流程</td>
+</tr>
+<tr>
+<td align="left"><code>@shown</code></td>
+<td>当前显示的所有流程</td>
+</tr>
+<tr>
+<td align="left"><code>@hidden</code></td>
+<td>当前隐藏的所有流程</td>
+</tr>
+<tr>
+<td align="left"><code>@marked</code></td>
+<td>所有标记流</td>
+</tr>
+<tr>
+<td align="left"><code>@unmarked</code></td>
+<td>所有未标记的流</td>
+</tr>
+</tbody></table>
+<p>mitmproxy 有一组方便的流选择器，可以在当前视图上操作</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>包含“google.com”的网址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">google\.com</span><br></pre></td></tr></table></figure>
+
+<p>正文中包含字符串“test”的请求</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~q ~b test</span><br></pre></td></tr></table></figure>
+
+<p>除了带有 text&#x2F;html 内容类型的请求之外的任何内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">!(~q &amp; ~t &quot;text/html&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>替换请求中的整个 GET 字符串（需要引号才能使其工作）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;:~q ~m GET:.*:/replacement.html&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mitmproxy-脚本"><a href="#Mitmproxy-脚本" class="headerlink" title="Mitmproxy 脚本"></a>Mitmproxy 脚本</h2><!--rehype:body-class=cols-2-->
+
+<h3 id="Custom-response"><a href="#Custom-response" class="headerlink" title="Custom response"></a>Custom response</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> mitmproxy <span class="keyword">import</span> http</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">request</span>(<span class="params">flow: http.HTTPFlow</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">if</span> flow.request.pretty_url == <span class="string">&quot;http://example.com/path&quot;</span>:</span><br><span class="line">        flow.response = http.HTTPResponse.make(</span><br><span class="line">            <span class="number">200</span>,  <span class="comment"># (optional) status code</span></span><br><span class="line">            <span class="string">b&quot;Hello World&quot;</span>,  <span class="comment"># (optional) content</span></span><br><span class="line">            &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/html&quot;</span>&#125;  <span class="comment"># (optional) headers</span></span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>从代理发送回复而不向远程服务器发送任何数据</p>
+<h3 id="Add-header"><a href="#Add-header" class="headerlink" title="Add header"></a>Add header</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AddHeader</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">response</span>(<span class="params">self, flow</span>):</span><br><span class="line">        <span class="variable language_">self</span>.num = <span class="variable language_">self</span>.num + <span class="number">1</span></span><br><span class="line">        flow.response.headers[<span class="string">&quot;count&quot;</span>] = <span class="built_in">str</span>(<span class="variable language_">self</span>.num)</span><br><span class="line">addons = [</span><br><span class="line">    AddHeader()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>为每个响应添加一个 HTTP 标头</p>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/tree/master/examples/addons">mitmproxy addons</a> <em>(github.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://docs.mitmproxy.org/stable/">mitmproxy 文档</a> <em>(mitmproxy.org)</em></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy">mitmproxy 开源仓库</a> <em>(github.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://www.stut-it.net/blog/2017/mitmproxy-cheatsheet.html">mitmproxy 备忘清单</a> <em>(stut-it.net)</em></li>
+</ul>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

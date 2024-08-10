@@ -1,0 +1,885 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OpenSSL 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这个 OpenSSL 快速参考备忘单展示了它的常用命令使用清单 入门基础检查版本 $ openssl version -a  它在使用四个 CPU 内核并测试 RSA 算法的系统上运行速度有多快 $ openssl speed -multi 4 rsa  获得基本帮助 $ openssl help  生成 20 个随机字节并将它们显示在屏幕上 $ openssl rand -hex 20  编码&amp;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OpenSSL 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/openssl/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这个 OpenSSL 快速参考备忘单展示了它的常用命令使用清单 入门基础检查版本 $ openssl version -a  它在使用四个 CPU 内核并测试 RSA 算法的系统上运行速度有多快 $ openssl speed -multi 4 rsa  获得基本帮助 $ openssl help  生成 20 个随机字节并将它们显示在屏幕上 $ openssl rand -hex 20  编码&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.869Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.869Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/openssl/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenSSL 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">OpenSSL 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>这个 <a target="_blank" rel="noopener" href="https://www.openssl.org/">OpenSSL</a> 快速参考备忘单展示了它的常用命令使用清单</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>检查版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl version -a</span><br></pre></td></tr></table></figure>
+
+<p>它在使用四个 CPU 内核并测试 RSA 算法的系统上运行速度有多快</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl speed -multi 4 rsa</span><br></pre></td></tr></table></figure>
+
+<p>获得基本帮助</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<p>生成 20 个随机字节并将它们显示在屏幕上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rand -hex 20</span><br></pre></td></tr></table></figure>
+
+<h3 id="编码-解码"><a href="#编码-解码" class="headerlink" title="编码&#x2F;解码"></a>编码&#x2F;解码</h3><p>使用 Base64 编码文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl <span class="built_in">base64</span> -<span class="keyword">in</span> file.data</span><br></pre></td></tr></table></figure>
+
+<p>使用 Base64 编码一些文本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n <span class="string">&quot;some text&quot;</span> | openssl <span class="built_in">base64</span></span><br></pre></td></tr></table></figure>
+
+<p>Base64 解码一个文件并输出到另一个文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl <span class="built_in">base64</span> -d -<span class="keyword">in</span> encode­d.data -out decode­d.data</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="使用哈希"><a href="#使用哈希" class="headerlink" title="使用哈希"></a>使用哈希</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>列出可用的摘要算法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl list -diges­t-a­lgo­rithms</span><br></pre></td></tr></table></figure>
+
+<p>使用 SHA256 散列文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dgst -sha256 file.data</span><br></pre></td></tr></table></figure>
+
+<p>使用 SHA256 散列文件及其二进制形式的输出（无输出十六进制编码） 没有 ASCII 或编码字符将打印到控制台，只有纯字节。 您可以附加 ‘ | xxd’</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dgst -binary -sha256 file.data</span><br></pre></td></tr></table></figure>
+
+<p>使用 SHA3-512 的哈希文本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n <span class="string">&quot;some text&quot;</span> | openssl dgst -sha3-512</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>创建 HMAC - 使用特定密钥（以字节为单位）的文件的 SHA384</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dgst -SHA384 -mac HMAC -macopt hexkey:369bd7d655 file.data</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>创建 HMAC - 一些文本的 SHA512</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n <span class="string">&quot;some text&quot;</span> | openssl dgst -mac HMAC -macopt hexkey­:36­9bd­7d655 -sha512</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<p>列出可用的椭圆曲线</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ecparam -list_­curves</span><br></pre></td></tr></table></figure>
+
+<p>创建 4096 位 RSA 公私密钥对</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl genrsa -out pub_pr­iv.key 4096</span><br></pre></td></tr></table></figure>
+
+<p>显示详细的私钥信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -text -<span class="keyword">in</span> pub_priv.key -noout</span><br></pre></td></tr></table></figure>
+
+<p>使用 AES-256 算法加密公私钥对</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> pub_priv.key -out encrypted.key -aes256</span><br></pre></td></tr></table></figure>
+
+<p>删除密钥文件加密并将它们保存到另一个文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> encrypted.key -out cleartext.key</span><br></pre></td></tr></table></figure>
+
+<p>将公私钥对文件的公钥复制到另一个文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> pub_priv.key -pubout -out pubkey.key</span><br></pre></td></tr></table></figure>
+
+<p>使用 RSA 公钥加密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsautl -encrypt -inkey pubkey.key -pubin -<span class="keyword">in</span> cleartext.file -out ciphertext.file</span><br></pre></td></tr></table></figure>
+
+<p>使用 RSA 私钥解密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsautl -decrypt -inkey pub_priv.key -<span class="keyword">in</span> ciphertext.file -out decrypted.file</span><br></pre></td></tr></table></figure>
+
+<p>使用 P-224 椭圆曲线创建私钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ecparam -name secp224k1 -genkey -out ecpriv.key</span><br></pre></td></tr></table></figure>
+
+<p>使用 3DES 算法加密私钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ec -<span class="keyword">in</span> ecP384priv.key -des3 -out ecP384priv_enc.key</span><br></pre></td></tr></table></figure>
+
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>列出所有支持的对称加密密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -list</span><br></pre></td></tr></table></figure>
+
+<p>使用提供的 ASCII 编码密码和 AES-128-ECB 算法加密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -aes-128-ecb -<span class="keyword">in</span> cleartext.file -out ciphertext.file -pass pass:thisisthepassword</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用 AES-256-CBC 和密钥文件解密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -d -aes-256-cbc -<span class="keyword">in</span> ciphertext.file -out cleartext.file -pass file:./key.file</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用以十六进制数字形式提供的特定加密密钥 (K) 加密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -aes-128-ecb -<span class="keyword">in</span> cleartext.file -out ciphertext.file -K 1881807b2d1b3d22f14e9ec52563d981 -nosalt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用指定的加密密钥（K：256 位）和初始化向量（iv：128 位）在 CBC 块密码模式下使用 ARIA 256 加密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -aria-256-cbc -<span class="keyword">in</span> cleartext.file -out ciphertext.file -K f92d2e986b7a2a01683b4c40d0cbcf6feaa669ef2bb5ec3a25ce85d9548291c1 -iv 470bc29762496046882b61ecee68e07c -nosalt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用提供的密钥和 iv 在 COUNTER 块密码模式下使用 Camellia 192 算法加密文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl enc -camellia-192-ctr -<span class="keyword">in</span> cleartext.file -out ciphertext.file -K 6c7a1b3487d28d3bf444186d7c529b48d67dd6206c7a1b34 -iv 470bc29762496046882b61ecee68e07c</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>为私钥生成 DSA 参数。 2048 位长度</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dsaparam -out dsaparam.pem 2048</span><br></pre></td></tr></table></figure>
+
+<p>生成用于签署文档的 DSA 公私密钥并使用 AES128 算法对其进行保护</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl gendsa -out dsaprivatekey.pem -aes-128-cbc dsaparam.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将DSA公私钥文件的公钥复制到另一个文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dsa -<span class="keyword">in</span> dsaprivatekey.pem -pubout -out dsapublickey.pem</span><br></pre></td></tr></table></figure>
+
+<p>打印出 DSA 密钥对文件的内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dsa -<span class="keyword">in</span> dsaprivatekey.pem -text -noout</span><br></pre></td></tr></table></figure>
+
+<p>使用 RSA 私钥对文件的 sha-256 哈希进行签名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dgst -sha256 -sign rsakey.key -out signature.data document.pdf</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用公钥验证 SHA-256 文件签名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl dgst -sha256 -verify publickey.pem -signature signature.data original.file</span><br></pre></td></tr></table></figure>
+
+<p>使用 DSA 私钥对文件的 sha3-512 哈希进行签名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkeyutl -sign -pkeyopt digest:sha3-512 -<span class="keyword">in</span> document.docx -inkey dsaprivatekey.pem -out signature.data</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>验证 DSA 签名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkeyutl -verify -sigfile dsasignature.data -inkey dsakey.pem -<span class="keyword">in</span> document.docx</span><br></pre></td></tr></table></figure>
+
+<p>使用 P-384 椭圆曲线创建私钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ecparam -name secp384r1 -genkey -out ecP384priv.key</span><br></pre></td></tr></table></figure>
+
+<p>使用3DES算法加密私钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ec -<span class="keyword">in</span> ecP384priv.key -des3 -out ecP384priv_enc.key</span><br></pre></td></tr></table></figure>
+
+<p>使用带有生成密钥的椭圆曲线对 PDF 文件进行签名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkeyutl -sign -inkey ecP384priv_enc.key -pkeyopt digest:sha3-512 -<span class="keyword">in</span> document.pdf -out signature.data</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>验证文件的签名。 如果没问题，您必须收到“签名验证成功”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkeyutl -verify -<span class="keyword">in</span> document.pdf -sigfile signature.data -inkey ecP384priv_enc.key</span><br></pre></td></tr></table></figure>
+
+<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>生成 CSR 文件和 4096 位 RSA 密钥对</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -newkey rsa:4096 -keyout private.key -out request.csr</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>显示证书签名请求 ( CSR ) 内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -text -noout -<span class="keyword">in</span> request.csr</span><br></pre></td></tr></table></figure>
+
+<p>显示 CSR 文件中包含的公钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -pubkey -noout -<span class="keyword">in</span> request.csr</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用现有私钥创建证书签名请求 ( CSR )。 当您需要在不更改私钥的情况下更新公共数字证书时，这会很有用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -new -key private.key -out request.csr</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>创建 EC P384 曲线参数文件以在下一步中使用椭圆曲线生成 CSR</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl genpkey -genparam -algorithm EC -out EC_params.pem -pkeyopt ec_paramgen_curve:secp384r1 -pkeyopt ec_param_enc:named_curve</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用在上一步中创建的椭圆曲线 P384 参数文件创建 CSR 文件。 而不是使用 RSA 密钥。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -newkey ec:EC_params.pem -keyout EC_P384_priv.key -out EC_request.csr</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>创建自签名证书，新的 2048 位 RSA 密钥对，有效期为一年</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl req -newkey rsa:2048 -nodes -keyout priv.key -x509 -days 365 -out cert.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用 CSR 文件和用于签名的私钥创建并签署新证书（您必须准备好 openssl.cnf 文件）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ca -<span class="keyword">in</span> request.csr -out certificate.crt -config ./CA/config/openssl.cnf</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>显示PEM格式证书信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -text -noout -<span class="keyword">in</span> cert.crt</span><br></pre></td></tr></table></figure>
+
+<p>以 Abstract Sintax Notation One (ASN.1) 显示证书信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl asn1parse -<span class="keyword">in</span> cert.crt</span><br></pre></td></tr></table></figure>
+
+<p>提取证书的公钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -pubkey -noout -<span class="keyword">in</span> cert.crt</span><br></pre></td></tr></table></figure>
+
+<p>在证书中提取公钥的模数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -modulus -noout -<span class="keyword">in</span> cert.crt</span><br></pre></td></tr></table></figure>
+
+<p>从 HTTPS&#x2F;TLS 连接中提取域证书</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect domain.com:443 | openssl x509 -out certificate.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将证书从 PEM 格式转换为 DER 格式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -inform PEM -outform DER -<span class="keyword">in</span> cert.crt -out cert.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>检查证书公钥是否与私钥和请求文件匹配。 每个文件一步。 必须在输出哈希中匹配</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -modulus -<span class="keyword">in</span> certificate.crt -noout | openssl dgst -sha256</span><br><span class="line">$ openssl rsa -modulus -<span class="keyword">in</span> private.key -noout | openssl dgst -sha256</span><br><span class="line">$ openssl req -modulus -<span class="keyword">in</span> request.csr -noout | openssl dgst -sha256</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="使用-TLS-协议"><a href="#使用-TLS-协议" class="headerlink" title="使用 TLS 协议"></a>使用 TLS 协议</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<p>列出所有支持的密码套件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ciphers -V <span class="string">&#x27;ALL&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>列出 AES 支持的所有密码套件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ciphers -V <span class="string">&#x27;AES&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>列出所有支持 CAMELLIA 和 SHA256 算法的密码套件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl ciphers -V <span class="string">&#x27;CAMELLIA+SHA256&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用端口 443 (HTTPS) 与服务器的 TLS 连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect domain.com:443</span><br></pre></td></tr></table></figure>
+
+<p>使用 v1.2 与服务器的 TLS 连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -tls1_2 -connect domain.com:443</span><br></pre></td></tr></table></figure>
+
+<p>TLS 连接和禁用 v1.0</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -no_tls1 domain.com:443</span><br></pre></td></tr></table></figure>
+
+<p>使用特定密码套件的 TLS 连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -cipher DHE-RSA-AES256-GCM-SHA384 domain.com:443</span><br></pre></td></tr></table></figure>
+
+<p>显示服务器提供的所有证书的 TLS 连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -showcerts domain.com:443</span><br></pre></td></tr></table></figure>
+
+<p>使用证书、私钥和仅支持 TLS 1.2 设置监听端口以接收 TLS 连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_server -port 443 -cert cert.crt -key priv.key -tls1_2</span><br></pre></td></tr></table></figure>
+
+<p>从 HTTPS&#x2F;TLS 连接中提取域证书</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect domain.com:443 | openssl x509 -out certificate.crt</span><br></pre></td></tr></table></figure>
+
+<p>nmap 命令：通过 HTTPS&#x2F;TLS 连接显示启用的密码套件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nmap --script ssl-enum-ciphers -p 443 domain.com</span><br></pre></td></tr></table></figure>
+
+<p>nmap 命令：使用 SNI 通过 TLS (HTTPS) 连接显示启用的密码套件。 （将其更改为所需的 IP 和域名）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nmap --script ssl-enum-ciphers --script-args=tls.servername=domain.com 172.67.129.11</span><br></pre></td></tr></table></figure>
+
+<h3 id="个人安全环境-PSE"><a href="#个人安全环境-PSE" class="headerlink" title="个人安全环境 (PSE)"></a>个人安全环境 (PSE)</h3><p>将证书从 PEM (base64) 格式转换为 DER（二进制）格式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -<span class="keyword">in</span> certif­ica­te.pem -outform DER -out certif­ica­te.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将证书和私钥插入 PKCS #12 格式文件。 这些文件可以导入到 Windows 证书管理器或 Java Key Store (jks) 文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs12 -<span class="built_in">export</span> -out cert_key.p12 -inkey private.key -<span class="keyword">in</span> certificate.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>显示 PKCS #12 文件的内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs12 -<span class="keyword">in</span> cert_k­ey.p12</span><br></pre></td></tr></table></figure>
+
+<p>将 .p12 文件转换为 Java Key Store。 此命令使用 java keytool 而不是 openssl。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">keytool -importkeystore -destkeystore javakeystore.jks -srckeystore cert_key.p12 -srcstoretype pkcs12</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 证书转换为 PKCS #7 格式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl crl2pkcs7 -nocrl -certfile certificate.crt -out cert.p7b</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PKCS #7 文件从 PEM 转换为 DER</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs7 -<span class="keyword">in</span> cert.p7b -outform DER -out p7.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><h3 id="查看-PEM-编码证书"><a href="#查看-PEM-编码证书" class="headerlink" title="查看 PEM 编码证书"></a>查看 PEM 编码证书</h3><p>使用具有证书扩展名的命令将 cert.xxx 替换为证书名称</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -<span class="keyword">in</span> cert.pem -text -noout</span><br><span class="line">$ openssl x509 -<span class="keyword">in</span> cert.cer -text -noout</span><br><span class="line">$ openssl x509 -<span class="keyword">in</span> cert.crt -text -noout</span><br></pre></td></tr></table></figure>
+
+<p>如果您收到以下错误，则表示您正在尝试查看 DER 编码的证书，并且需要使用下面“查看 DER 编码的证书”部分中的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">unable to load certificate</span><br><span class="line">12626:error:0906D06C:PEM routines:PEM_read_bio:no start line:pem_lib.c:647:Expecting: TRUSTED CERTIFICATE View DER encoded Certificate</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="查看-DER-编码证书"><a href="#查看-DER-编码证书" class="headerlink" title="查看 DER 编码证书"></a>查看 DER 编码证书</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl x509 -<span class="keyword">in</span> certificate.der -inform der -text -noout</span><br></pre></td></tr></table></figure>
+
+<p>如果您收到以下错误，则表示您正在尝试使用用于 DER 编码证书的命令查看 PEM 编码证书。 使用上面“查看 PEM 编码证书”部分中的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">unable to load certificate</span><br><span class="line">13978:error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag:tasn_dec.c:1306:</span><br><span class="line">13978:error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error:tasn_dec.c:380:Type=X509</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="查看证书链中的所有证书"><a href="#查看证书链中的所有证书" class="headerlink" title="查看证书链中的所有证书"></a>查看证书链中的所有证书</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># subject + issuer</span></span><br><span class="line">openssl crl2pkcs7 -nocrl -certfile host.domain.tld-ca-chain.pem | openssl pkcs7 -print_certs -noout</span><br><span class="line"><span class="comment"># full public keys</span></span><br><span class="line">openssl crl2pkcs7 -nocrl -certfile host.domain.tld-ca-chain.pem | openssl pkcs7 -print_certs -text -noout</span><br></pre></td></tr></table></figure>
+
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><h3 id="转换示例"><a href="#转换示例" class="headerlink" title="转换示例"></a>转换示例</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>将 DER 文件 (.crt .cer .der) 转换为 PEM</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl x509 -inform der -<span class="keyword">in</span> certificate.cer -out certificate.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 文件转换为 DER</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -<span class="keyword">in</span> certificate.pem -out certificate.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将包含私钥和证书的 PKCS#12 文件 (.pfx .p12) 转换为 PEM</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl pkcs12 -<span class="keyword">in</span> keyStore.pfx -out keyStore.pem -nodes</span><br><span class="line"><span class="comment"># 您可以添加 -nocerts 以仅输出私钥或添加 -nokeys 以仅输出证书</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 证书文件和私钥转换为 PKCS#12 (.pfx .p12)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl pkcs12 -<span class="built_in">export</span> -out certificate.pfx -inkey privateKey.key -<span class="keyword">in</span> certificate.crt -certfile CACert.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 转换为 CRT（.CRT 文件）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -<span class="keyword">in</span> certificate.pem -out certificate.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="OpenSSL-转换-PEM"><a href="#OpenSSL-转换-PEM" class="headerlink" title="OpenSSL 转换 PEM"></a>OpenSSL 转换 PEM</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>将 PEM 转换为 DER</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -outform der -<span class="keyword">in</span> certificate.pem -out certificate.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 转换为 P7B</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl crl2pkcs7 -nocrl -certfile certificate.cer -out certificate.p7b -certfile CACert.cer</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 PEM 转换为 PFX</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs12 -<span class="built_in">export</span> -out certificate.pfx -inkey privateKey.key -<span class="keyword">in</span> certificate.crt -certfile CACert.crt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="OpenSSL-转换-DER"><a href="#OpenSSL-转换-DER" class="headerlink" title="OpenSSL 转换 DER"></a>OpenSSL 转换 DER</h3><p>将 DER 转换为 PEM</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -inform der -<span class="keyword">in</span> certificate.cer -out certificate.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="OpenSSL-转换-PFX"><a href="#OpenSSL-转换-PFX" class="headerlink" title="OpenSSL 转换 PFX"></a>OpenSSL 转换 PFX</h3><p>将 PFX 转换为 PEM</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs12 -<span class="keyword">in</span> certificate.pfx -out certificate.cer -nodes</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="OpenSSL-转换-P7B"><a href="#OpenSSL-转换-P7B" class="headerlink" title="OpenSSL 转换 P7B"></a>OpenSSL 转换 P7B</h3><p>将 P7B 转换为 PEM</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs7 -print_certs -<span class="keyword">in</span> certificate.p7b -out certificate.cer</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将 P7B 转换成 PFX</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl pkcs7 -print_certs -<span class="keyword">in</span> certificate.p7b -out certificate.cer</span><br><span class="line">$ openssl pkcs12 -<span class="built_in">export</span> -<span class="keyword">in</span> certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="通过-OpenSSL-生成-rsa-密钥"><a href="#通过-OpenSSL-生成-rsa-密钥" class="headerlink" title="通过 OpenSSL 生成 rsa 密钥"></a>通过 OpenSSL 生成 rsa 密钥</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>在命令行上使用 OpenSSL 您首先需要生成公钥和私钥。 您应该使用 <code>-passout</code> 参数对这个文件进行密码保护，这个参数可以采用许多不同的形式，因此请查阅 OpenSSL 文档</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl genrsa -out private.pem 4096</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个名为 private.pem 的密钥文件，它使用 4096 位。 这个文件实际上有私钥和公钥，所以你应该从这个文件中提取公钥：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> private.pem -out public.pem -outform PEM -pubout</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> private.pem -pubout &gt; public.pem</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> private.pem -pubout -out public.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>您现在将拥有仅包含您的公钥的 public.pem，您可以与第 3 方自由共享。 您可以通过使用您的公钥自己加密一些东西然后使用您的私钥解密来测试这一切，首先我们需要一些数据来加密：</p>
+<p>示例文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;too many secrets&#x27;</span> &gt; file.txt</span><br></pre></td></tr></table></figure>
+
+<p>您现在在 file.txt 中有一些数据，让我们使用 OpenSSL 和公钥对其进行加密：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsautl -encrypt -inkey public.pem -pubin -<span class="keyword">in</span> file.txt -out file.ssl</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>这会创建一个 file.txt 的加密版本，称为 file.ssl，如果你看这个文件，它只是二进制垃圾，对任何人都没有什么用处。 现在您可以使用私钥对其进行解密：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsautl -decrypt -inkey private.pem -<span class="keyword">in</span> file.ssl -out decrypted.txt</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>您现在将在 decrypted.txt 中有一个未加密的文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> decrypted.txt</span><br><span class="line"> |output -&gt; too many secrets</span><br></pre></td></tr></table></figure>
+
+<h3 id="OpenSSL-中的-RSA-工具选项"><a href="#OpenSSL-中的-RSA-工具选项" class="headerlink" title="OpenSSL 中的 RSA 工具选项"></a>OpenSSL 中的 RSA 工具选项</h3><!--rehype:wrap-class=col-span-2 row-span-3-->
+
+<p>NAME</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rsa - RSA key processing tool</span><br></pre></td></tr></table></figure>
+
+<p>SYNOPSIS 概要</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa [-<span class="built_in">help</span>] [-inform PEM|NET|DER] [-outform PEM|NET|DER] [-<span class="keyword">in</span> filename] [-passin arg] [-out filename] [-passout arg] [-aes128] [-aes192] [-aes256] [-camellia128] [-camellia192] [-camellia256] [-des] [-des3] [-idea] [-text] [-noout] [-modulus] [-check] [-pubin] [-pubout] [-RSAPublicKey_in] [-RSAPublicKey_out] [-engine <span class="built_in">id</span>]</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>DESCRIPTION 描述</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rsa 命令处理 RSA 密钥。 它们可以在各种形式之间转换，并且可以打印出它们的组成部分。</span><br><span class="line">请注意，此命令使用传统的 SSLeay 兼容格式进行私钥加密：较新的应用程序</span><br><span class="line">应该使用 pkcs8 实用程序使用更安全的 PKCS#8 格式。</span><br></pre></td></tr></table></figure>
+
+<p>COMMAND OPTIONS 命令选项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-<span class="built_in">help</span></span><br><span class="line"><span class="comment">#&gt; 打印出使用信息。</span></span><br><span class="line"></span><br><span class="line">-inform DER|NET|PEM</span><br><span class="line"><span class="comment">#&gt; 这指定了输入格式。 DER 选项使用与 PKCS #1 RSAPrivateKey 或 SubjectPublicKeyInfo 格式兼容的 ASN1 DER 编码形式。 PEM 形式是默认格式：它由 DER 格式 base64 编码，并带有额外的页眉和页脚行。 输入 PKCS#8 格式的私钥也 接受。 NET 形式是一种在注释部分中描述的格式。</span></span><br><span class="line"></span><br><span class="line">-outform DER|NET|PEM</span><br><span class="line"><span class="comment">#&gt; 这指定了输出格式，选项与 -inform 选项具有相同的含义。</span></span><br><span class="line"></span><br><span class="line">-<span class="keyword">in</span> filename</span><br><span class="line"><span class="comment">#&gt; 如果未指定此选项，这将指定要从中读取密钥的输入文件名或标准输入。 如果密钥被加密，将提示输入密码。</span></span><br><span class="line"></span><br><span class="line">-passin arg</span><br><span class="line"><span class="comment">#&gt; 输入文件密码源。有关 arg 格式的更多信息，请参阅 openssl 中的 PASS PHRASE ARGUMENTS 部分。</span></span><br><span class="line"></span><br><span class="line">-out filename</span><br><span class="line"><span class="comment">#&gt; 如果未指定此选项，这将指定要写入密钥的输出文件名或标准输出。如果设置了任何加密选项，则会提示输入密码。输出文件名不应与输入文件名相同。</span></span><br><span class="line"></span><br><span class="line">-passout password</span><br><span class="line"><span class="comment">#&gt; 输出文件密码源。有关 arg 格式的更多信息，请参阅 openssl 中的 PASS PHRASE ARGUMENTS 部分。</span></span><br><span class="line"></span><br><span class="line">-aes128|-aes192|-aes256|-camellia128|-camellia192|-camellia256|-des|-des3|-idea</span><br><span class="line"><span class="comment">#&gt; 这些选项在输出之前使用指定的密码加密私钥。提示输入密码。如果未指定这些选项，则密钥将以纯文本形式写入。这意味着使用 rsa 实用程序读取没有加密选项的加密密钥可用于从密钥中删除密码短语，或者通过设置可用于添加或更改密码短语的加密选项。这些选项只能用于 PEM 格式的输出文件。</span></span><br><span class="line"></span><br><span class="line">-text</span><br><span class="line"><span class="comment">#&gt; 除了编码版本之外，还以纯文本形式打印出各种公钥或私钥组件。</span></span><br><span class="line"></span><br><span class="line">-noout</span><br><span class="line"><span class="comment">#&gt; 此选项可防止输出密钥的编码版本。</span></span><br><span class="line"></span><br><span class="line">-modulus</span><br><span class="line"><span class="comment">#&gt; 此选项打印出密钥模数的值。</span></span><br><span class="line"></span><br><span class="line">-check</span><br><span class="line"><span class="comment">#&gt; 此选项检查 RSA 私钥的一致性。</span></span><br><span class="line"></span><br><span class="line">-pubin</span><br><span class="line"><span class="comment">#&gt; 默认情况下，从输入文件中读取私钥：使用此选项，改为读取公钥。</span></span><br><span class="line"></span><br><span class="line">-pubout</span><br><span class="line"><span class="comment">#&gt; 默认情况下输出私钥：使用此选项将输出公钥。 如果输入是公钥，则会自动设置此选项。</span></span><br><span class="line"></span><br><span class="line">-RSAPublicKey_in, -RSAPublicKey_out</span><br><span class="line"><span class="comment">#&gt; 类似于 -pubin 和 -pubout，除了使用 RSAPublicKey 格式。</span></span><br><span class="line"></span><br><span class="line">-engine <span class="built_in">id</span></span><br><span class="line"><span class="comment">#&gt; 指定引擎（通过其唯一 ID 字符串）将导致 rsa 尝试获取对指定引擎的功能引用，从而在需要时对其进行初始化。 然后引擎将被设置为所有可用算法的默认值。</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="支持以下加密算法"><a href="#支持以下加密算法" class="headerlink" title="支持以下加密算法"></a>支持以下加密算法</h3><ul>
+<li><code>-aes128</code></li>
+<li><code>-aes192</code></li>
+<li><code>-aes256</code></li>
+<li><code>-des3</code></li>
+<li><code>-des</code><!--rehype:className=cols-3--></li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>要删除 RSA 私钥上的密码短语：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -out keyout.pem</span><br></pre></td></tr></table></figure>
+
+<p>要使用三重 DES 加密私钥：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -des3 -out keyout.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>要将私钥从 PEM 格式转换为 DER 格式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -outform DER -out keyout.der</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>将私钥的组件打印到标准输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -text -noout</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>仅输出私钥的公共部分：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -pubout -out pubkey.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>以 RSAPublicKey 格式输出私钥的公共部分：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl rsa -<span class="keyword">in</span> key.pem -RSAPublicKey_out -out pubkey.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><h3 id="RSA-公钥"><a href="#RSA-公钥" class="headerlink" title="RSA 公钥"></a>RSA 公钥</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----BEGIN RSA PUBLIC KEY-----</span><br><span class="line">-----END RSA PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="加密的-PEM-私钥"><a href="#加密的-PEM-私钥" class="headerlink" title="加密的 PEM 私钥"></a>加密的 PEM 私钥</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">Proc-Type: 4,ENCRYPTED</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="识别为-PEM-格式"><a href="#识别为-PEM-格式" class="headerlink" title="识别为 PEM 格式"></a>识别为 PEM 格式</h3><!--rehype:wrap-class=row-span-7-->
+
+<p>为了让 OpenSSL 将其识别为 PEM 格式，它必须使用 Base64 进行编码，并带有以下标头：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">and footer :</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
+
+<p>此外，每行的长度不得超过 79 个字符。 否则你会收到错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2675996:error:0906D064:PEM routines:PEM_read_bio:bad base64 decode:pem_lib.c:818:</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>注意：PEM 标准 (RFC1421) 要求行长度为 64 个字符。 可以使用 UNIX 命令行实用程序转换存储为单行的 PEM 证书：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">fold</span> -w 64</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>PKCS#1 RSAPublicKey (PEM header: BEGIN RSA PUBLIC KEY)</li>
+<li>PKCS#8 EncryptedPrivateKeyInfo (PEM header: BEGIN ENCRYPTED PRIVATE KEY)</li>
+<li>PKCS#8 PrivateKeyInfo (PEM header: BEGIN PRIVATE KEY)</li>
+<li>X.509 SubjectPublicKeyInfo (PEM header: BEGIN PUBLIC KEY)</li>
+<li>CSR PEM header : (PEM header:—-BEGIN NEW CERTIFICATE REQUEST—–)</li>
+<li>DSA PrivateKeyInfo (PEM header: (—–BEGIN DSA PRIVATE KEY—-)</li>
+</ul>
+<h3 id="CRL"><a href="#CRL" class="headerlink" title="CRL"></a>CRL</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----BEGIN X509 CRL-----</span><br><span class="line">-----END X509 CRL-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="CRT"><a href="#CRT" class="headerlink" title="CRT"></a>CRT</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="CSR"><a href="#CSR" class="headerlink" title="CSR"></a>CSR</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE REQUEST-----</span><br><span class="line">-----END CERTIFICATE REQUEST-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="NEW-CSR"><a href="#NEW-CSR" class="headerlink" title="NEW CSR"></a>NEW CSR</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN NEW CERTIFICATE REQUEST-----</span><br><span class="line">-----END NEW CERTIFICATE REQUEST-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="PEM"><a href="#PEM" class="headerlink" title="PEM"></a>PEM</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----END RSA PRIVATE KEY-----</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="PKCS7"><a href="#PKCS7" class="headerlink" title="PKCS7"></a>PKCS7</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN PKCS7-----</span><br><span class="line">-----END PKCS7-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="DSA密钥"><a href="#DSA密钥" class="headerlink" title="DSA密钥"></a>DSA密钥</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN DSA PRIVATE KEY-----</span><br><span class="line">-----END DSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN EC PRIVATE KEY-----</span><br><span class="line">-----BEGIN EC PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="PGP-私钥"><a href="#PGP-私钥" class="headerlink" title="PGP 私钥"></a>PGP 私钥</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN PGP PRIVATE KEY BLOCK-----</span><br><span class="line">-----END PGP PRIVATE KEY BLOCK-----</span><br></pre></td></tr></table></figure>
+
+<h3 id="PGP-公钥"><a href="#PGP-公钥" class="headerlink" title="PGP 公钥"></a>PGP 公钥</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----BEGIN PGP PUBLIC KEY BLOCK-----</span><br><span class="line">-----END PGP PUBLIC KEY BLOCK-----</span><br></pre></td></tr></table></figure>
+
+<h2 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在建立 SSL&#x2F;TLS 连接之前，客户端需要确保收到的证书有效。为了做到这一点，客户端不仅要验证其公钥的真实性，还要验证与之相关的其他元数据（了解这一点对于了解典型数字证书的内容很重要）：</p>
+<ul>
+<li><strong><code>签名验证</code></strong> 这确保了证书没有以任何方式被更改</li>
+<li><strong><code>证书尚未过期</code></strong> 当证书由 CA 颁发时，它会指定一个到期日期</li>
+<li><strong><code>证书主题与主机名匹配</code></strong> 证书是为特定服务器颁发的。因此，证书主题名称需要与客户端尝试连接的 URL 相匹配</li>
+<li><strong><code>它没有被撤销</code></strong> 有时证书可以在任何需要的情况下被其颁发者撤销（例如，关联的私钥已被公开，因此证书无效）</li>
+<li><strong><code>它由受信任的 CA 签名</code></strong> 为了证明证书的真实性，我们需要获取 CA 证书并验证其可信度。然而在 PKI 中有一个信任链的概念，因此 CA 证书可能是由另一个 CA 颁发的。因此我们需要获得另一个 CA 的证书并验证它。依此类推……因此，为了信任证书，我们需要一直导航到根 CA。最后，如果我们信任根 CA，可以肯定地说我们信任整个链</li>
+</ul>
+<h3 id="验证信任链"><a href="#验证信任链" class="headerlink" title="验证信任链"></a>验证信任链</h3><!--rehype:wrap-class=col-span-2 -->
+
+<p>a) 您的整个 CA 链在一个文件中，实际的网络服务器或客户端证书在另一个文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl verify -untrusted ca-chain.pem 客户端证书.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>b) 单独文件中的根证书和中间证书以及另一个文件中的实际网络服务器或客户端证书</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl verify -CAfile root.pem -untrusted intermediate-chain.pem client-cert.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>如果您有多个中间 <code>CA</code>（例如 <code>root.pem -&gt; intermediate1.pem -&gt; intermediate2.pem -&gt; client-cert.pem</code>），将它们连接到一个文件中并通过：<code>-untrusted intermediate-chain.pem</code> 或执行它与 cat：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl verify -CAfile root.pem -untrusted &lt;(<span class="built_in">cat</span> intermediate1.pem intermediate2.pem) client-cert.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>实例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl verify -CAfile letsencrypt-root-cert/isrgrootx1.pem.txt -untrusted letsencrypt-intermediate-cert/letsencryptauthorityx3.pem.txt /etc/letsencrypt/live/sitename.tld/cert.pem </span><br><span class="line">/etc/letsencrypt/live/sitename.tld/cert.pem: OK</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="截止日期"><a href="#截止日期" class="headerlink" title="截止日期"></a>截止日期</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl x509 -enddate -noout -<span class="keyword">in</span> file.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证本地证书文件"><a href="#验证本地证书文件" class="headerlink" title="验证本地证书文件"></a>验证本地证书文件</h4><p>这是我的 bash 命令行，用于按过期顺序列出多个证书，最近过期的证书最先过期。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> pem <span class="keyword">in</span> /etc/ssl/certs/*.pem; <span class="keyword">do</span> </span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&#x27;%s: %s\n&#x27;</span> \</span><br><span class="line">      <span class="string">&quot;<span class="subst">$(date --date=<span class="string">&quot;<span class="subst">$(openssl x509 -enddate -noout -in <span class="string">&quot;<span class="variable">$pem</span>&quot;</span>|cut -d= -f 2)</span>&quot;</span> --iso-8601)</span>&quot;</span> \</span><br><span class="line">      <span class="string">&quot;<span class="variable">$pem</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span> | <span class="built_in">sort</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>示例输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2015-12-16: /etc/ssl/certs/Staat_der_Nederlanden_Root_CA.pem</span><br><span class="line">2016-03-22: /etc/ssl/certs/CA_Disig.pem</span><br><span class="line">2016-08-14: /etc/ssl/certs/EBG_Elektronik_Sertifika_Hizmet_S.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证远程服务器"><a href="#验证远程服务器" class="headerlink" title="验证远程服务器"></a>验证远程服务器</h4><p>这是一个 bash 函数，它会检查你所有的服务器，假设你正在使用 DNS 循环法。 请注意，这需要 GNU 日期并且不能在 Mac OS 上运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">check_certs</span></span> () &#123;</span><br><span class="line">  <span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$1</span>&quot;</span> ]</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;domain name missing&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  name=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="built_in">shift</span></span><br><span class="line"></span><br><span class="line">  now_epoch=$( <span class="built_in">date</span> +%s )</span><br><span class="line"></span><br><span class="line">  dig +noall +answer <span class="variable">$name</span> | <span class="keyword">while</span> <span class="built_in">read</span> _ _ _ _ ip;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> -n <span class="string">&quot;<span class="variable">$ip</span>:&quot;</span></span><br><span class="line">    expiry_date=$( <span class="built_in">echo</span> | openssl s_client -showcerts -servername <span class="variable">$name</span> -connect <span class="variable">$ip</span>:443 2&gt;/dev/null | openssl x509 -inform pem -noout -enddate | <span class="built_in">cut</span> -d <span class="string">&quot;=&quot;</span> -f 2 )</span><br><span class="line">    <span class="built_in">echo</span> -n <span class="string">&quot; <span class="variable">$expiry_date</span>&quot;</span>;</span><br><span class="line">    expiry_epoch=$( <span class="built_in">date</span> -d <span class="string">&quot;<span class="variable">$expiry_date</span>&quot;</span> +%s )</span><br><span class="line">    expiry_days=<span class="string">&quot;<span class="subst">$(( ($expiry_epoch - $now_epoch)</span> / (3600 * 24) ))&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;    <span class="variable">$expiry_days</span> days&quot;</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>输出示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ check_certs stackoverflow.com</span><br><span class="line">151.101.1.69: Aug 14 12:00:00 2019 GMT    603 days</span><br><span class="line">151.101.65.69: Aug 14 12:00:00 2019 GMT    603 days</span><br><span class="line">151.101.129.69: Aug 14 12:00:00 2019 GMT    603 days</span><br><span class="line">151.101.193.69: Aug 14 12:00:00 2019 GMT    603 days</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证-curl"><a href="#验证-curl" class="headerlink" title="验证 curl"></a>验证 curl</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl --insecure -v https://www.google.com 2&gt;&amp;1 | awk <span class="string">&#x27;BEGIN &#123; cert=0 &#125; /^\* Server certificate:/ &#123; cert=1 &#125; /^\*/ &#123; if (cert) print &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">* Server certificate:</span><br><span class="line">*  subject: C=US; ST=California; L=Mountain View; O=Google LLC; CN=www.google.com</span><br><span class="line">*  start <span class="built_in">date</span>: Mar  1 09:46:35 2019 GMT</span><br><span class="line">*  expire <span class="built_in">date</span>: May 24 09:25:00 2019 GMT</span><br><span class="line">*  issuer: C=US; O=Google Trust Services; CN=Google Internet Authority G3</span><br><span class="line">*  SSL certificate verify ok.</span><br><span class="line">* Using HTTP2, server supports multi-use</span><br><span class="line">* Connection state changed (HTTP/2 confirmed)</span><br><span class="line">* Copying HTTP/2 data <span class="keyword">in</span> stream buffer to connection buffer after upgrade: len=0</span><br><span class="line">* Using Stream ID: 1 (easy handle 0x7ff5dc803600)</span><br><span class="line">* Connection state changed (MAX_CONCURRENT_STREAMS updated)!</span><br><span class="line">* Connection <span class="comment">#0 to host www.google.com left intact</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>您需要为 <a href="./curl.md">curl</a> 提供整个证书链，因为 <a href="./curl.md">curl</a> 不再附带任何 CA 证书。 由于 cacert 选项只能使用一个文件，因此您需要将完整的链信息连接到 1 个文件中。 从 <a target="_blank" rel="noopener" href="https://curl.haxx.se/ca/cacert.pem">https://curl.haxx.se/ca/cacert.pem</a> 获取根 CA 证书包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl --cacert certRepo -u user:passwd -X GET -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> <span class="string">&quot;https//somesecureserver.com/rest/field&quot;</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="验证-openssl-s-client"><a href="#验证-openssl-s-client" class="headerlink" title="验证 openssl s_client"></a>验证 openssl s_client</h3><!--rehype:wrap-class=row-span-2-->
+
+<h4 id="使用-SNI"><a href="#使用-SNI" class="headerlink" title="使用 SNI"></a>使用 SNI</h4><p>如果远程服务器使用 SNI（即在一个 IP 地址上共享多个 SSL 主机），您将需要发送正确的主机名以获得正确的证书（<code>-servername</code> 选项用于启用 SNI 支持）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -showcerts -servername www.example.com -connect www.example.com:443 &lt;/dev/null</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h4 id="没有-SNI"><a href="#没有-SNI" class="headerlink" title="没有 SNI"></a>没有 SNI</h4><p>如果远程服务器没有使用 SNI，那么你可以跳过 <code>-servername</code> 参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl s_client -showcerts -connect www.example.com:443 &lt;/dev/null</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>要查看站点证书的完整详细信息，您也可以使用以下命令链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> | \</span><br><span class="line">    openssl s_client -servername www.example.com -connect www.example.com:443 2&gt;/dev/null | \</span><br><span class="line">    openssl x509 -text</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>对于带有 starttls 的 SMTP，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect server:port -starttls smtp</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>对于 Client Auth 保护的资源，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect host:port -key our_private_key.pem -showcerts \</span><br><span class="line">    -cert our_server-signed_cert.pem</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p><code>-prexit</code> 也会返回数据：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -connect host:port -prexit</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="使用私钥验证-TLS-证书"><a href="#使用私钥验证-TLS-证书" class="headerlink" title="使用私钥验证 TLS 证书"></a>使用私钥验证 TLS 证书</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>希望您永远不会遇到不知道用于生成 TLS 证书的私钥的情况，但如果您知道……这里是您可以检查的方法。</p>
+<p>注意：这比将证书上传到生产环境以检查它们更好😉</p>
+<p>假设我们已经生成了一个名为 example.com.key 的私钥和一个名为 example.com.crt 的证书，我们可以使用 openssl 检查 MD5 哈希值是否相同：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl x509 -noout -modulus -<span class="keyword">in</span> example.com.crt | openssl md5</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl rsa -noout -modulus -<span class="keyword">in</span> example.com.key | openssl md5</span></span><br></pre></td></tr></table></figure>
+
+<p>为了让事情变得更好，你可以写一个脚本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">CERT_MD5=$(openssl x509 -noout -modulus -<span class="keyword">in</span> example.com.crt | openssl md5)</span><br><span class="line"> KEY_MD5=$(openssl rsa  -noout -modulus -<span class="keyword">in</span> example.com.key | openssl md5)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$CERT_MD5</span>&quot;</span> == <span class="string">&quot;<span class="variable">$KEY_MD5</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Private key matches certificate&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Private key does not match certificate&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-Key-store"><a href="#Java-Key-store" class="headerlink" title="Java Key store"></a>Java Key store</h2><h3 id="Java-密钥库"><a href="#Java-密钥库" class="headerlink" title="Java 密钥库"></a>Java 密钥库</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ keytool -importcert -file certificate.cer -keystore keystore.jks -<span class="built_in">alias</span> <span class="string">&quot;Alias&quot;</span> </span><br><span class="line">$ ..\..\bin\keytool -import -trustcacerts -keystore cacerts -storepass changeit -noprompt -<span class="built_in">alias</span> yourAliasName -file path\to\certificate.cer</span><br><span class="line">$ keytool -import -<span class="built_in">alias</span> joe -file mycert.cer -keystore mycerts -storepass changeit</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="使用-certstrap-创建开发证书"><a href="#使用-certstrap-创建开发证书" class="headerlink" title="使用 certstrap 创建开发证书"></a>使用 <code>certstrap</code> 创建开发证书</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install certstrap</span><br><span class="line">$ certstrap init --common-name <span class="string">&quot;ExampleDevCA&quot;</span> --expires <span class="string">&quot;10 years&quot;</span> -o <span class="string">&quot;My Tech Inc.&quot;</span> -c <span class="string">&quot;DE&quot;</span> -l <span class="string">&quot;Muenchen&quot;</span> --st <span class="string">&quot;Bayern&quot;</span> --stdout</span><br><span class="line">$ certstrap request-cert --common-name <span class="string">&quot;example.localhost&quot;</span> -o <span class="string">&quot;My Tech Inc.&quot;</span> -c <span class="string">&quot;DE&quot;</span> -l <span class="string">&quot;Muenchen&quot;</span> --st <span class="string">&quot;Bayern&quot;</span> --stdout --domain <span class="string">&quot;*.example.localhost&quot;</span>,<span class="string">&quot;example.localhost&quot;</span>,<span class="string">&quot;localhost&quot;</span></span><br><span class="line">$ certstrap sign <span class="string">&quot;example.localhost&quot;</span> --CA ExampleDevCA</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="使用-mkcert-创建开发证书"><a href="#使用-mkcert-创建开发证书" class="headerlink" title="使用 mkcert 创建开发证书"></a>使用 <code>mkcert</code> 创建开发证书</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install mkcert</span><br><span class="line">$ mkcert <span class="string">&quot;*.example.localhost&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean up with:</span></span><br><span class="line">$ <span class="built_in">rm</span> -vrf <span class="string">&quot;<span class="variable">$HOME</span>/Library/Application Support/mkcert&quot;</span>  _wildcard.example*</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.openssl.org/">OpenSSL 官网</a> <em>(openssl.org)</em></li>
+<li><a target="_blank" rel="noopener" href="https://cheatography.com/albertx/cheat-sheets/openssl/">OpenSSL Cheat Sheet</a> <em>(cheatography.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://megamorf.gitlab.io/cheat-sheets/openssl/#convert">OpenSSL Cheat Sheet</a> <em>(megamorf.gitlab.io)</em></li>
+</ul>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

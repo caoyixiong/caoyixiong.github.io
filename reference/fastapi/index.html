@@ -1,0 +1,593 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>FastAPI 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.6+ 并基于标准的 Python 类型提示 入门  安装 FastAPI$ pip install &quot;fastapi[all]&quot;  可以分开来安装假如你想将应用程序部署到生产环境，你可能要执行以下操作： $ pip install fastapi  并且安装 uvicorn 来作为服务器： $">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FastAPI 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/fastapi/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.6+ 并基于标准的 Python 类型提示 入门  安装 FastAPI$ pip install &quot;fastapi[all]&quot;  可以分开来安装假如你想将应用程序部署到生产环境，你可能要执行以下操作： $ pip install fastapi  并且安装 uvicorn 来作为服务器： $">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.674Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.674Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/fastapi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FastAPI 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">FastAPI 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.6+ 并基于标准的 Python 类型提示</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><!--rehype:body-class=cols-2-->
+
+<h3 id="安装-FastAPI"><a href="#安装-FastAPI" class="headerlink" title="安装 FastAPI"></a>安装 FastAPI</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install <span class="string">&quot;fastapi[all]&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="可以分开来安装"><a href="#可以分开来安装" class="headerlink" title="可以分开来安装"></a>可以分开来安装</h4><p>假如你想将应用程序部署到生产环境，你可能要执行以下操作：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install fastapi</span></span><br></pre></td></tr></table></figure>
+
+<p>并且安装 <code>uvicorn</code> 来作为服务器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install <span class="string">&quot;uvicorn[standard]&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">uvicorn main:app --reload</span></span><br></pre></td></tr></table></figure>
+
+<p>Python: <code>3.9.5</code> FastAPI: <code>0.103.1</code></p>
+<h3 id="最小程序"><a href="#最小程序" class="headerlink" title="最小程序"></a>最小程序</h3><p>下面代码会直接启动http服务，也可以使用 <code>uvicorn main:app --reload</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">import</span> uvicorn</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p>添加一个 API 的示例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    uvicorn.run(app=<span class="string">&#x27;main:app&#x27;</span>, reload=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="路径参数"><a href="#路径参数" class="headerlink" title="路径参数"></a>路径参数</h3><h4 id="最基本的路径参数"><a href="#最基本的路径参数" class="headerlink" title="最基本的路径参数"></a>最基本的路径参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/1</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125; <span class="comment"># item_id自定义</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="多个路径参数"><a href="#多个路径参数" class="headerlink" title="多个路径参数"></a>多个路径参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/1/2</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;/&#123;user_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id, user_id</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;user_id&quot;</span>: user_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="有类型的路径参数"><a href="#有类型的路径参数" class="headerlink" title="有类型的路径参数"></a>有类型的路径参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/1</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件路径参数"><a href="#文件路径参数" class="headerlink" title="文件路径参数"></a>文件路径参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/file//home/my/my.txt</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/file/&#123;file_path:path&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;file_path&quot;</span>: file_path&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询参数"><a href="#查询参数" class="headerlink" title="查询参数"></a>查询参数</h3><!--rehype:wrap-class=row-span-2-->
+
+<h4 id="带默认值的查询参数"><a href="#带默认值的查询参数" class="headerlink" title="带默认值的查询参数"></a>带默认值的查询参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/?skip=0&amp;limit=2</span></span><br><span class="line">fake_items_db = [&#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">skip: <span class="built_in">int</span> = <span class="number">0</span>, limit: <span class="built_in">int</span> = <span class="number">10</span></span>):</span><br><span class="line">    <span class="keyword">return</span> fake_items_db[skip: skip + limit]</span><br></pre></td></tr></table></figure>
+
+<h4 id="可选查询参数"><a href="#可选查询参数" class="headerlink" title="可选查询参数"></a>可选查询参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/1?q=admin</span></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id: <span class="built_in">str</span>, q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="多路径多查询参数"><a href="#多路径多查询参数" class="headerlink" title="多路径多查询参数"></a>多路径多查询参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/users/1/items/2</span></span><br><span class="line"><span class="comment"># or </span></span><br><span class="line"><span class="comment"># http://127.0.0.1:8000/users/1/items/2?q=query&amp;short=true</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/&#123;user_id&#125;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_user_item</span>(<span class="params"></span></span><br><span class="line"><span class="params">    user_id: <span class="built_in">int</span>, </span></span><br><span class="line"><span class="params">    item_id: <span class="built_in">str</span>, </span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span>, </span></span><br><span class="line"><span class="params">    short: <span class="built_in">bool</span> = <span class="literal">False</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    item = &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;owner_id&quot;</span>: user_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        item.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> short:</span><br><span class="line">        item.update(</span><br><span class="line">            &#123;<span class="string">&quot;description&quot;</span>: <span class="string">&quot;这是一个令人惊叹的项目，有很长的描述&quot;</span>&#125;</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<h4 id="必需查询参数"><a href="#必需查询参数" class="headerlink" title="必需查询参数"></a>必需查询参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/123?needy=yes</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_user_item</span>(<span class="params">item_id: <span class="built_in">str</span>, needy: <span class="built_in">str</span></span>):</span><br><span class="line">    item = &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;needy&quot;</span>: needy&#125;</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name: <span class="built_in">str</span> = <span class="string">&#x27;小明&#x27;</span></span><br><span class="line">    description: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span></span><br><span class="line">    price: <span class="built_in">float</span></span><br><span class="line">    tax: <span class="type">Union</span>[<span class="built_in">float</span>, <span class="literal">None</span>] = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">create_item</span>(<span class="params">item: Item</span>):</span><br><span class="line">    <span class="built_in">print</span>(item.name)</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -X <span class="string">&#x27;POST&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27;http://127.0.0.1:8000/items/&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;accept: application/json&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;小明&quot;,</span></span><br><span class="line"><span class="string">  &quot;description&quot;: &quot;string&quot;,</span></span><br><span class="line"><span class="string">  &quot;price&quot;: 0,</span></span><br><span class="line"><span class="string">  &quot;tax&quot;: 0</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查询参数和字符串校验"><a href="#查询参数和字符串校验" class="headerlink" title="查询参数和字符串校验"></a>查询参数和字符串校验</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Query</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span>, max_length=<span class="number">50</span></span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>default</code></td>
+<td>默认值</td>
+<td>任意类型或…</td>
+</tr>
+<tr>
+<td><code>max_length</code></td>
+<td>最大长度</td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>min_length</code></td>
+<td>最小长度</td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td>正则匹配</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>别名参数</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><code>deprecated</code></td>
+<td>准备弃用参数</td>
+<td><code>bool</code></td>
+</tr>
+</tbody></table>
+<h4 id="多个相同的查询参数"><a href="#多个相同的查询参数" class="headerlink" title="多个相同的查询参数"></a>多个相同的查询参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># http://127.0.0.1:8000/items/?q=foo&amp;q=bar</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="type">List</span>[<span class="built_in">str</span>], <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span></span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    query_items = &#123;<span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> query_items</span><br></pre></td></tr></table></figure>
+
+<h3 id="路径参数和数值校验"><a href="#路径参数和数值校验" class="headerlink" title="路径参数和数值校验"></a>路径参数和数值校验</h3><p>Path 用法基本和 Query 相同，参考：<a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/zh/tutorial/path-params-numeric-validations/">FastAPI官方文档</a></p>
+<h4 id="导入-Path"><a href="#导入-Path" class="headerlink" title="导入 Path"></a>导入 Path</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Path, Query</span><br><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> Annotated</span><br></pre></td></tr></table></figure>
+
+<h4 id="声明元数据"><a href="#声明元数据" class="headerlink" title="声明元数据"></a>声明元数据</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    item_id: Annotated[<span class="built_in">int</span>, Path(<span class="params">title=<span class="string">&quot;要获取的项目的 ID&quot;</span></span>)],</span></span><br><span class="line"><span class="params">    q: Annotated[<span class="built_in">str</span> | <span class="literal">None</span>, Query(<span class="params">alias=<span class="string">&quot;item-query&quot;</span></span>)] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数列表-1"><a href="#参数列表-1" class="headerlink" title="参数列表"></a>参数列表</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>...</code></td>
+<td>和 Query 具有相同参数</td>
+<td>…</td>
+</tr>
+<tr>
+<td><code>ge</code></td>
+<td>大于等于</td>
+<td><code>int float</code></td>
+</tr>
+<tr>
+<td><code>gt</code></td>
+<td>大于</td>
+<td><code>int float</code></td>
+</tr>
+<tr>
+<td><code>le</code></td>
+<td>小于等于</td>
+<td><code>int float</code></td>
+</tr>
+<tr>
+<td><code>le</code></td>
+<td>小于等于</td>
+<td><code>int float</code></td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>api文档的标题</td>
+<td><code>string</code></td>
+</tr>
+</tbody></table>
+<h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p>都具有 <code>Query</code> 的参数，<code>max_length</code>、<code>min_length</code> 等</p>
+<h4 id="Cookie参数"><a href="#Cookie参数" class="headerlink" title="Cookie参数"></a>Cookie参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Cookie</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    ads_id: Annotated[<span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>], Cookie(<span class="params"></span>)] = <span class="literal">None</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;ads_id&quot;</span>: ads_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Header-参数"><a href="#Header-参数" class="headerlink" title="Header 参数"></a>Header 参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Header</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    user_agent: Annotated[<span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>], Header(<span class="params"></span>)] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    items_id: Annotated[<span class="type">Union</span>[<span class="built_in">int</span>, <span class="literal">None</span>], Header(<span class="params">ge=<span class="number">1</span></span>)] = <span class="literal">None</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;User-Agent&quot;</span>: user_agent, <span class="string">&quot;items_id&quot;</span>: items_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表单数据"><a href="#表单数据" class="headerlink" title="表单数据"></a>表单数据</h3><p>接收的不是 JSON，而是表单字段时，要使用 Form。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install python-multipart</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;http://127.0.0.1:8000/login&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>账号：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>密码：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="FastAPI"><a href="#FastAPI" class="headerlink" title="FastAPI"></a>FastAPI</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Form</span><br><span class="line"><span class="keyword">import</span> uvicorn</span><br><span class="line">app = FastAPI()</span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/login/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">username: <span class="built_in">str</span> = Form(<span class="params"></span>), password: <span class="built_in">str</span> = Form(<span class="params"></span>)</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;username&quot;</span>: username&#125;</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    uvicorn.run(app=<span class="string">&#x27;main:app&#x27;</span>, reload=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, UploadFile</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> HTMLResponse</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/uploadfile/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">create_upload_file</span>(<span class="params">file: UploadFile</span>):</span><br><span class="line">    <span class="built_in">print</span>(file.file.read().decode())</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;filenames&quot;</span>: file.filename, <span class="string">&quot;type&quot;</span>: <span class="built_in">str</span>(<span class="built_in">type</span>(file.file))&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    content = <span class="string">&quot;&quot;&quot;&lt;body&gt;</span></span><br><span class="line"><span class="string">&lt;form action=&quot;/uploadfile/&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;input name=&quot;file&quot; type=&quot;file&quot; multiple&gt;</span></span><br><span class="line"><span class="string">&lt;input type=&quot;submit&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;/form&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> HTMLResponse(content=content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="UploadFile-属性"><a href="#UploadFile-属性" class="headerlink" title="UploadFile 属性"></a>UploadFile 属性</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>含义</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>filename</code></td>
+<td>文件名</td>
+<td>上传的文件名</td>
+</tr>
+<tr>
+<td><code>content_type</code></td>
+<td>内容类型</td>
+<td><code>MIME</code> 类型</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>文件</td>
+<td>SpooledTemporaryFile 具有 <code>read</code>，<code>write</code> 方法</td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h4 id="UploadFile-async-方法"><a href="#UploadFile-async-方法" class="headerlink" title="UploadFile async 方法"></a>UploadFile async 方法</h4><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>write(data)</code></td>
+<td>把 <code>data</code> 写入文件</td>
+</tr>
+<tr>
+<td><code>read(size)</code></td>
+<td>按指定数量的字节读取文件内容</td>
+</tr>
+<tr>
+<td><code>seek(offset)</code></td>
+<td>移动至文件 <code>offset</code> （<code>int</code>）字节处的位置</td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>关闭文件</td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h2 id="依赖项"><a href="#依赖项" class="headerlink" title="依赖项"></a>依赖项</h2><!--rehype:body-class=cols-2-->
+
+<h3 id="依赖项使用场景"><a href="#依赖项使用场景" class="headerlink" title="依赖项使用场景"></a>依赖项使用场景</h3><ul>
+<li>共享业务逻辑（复用相同的代码逻辑）</li>
+<li>共享数据库连接</li>
+<li>实现安全、验证、角色权限</li>
+<li>等……</li>
+</ul>
+<h3 id="创建依赖项"><a href="#创建依赖项" class="headerlink" title="创建依赖项"></a>创建依赖项</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Depends, FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p><code>read_items</code> 和 <code>read_users</code> 方法依赖 <code>common_parameters</code><br>白话就是 <code>read_items</code> 和 <code>read_users</code> 都需要 <code>q</code>，<code>skip</code>，<code>limit</code> 查询参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">common_parameters</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    skip: <span class="built_in">int</span> = <span class="number">0</span>,</span></span><br><span class="line"><span class="params">    limit: <span class="built_in">int</span> = <span class="number">100</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;q&quot;</span>: q, <span class="string">&quot;skip&quot;</span>: skip, <span class="string">&quot;limit&quot;</span>: limit&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    commons: <span class="built_in">dict</span> = Depends(<span class="params">common_parameters</span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> commons</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_users</span>(<span class="params"></span></span><br><span class="line"><span class="params">    commons: <span class="built_in">dict</span> = Depends(<span class="params">common_parameters</span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> commons</span><br></pre></td></tr></table></figure>
+
+<h3 id="类作为依赖项"><a href="#类作为依赖项" class="headerlink" title="类作为依赖项"></a>类作为依赖项</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Depends, FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line">fake_items_db = [&#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommonQueryParams</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self, </span></span><br><span class="line"><span class="params">        q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span>, </span></span><br><span class="line"><span class="params">        skip: <span class="built_in">int</span> = <span class="number">0</span>, </span></span><br><span class="line"><span class="params">        limit: <span class="built_in">int</span> = <span class="number">100</span></span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="variable language_">self</span>.q = q</span><br><span class="line">        <span class="variable language_">self</span>.skip = skip</span><br><span class="line">        <span class="variable language_">self</span>.limit = limit</span><br></pre></td></tr></table></figure>
+
+<p><code>read_itemsx</code> 接收一个 <code>commons</code> 参数，类型是 <code>CommonQueryParams</code><br><code>CommonQueryParams</code> 接收三个参数，这三个参数是调用 api 的时候传</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">  commons: CommonQueryParams = Depends(<span class="params">CommonQueryParams</span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">  response = &#123;&#125;</span><br><span class="line">  <span class="keyword">if</span> commons.q:</span><br><span class="line">      response.update(&#123;<span class="string">&quot;q&quot;</span>: commons.q&#125;)</span><br><span class="line">  items = fake_items_db[commons.skip : commons.skip + commons.limit]</span><br><span class="line">  response.update(&#123;<span class="string">&quot;items&quot;</span>: items&#125;)</span><br><span class="line">  <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+<h4 id="还可以简写"><a href="#还可以简写" class="headerlink" title="还可以简写"></a>还可以简写</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="comment"># 这里的 Depends 没有传参，FastAPI 会自动使用 CommonQueryParams</span></span></span><br><span class="line"><span class="params">  commons: CommonQueryParams = Depends(<span class="params"></span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">  response = &#123;&#125;</span><br><span class="line">  <span class="keyword">if</span> commons.q:</span><br><span class="line">      response.update(&#123;<span class="string">&quot;q&quot;</span>: commons.q&#125;)</span><br><span class="line">  items = fake_items_db[commons.skip : commons.skip + commons.limit]</span><br><span class="line">  response.update(&#123;<span class="string">&quot;items&quot;</span>: items&#125;)</span><br><span class="line">  <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+<h3 id="子依赖项"><a href="#子依赖项" class="headerlink" title="子依赖项"></a>子依赖项</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Cookie, Depends, FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">query_extractor</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> q</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">query_or_cookie_extractor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="built_in">str</span> = Depends(<span class="params">query_extractor</span>),</span></span><br><span class="line"><span class="params">    last_query: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Cookie(<span class="params">default=<span class="literal">None</span></span>),</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> q:</span><br><span class="line">        <span class="keyword">return</span> last_query</span><br><span class="line">    <span class="keyword">return</span> q</span><br><span class="line"></span><br><span class="line"><span class="comment"># read_query函数依赖query_or_cookie_extractor函数</span></span><br><span class="line"><span class="comment"># query_or_cookie_extractor函数又依赖query_extractor函数</span></span><br><span class="line"><span class="comment"># 就是说依赖项可以依赖其他依赖项，只要你不晕，可以无数次套娃</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_query</span>(<span class="params"></span></span><br><span class="line"><span class="params">  query_or_default: <span class="built_in">str</span> = Depends(<span class="params">query_or_cookie_extractor</span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;q_or_cookie&quot;</span>: query_or_default&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="不使用缓存"><a href="#不使用缓存" class="headerlink" title="不使用缓存"></a>不使用缓存</h4><p>使用 <code>use_cache = False</code> 参数不使用缓存数据，不使用 <code>use_cache = False</code>，<code>value</code> 和 <code>value1</code> 是一样的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">result_value</span>():</span><br><span class="line">    value = randint(<span class="number">1</span>, <span class="number">99</span>)</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_value</span>(<span class="params"></span></span><br><span class="line"><span class="params">  value: <span class="built_in">int</span> = Depends(<span class="params">result_value, use_cache=<span class="literal">False</span></span>),</span></span><br><span class="line"><span class="params">  value1: <span class="built_in">int</span> = Depends(<span class="params">result_value, use_cache=<span class="literal">False</span></span>)</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="keyword">return</span> value, value1</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/value/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">needy_dependency</span>(<span class="params">value: <span class="built_in">tuple</span> = Depends(<span class="params">get_value</span>)</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;value&quot;</span>: value&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局依赖项"><a href="#全局依赖项" class="headerlink" title="全局依赖项"></a>全局依赖项</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Depends, FastAPI, Header, HTTPException</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">verify_token</span>(<span class="params">x_token: <span class="built_in">str</span> = Header(<span class="params"></span>)</span>):</span><br><span class="line">  <span class="keyword">if</span> x_token != <span class="string">&quot;fake-super-secret-token&quot;</span>:</span><br><span class="line">    <span class="keyword">raise</span> HTTPException(status_code=<span class="number">400</span>, detail=<span class="string">&quot;X-Token 标头无效&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">verify_key</span>(<span class="params">x_key: <span class="built_in">str</span> = Header(<span class="params"></span>)</span>):</span><br><span class="line">  <span class="keyword">if</span> x_key != <span class="string">&quot;fake-super-secret-key&quot;</span>:</span><br><span class="line">    <span class="keyword">raise</span> HTTPException(status_code=<span class="number">400</span>, detail=<span class="string">&quot;X-Key 标头无效&quot;</span>)</span><br><span class="line">  <span class="keyword">return</span> x_key</span><br></pre></td></tr></table></figure>
+
+<p>全局依赖项很有用，后面的安全性就可以使用全局依赖项</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">app = FastAPI(</span><br><span class="line">  dependencies=[Depends(verify_token), Depends(verify_key)]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>():</span><br><span class="line">    <span class="keyword">return</span> [&#123;<span class="string">&quot;item&quot;</span>: <span class="string">&quot;Portal Gun&quot;</span>&#125;, &#123;<span class="string">&quot;item&quot;</span>: <span class="string">&quot;Plumbus&quot;</span>&#125;]</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_users</span>():</span><br><span class="line">    <span class="keyword">return</span> [&#123;<span class="string">&quot;username&quot;</span>: <span class="string">&quot;Rick&quot;</span>&#125;, &#123;<span class="string">&quot;username&quot;</span>: <span class="string">&quot;Morty&quot;</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><h3 id="基于-Token-的认证"><a href="#基于-Token-的认证" class="headerlink" title="基于 Token 的认证"></a>基于 Token 的认证</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Depends, HTTPException</span><br><span class="line"><span class="keyword">from</span> fastapi.security <span class="keyword">import</span> OAuth2PasswordBearer, OAuth2PasswordRequestForm</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p>使用 OAuth2PasswordBearer 创建一个 token 依赖</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">oauth2_scheme = OAuth2PasswordBearer(tokenUrl=<span class="string">&quot;token&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>假设这是你的用户数据库</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fake_users_db = &#123;</span><br><span class="line">    <span class="string">&quot;johndoe&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;username&quot;</span>: <span class="string">&quot;johndoe&quot;</span>,</span><br><span class="line">        <span class="string">&quot;full_name&quot;</span>: <span class="string">&quot;John Doe&quot;</span>,</span><br><span class="line">        <span class="string">&quot;email&quot;</span>: <span class="string">&quot;johndoe@example.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;hashed_password&quot;</span>: <span class="string">&quot;fakehashedsecret&quot;</span>,</span><br><span class="line">        <span class="string">&quot;disabled&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个用户模型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    username: <span class="built_in">str</span></span><br><span class="line">    email: <span class="built_in">str</span></span><br><span class="line">    full_name: <span class="built_in">str</span></span><br><span class="line">    disabled: <span class="built_in">bool</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个简单的认证函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fake_hash_password</span>(<span class="params">password: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;fakehashed&quot;</span> + password</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params">db, username: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">if</span> username <span class="keyword">in</span> db:</span><br><span class="line">        user_dict = db[username]</span><br><span class="line">        <span class="keyword">return</span> User(**user_dict)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fake_decode_token</span>(<span class="params">token: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="comment"># 这个函数应该验证 token 并返回用户信息</span></span><br><span class="line">    <span class="comment"># 这里我们只是简单地返回了用户名</span></span><br><span class="line">    <span class="keyword">return</span> get_user(fake_users_db, token)</span><br></pre></td></tr></table></figure>
+
+<p>创建一个依赖，用于从请求中获取 token 并验证用户</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">get_current_user</span>(<span class="params">token: <span class="built_in">str</span> = Depends(<span class="params">oauth2_scheme</span>)</span>):</span><br><span class="line">    user = fake_decode_token(token)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> user:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(</span><br><span class="line">            status_code=<span class="number">401</span>,</span><br><span class="line">            detail=<span class="string">&quot;Invalid authentication credentials&quot;</span>,</span><br><span class="line">            headers=&#123;<span class="string">&quot;WWW-Authenticate&quot;</span>: <span class="string">&quot;Bearer&quot;</span>&#125;,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">return</span> user</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/token&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">form_data: OAuth2PasswordRequestForm = Depends(<span class="params"></span>)</span>):</span><br><span class="line">    user = get_user(fake_users_db, form_data.username)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> user <span class="keyword">or</span> user.hashed_password != fake_hash_password(form_data.password):</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">400</span>, detail=<span class="string">&quot;Incorrect username or password&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;access_token&quot;</span>: user.username, <span class="string">&quot;token_type&quot;</span>: <span class="string">&quot;bearer&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/me&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_users_me</span>(<span class="params">current_user: User = Depends(<span class="params">get_current_user</span>)</span>):</span><br><span class="line">    <span class="keyword">return</span> current_user</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用 OAuth2PasswordBearer 来创建一个简单的 token 认证流程。</p>
+<h3 id="HTTPS-和证书"><a href="#HTTPS-和证书" class="headerlink" title="HTTPS 和证书"></a>HTTPS 和证书</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p>在生产环境中，你应该使用一个真正的证书和私钥，你可以从像 Let’s Encrypt 这样的证书颁发机构获得免费的证书，或者使用 OpenSSL 生成自签名证书</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/https&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_https</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello, HTTPS!&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动服务器时，使用以下命令来指定证书和私钥：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uvicorn main:app --host 0.0.0.0 --port 443 --ssl-keyfile /path/to/your/key.pem --ssl-certfile /path/to/your/cert.pem</span><br></pre></td></tr></table></figure>
+
+<p>FastAPI 默认支持 HTTPS，你只需要提供证书和私钥即可。</p>
+<p>待更新</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="./python.md">Python 备忘清单</a> <em>(jaywcjlove.github.io)</em></li>
+<li><a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/zh/tutorial/">FastAPI 官方文档</a> <em>(fastapi.tiangolo.com)</em></li>
+</ul>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

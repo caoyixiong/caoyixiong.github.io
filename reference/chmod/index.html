@@ -1,0 +1,646 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Chmod 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这份快速参考备忘单提供了文件权限的简要概述，以及 chmod 命令的操作 入门语法$ chmod [options] &lt;permissions&gt; &lt;file&gt;   示例$ chmod 755 foo.txt$ chmod +x quickref.py$ chmod u-x quickref.py$ chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D; quickref.sh  递归更改文">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chmod 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/chmod/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这份快速参考备忘单提供了文件权限的简要概述，以及 chmod 命令的操作 入门语法$ chmod [options] &lt;permissions&gt; &lt;file&gt;   示例$ chmod 755 foo.txt$ chmod +x quickref.py$ chmod u-x quickref.py$ chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D; quickref.sh  递归更改文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.579Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.579Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/chmod/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Chmod 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Chmod 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>这份快速参考备忘单提供了文件权限的简要概述，以及 chmod 命令的操作</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> [options] &lt;permissions&gt; &lt;file&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 755 foo.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> +x quickref.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u-x quickref.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u=rwx,g=rx,o= quickref.sh</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="递归更改文件和目录"><a href="#递归更改文件和目录" class="headerlink" title="递归更改文件和目录"></a>递归更改文件和目录</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> -R 755 my_directory</span></span><br></pre></td></tr></table></figure>
+
+<p><code>chmod</code> 命令代表“更改模式”</p>
+<h3 id="Chmod-生成器"><a href="#Chmod-生成器" class="headerlink" title="Chmod 生成器"></a>Chmod 生成器</h3><figure class="highlight html"><figcaption><span>preview</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">权限：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;num&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;777&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;3&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding: 0.3rem 0.3rem;&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;let&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;rwxrwxrwx&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;9&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding: 0.3rem 0.3rem;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">&nbsp;</th>
+<th align="left">User</th>
+<th align="left">Group</th>
+<th align="left">Other</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">读 <em>(Read)</em></td>
+<td align="left"><input checked id="1" type="checkbox"></input></td>
+<td align="left"><input checked id="4" type="checkbox"></input></td>
+<td align="left"><input checked id="7" type="checkbox"></input></td>
+</tr>
+<tr>
+<td align="left">写 <em>(Write)</em></td>
+<td align="left"><input checked id="2" type="checkbox"></input></td>
+<td align="left"><input checked id="5" type="checkbox"></input></td>
+<td align="left"><input checked id="8" type="checkbox"></input></td>
+</tr>
+<tr>
+<td align="left">执行 <em>(Execute)</em></td>
+<td align="left"><input checked id="3" type="checkbox"></input></td>
+<td align="left"><input checked id="6" type="checkbox"></input></td>
+<td align="left"><input checked id="9" type="checkbox"></input></td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<p>Chmod 生成器允许您以数字和符号的形式快速、直观地生成权限。</p>
+<h3 id="通用权限"><a href="#通用权限" class="headerlink" title="通用权限"></a>通用权限</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">s</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>400</code></td>
+<td align="left">r——–</td>
+<td align="left">仅所有者可读</td>
+</tr>
+<tr>
+<td align="left"><code>500</code></td>
+<td align="left">r-x——</td>
+<td align="left">避免改变</td>
+</tr>
+<tr>
+<td align="left"><code>600</code></td>
+<td align="left">rw——-</td>
+<td align="left">可由用户更改</td>
+</tr>
+<tr>
+<td align="left"><code>644</code></td>
+<td align="left">rw-r–r–</td>
+<td align="left">由用户读取和更改</td>
+</tr>
+<tr>
+<td align="left"><code>660</code></td>
+<td align="left">rw-rw—-</td>
+<td align="left">可由用户和组更改</td>
+</tr>
+<tr>
+<td align="left"><code>700</code></td>
+<td align="left">rwx——</td>
+<td align="left">只有用户具有完全访问权限</td>
+</tr>
+<tr>
+<td align="left"><code>755</code></td>
+<td align="left">rwxr-xr-x</td>
+<td align="left">只能由用户更改</td>
+</tr>
+<tr>
+<td align="left"><code>775</code></td>
+<td align="left">rwxrwxr-x</td>
+<td align="left">群组共享模式</td>
+</tr>
+<tr>
+<td align="left"><code>777</code></td>
+<td align="left">rwxrwxrwx</td>
+<td align="left">每个人都可以做任何事</td>
+</tr>
+</tbody></table>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -l</span></span><br><span class="line">-rw-r--r--  1 root root 3 Jun 29 15:35 a.log</span><br><span class="line">drwxr-xr-x  2 root root 2 Jun 30 18:06 dir</span><br></pre></td></tr></table></figure>
+
+<h4 id="dir-的权限分析"><a href="#dir-的权限分析" class="headerlink" title="dir 的权限分析"></a><code>dir</code> 的权限分析</h4><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">d  rwx  r-x  r-x</span><br><span class="line">┬  ─┬─  ─┬─  ─┬─  </span><br><span class="line">┆   ┆    ┆    ┆  </span><br><span class="line">┆   ┆    ┆    ╰─ 4. Other｜5 (4+0+1)</span><br><span class="line">┆   ┆    ╰────── 3. Group｜5 (4+0+1)</span><br><span class="line">┆   ╰─────────── 2. User ｜7 (4+2+1)</span><br><span class="line">╰─────────────── 1. File Type | directory</span><br></pre></td></tr></table></figure>
+
+<h3 id="权限模式"><a href="#权限模式" class="headerlink" title="权限模式"></a>权限模式</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>描述</th>
+<th>八进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>---</code></td>
+<td>没有权限</td>
+<td>000</td>
+<td>0 (0+0+0)</td>
+</tr>
+<tr>
+<td><code>--x</code></td>
+<td>执行</td>
+<td>001</td>
+<td>1 (0+0+1)</td>
+</tr>
+<tr>
+<td><code>-w-</code></td>
+<td>写</td>
+<td>010</td>
+<td>2 (0+2+0)</td>
+</tr>
+<tr>
+<td><code>-wx</code></td>
+<td>执行和写入</td>
+<td>011</td>
+<td>3 (0+2+1)</td>
+</tr>
+<tr>
+<td><code>r--</code></td>
+<td>读</td>
+<td>100</td>
+<td>4 (4+0+0)</td>
+</tr>
+<tr>
+<td><code>r-x</code></td>
+<td>读取和执行</td>
+<td>101</td>
+<td>5 (4+0+1)</td>
+</tr>
+<tr>
+<td><code>rw-</code></td>
+<td>读和写</td>
+<td>110</td>
+<td>6 (4+2+0)</td>
+</tr>
+<tr>
+<td><code>rwx</code></td>
+<td>读取、写入和执行</td>
+<td>111</td>
+<td>7 (4+2+1)</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h3 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h3><table>
+<thead>
+<tr>
+<th>谁（缩写）</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>u</code></td>
+<td>用户</td>
+</tr>
+<tr>
+<td><code>g</code></td>
+<td>组</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>其它</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>全部，和 ugo 一样</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>权限</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>r</code></td>
+<td>读</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>写</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>执行</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>没有权限</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>文件类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>d</code></td>
+<td>目录</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>常规文件</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>符号链接</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h2 id="Chmod-示例"><a href="#Chmod-示例" class="headerlink" title="Chmod 示例"></a>Chmod 示例</h2><h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>+</code></td>
+<td>添加</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>删除</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>设置</td>
+</tr>
+</tbody></table>
+<h3 id="chmod-600"><a href="#chmod-600" class="headerlink" title="chmod 600"></a>chmod 600</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 600 example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u=rw,g=,o= example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a+rwx,u-x,g-rwx,o-rwx example.txt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="chmod-664"><a href="#chmod-664" class="headerlink" title="chmod 664"></a>chmod 664</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 664 example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u=rw,g=rw,o=r example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a+rwx,u-x,g-x,o-wx example.txt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="chmod-777"><a href="#chmod-777" class="headerlink" title="chmod 777"></a>chmod 777</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 777 example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u=rwx,g=rwx,o=rwx example.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a=rwx example.txt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="符号模式"><a href="#符号模式" class="headerlink" title="符号模式"></a>符号模式</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>拒绝所有人的执行权限。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a-x chmodExampleFile.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>向所有人授予读取权限。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a+r chmodExampleFile.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>使文件可由组和其他人读写。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> go+rw chmodExampleFile.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>使用户&#x2F;所有者可执行 shell。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u+x chmodExampleScript.sh</span></span><br></pre></td></tr></table></figure>
+
+<p>允许每个人读取、写入和执行文件并打开设置的 group-ID。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> =rwx,g+s chmodExampleScript.sh</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除权限"><a href="#删除权限" class="headerlink" title="删除权限"></a>删除权限</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>要删除赋予文件的读写权限，请使用以下语法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> o-rw example.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>对于我们的文件 example.txt，我们可以通过运行以下命令使用 chmod for group 删除读写权限：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span>  g-rx example.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>要从组中删除 chmod 读写权限，同时向 public&#x2F;others 添加读写权限，我们可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> g-rx, o+rx example.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>但是，如果你想删除组和其他人的所有权限，你可以使用 go&#x3D; 来代替：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> go= example.txt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可执行文件"><a href="#可执行文件" class="headerlink" title="可执行文件"></a>可执行文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> +x ~/example.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u+x ~/example.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> a+x ~/example.py</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="chmod-754"><a href="#chmod-754" class="headerlink" title="chmod 754"></a>chmod 754</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 754 foo.sh</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> u=rwx,g=rx,o=r foo.sh</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Chmod-实践"><a href="#Chmod-实践" class="headerlink" title="Chmod 实践"></a>Chmod 实践</h2><h3 id="SSH-权限"><a href="#SSH-权限" class="headerlink" title="SSH 权限"></a>SSH 权限</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 700 ~/.ssh</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 600 ~/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 600 ~/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 400 /path/to/access_key.pem</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="网络权限"><a href="#网络权限" class="headerlink" title="网络权限"></a>网络权限</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> -R 644 /var/www/html/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 644 .htaccess</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 644 robots.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 755 /var/www/uploads/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /var/www/html -<span class="built_in">type</span> d -<span class="built_in">exec</span> <span class="built_in">chmod</span> 755 &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="批量更改"><a href="#批量更改" class="headerlink" title="批量更改"></a>批量更改</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> -R 644 /your_path</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /path -<span class="built_in">type</span> d -<span class="built_in">exec</span> <span class="built_in">chmod</span> 755 &#123;&#125; \;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /path -<span class="built_in">type</span> f -<span class="built_in">exec</span> <span class="built_in">chmod</span> 644 &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>请参阅：<a target="_blank" rel="noopener" href="https://tldp.org/LDP/abs/html/commandsub.html">命令替换</a></p>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.linode.com/docs/guides/modify-file-permissions-with-chmod/">使用 chmod 修改文件权限</a> <em>(linode.com)</em></li>
+</ul>
+<!--rehype:ignore:start-->
+<h2 id="以下是-Chmod-生成器-JS-代码（代码用于网站请忽略不要删除）"><a href="#以下是-Chmod-生成器-JS-代码（代码用于网站请忽略不要删除）" class="headerlink" title="以下是 Chmod 生成器 JS 代码（代码用于网站请忽略不要删除）"></a>以下是 Chmod 生成器 JS 代码（代码用于网站请忽略不要删除）</h2><!--rehype:ignore:end-->
+
+<figure class="highlight html"><figcaption><span>preview</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Chmod 生成器 JS 代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> reg_num = <span class="regexp">/^[0-7]&#123;3&#125;$/</span>; <span class="comment">// 一些正则表达式来检查 num 输入</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> reg_let = <span class="regexp">/^([r\-]&#123;1&#125;[w\-]&#123;1&#125;[x\-]&#123;1&#125;)&#123;3&#125;$/</span>; <span class="comment">// 一些正则表达式来检查文本输入</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">checkBoxHandle</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">change_occured</span>(<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// get rid of bad input classes</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>).<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>).<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// loop over all the check boxes</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> checkBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i&#125;</span>`</span>);</span></span><br><span class="line"><span class="language-javascript">      checkBox.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">change_occured</span>(<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// get rid of bad input classes</span></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>).<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>).<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// the octal input</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> num_input = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> num_fn = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// check for bad input</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (!reg_num.<span class="title function_">test</span>(<span class="variable language_">this</span>.<span class="property">value</span>)) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">change_occured</span>(<span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">    num_input.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, num_fn);</span></span><br><span class="line"><span class="language-javascript">    num_input.<span class="title function_">addEventListener</span>(<span class="string">&#x27;keyup&#x27;</span>, num_fn);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// the let input</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> let_input = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> let_fn = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// check for bad input</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (!reg_let.<span class="title function_">test</span>(<span class="variable language_">this</span>.<span class="property">value</span>)) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;bad-input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">change_occured</span>(<span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">    let_input.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>,let_fn);</span></span><br><span class="line"><span class="language-javascript">    let_input.<span class="title function_">addEventListener</span>(<span class="string">&#x27;keyup&#x27;</span>,let_fn);</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">/* SETUP</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  r-4-1  r-4-4  r-4-7</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  w-2-2  w-2-5  w-2-8</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  x-1-3  x-1-6  x-1-9</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  */</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// define a function that runs when a change occures</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">change_occured</span>(<span class="params">caller_was_check, caller_was_num, caller_was_let</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>, num3 = <span class="number">0</span>; <span class="comment">// these are the three numbers for the octal</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> perm_string = <span class="string">&#x27;&#x27;</span>; <span class="comment">// holds the permision string ex. rw-x--r--</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (caller_was_check) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// loop over all the check boxes and get the permisions</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> checkBox = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i&#125;</span>`</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (checkBox.<span class="property">checked</span>) &#123; <span class="comment">// if checked</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> current_perm = <span class="title function_">check_to_octal_and_text</span>(i);</span></span><br><span class="line"><span class="language-javascript">          perm_string += <span class="string">`<span class="subst">$&#123;current_perm.perm_let&#125;</span>`</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (i &lt;= <span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            num1 += current_perm.<span class="property">perm_num</span>;</span></span><br><span class="line"><span class="language-javascript">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &lt;= <span class="number">6</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            num2 += current_perm.<span class="property">perm_num</span>;</span></span><br><span class="line"><span class="language-javascript">          &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            num3 += current_perm.<span class="property">perm_num</span>;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// if not checked</span></span></span><br><span class="line"><span class="language-javascript">          perm_string += <span class="string">&#x27;-&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// set the permision input text</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>).<span class="property">value</span> = perm_string;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>).<span class="property">value</span> = <span class="string">`<span class="subst">$&#123;num1&#125;</span><span class="subst">$&#123;num2&#125;</span><span class="subst">$&#123;num3&#125;</span>`</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (caller_was_num) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// get the individual numbers</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> num_input_val = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>).<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">      num1 = num_input_val.<span class="title function_">substring</span>(<span class="number">0</span>, <span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">      num2 = num_input_val.<span class="title function_">substring</span>(<span class="number">1</span>, <span class="number">2</span>);</span></span><br><span class="line"><span class="language-javascript">      num3 = num_input_val.<span class="title function_">substring</span>(<span class="number">2</span>, <span class="number">3</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// set the checkboxes and get the perm string</span></span></span><br><span class="line"><span class="language-javascript">      perm_string += <span class="title function_">octal_to_check_and_txt</span>(num1, <span class="number">0</span>); <span class="comment">//Owner</span></span></span><br><span class="line"><span class="language-javascript">      perm_string += <span class="title function_">octal_to_check_and_txt</span>(num2, <span class="number">1</span>); <span class="comment">//Owner</span></span></span><br><span class="line"><span class="language-javascript">      perm_string += <span class="title function_">octal_to_check_and_txt</span>(num3, <span class="number">2</span>); <span class="comment">//Owner</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// set the permision input text</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>).<span class="property">value</span> = perm_string;</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (caller_was_let) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// get the text input</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> perm_text = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;let&#x27;</span>).<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">      num1 = <span class="title function_">text_to_check_and_octal</span>(perm_text.<span class="title function_">substring</span>(<span class="number">0</span>, <span class="number">3</span>), <span class="number">0</span>)</span></span><br><span class="line"><span class="language-javascript">      num2 = <span class="title function_">text_to_check_and_octal</span>(perm_text.<span class="title function_">substring</span>(<span class="number">3</span>, <span class="number">6</span>), <span class="number">3</span>)</span></span><br><span class="line"><span class="language-javascript">      num3 = <span class="title function_">text_to_check_and_octal</span>(perm_text.<span class="title function_">substring</span>(<span class="number">6</span>, <span class="number">9</span>), <span class="number">6</span>)</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// set the octal value</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;num&#x27;</span>).<span class="property">value</span> = <span class="string">`<span class="subst">$&#123;num1&#125;</span><span class="subst">$&#123;num2&#125;</span><span class="subst">$&#123;num3&#125;</span>`</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// define a function to converts the checkbox # to the respective permissions</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// returns perm_num, perm_let</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">check_to_octal_and_text</span>(<span class="params">check_num</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> perm_num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> perm_let = <span class="string">&#x27;-&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">switch</span> (check_num) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">1</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">4</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">7</span>:</span></span><br><span class="line"><span class="language-javascript">        perm_num = <span class="number">4</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_let = <span class="string">&#x27;r&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">2</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">5</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">8</span>:</span></span><br><span class="line"><span class="language-javascript">        perm_num = <span class="number">2</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_let = <span class="string">&#x27;w&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">3</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">6</span>:</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="number">9</span>:</span></span><br><span class="line"><span class="language-javascript">        perm_num = <span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_let = <span class="string">&#x27;x&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">default</span>:</span></span><br><span class="line"><span class="language-javascript">        perm_num = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_let = <span class="string">&#x27;-&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// return values</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      perm_num,</span></span><br><span class="line"><span class="language-javascript">      perm_let</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">/**</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   Takes a number 1-7 and which class it is in:</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   0 = owner</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   1 = Group</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   2 = Public</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   Returns: perm text (ex. &quot;rwx&quot;) and sets the appropriate checkboxes</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   */</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">octal_to_check_and_txt</span>(<span class="params">octal_num, class_num</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> perm_text = <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> offset = class_num * <span class="number">3</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">switch</span> (octal_num) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;--x&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;-w-&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;-wx&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;4&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;r--&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;5&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;r-x&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;6&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;rw-&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">case</span> <span class="string">&#x27;7&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;rwx&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">default</span>:</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">2</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;<span class="number">3</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_text = <span class="string">&#x27;---&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> perm_text;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">/**</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   Takes 3 letters (r, w, x, -    ex. &#x27;rw-&#x27;) and an offset (0,3,6)</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   Returns the octal num and sets the appropriate checkboxes</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">   */</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">text_to_check_and_octal</span>(<span class="params">letters, offset</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> perm_num = <span class="number">0</span>; <span class="comment">// the octal number to return</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// add up the oct num and set the check boxes</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      current_let = letters.<span class="title function_">substring</span>(i, i + <span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (current_let == <span class="string">&#x27;r&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i + <span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_num += <span class="number">4</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current_let == <span class="string">&#x27;w&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i + <span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_num += <span class="number">2</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current_let == <span class="string">&#x27;x&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i + <span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        perm_num += <span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`<span class="subst">$&#123;i + <span class="number">1</span> + offset&#125;</span>`</span>).<span class="property">checked</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> perm_num;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

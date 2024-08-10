@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MongoDB 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="MongoDB 此备忘单包含一些方便的提示、命令和快速参考，可让您立即连接并进行 CRUD 入门连接 MongoDB Shell  mongo # 默认连接到 mongodb:&#x2F;&#x2F;127.0.0.1:27017mongo --host &lt;host&gt; --port &lt;port&gt; -u &lt;user&gt; -p &lt;pwd&gt; # 如果需要提示，请省略密码mong">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MongoDB 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/mongodb/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="MongoDB 此备忘单包含一些方便的提示、命令和快速参考，可让您立即连接并进行 CRUD 入门连接 MongoDB Shell  mongo # 默认连接到 mongodb:&#x2F;&#x2F;127.0.0.1:27017mongo --host &lt;host&gt; --port &lt;port&gt; -u &lt;user&gt; -p &lt;pwd&gt; # 如果需要提示，请省略密码mong">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.845Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.845Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/mongodb/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MongoDB 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">MongoDB 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/developer/products/mongodb/cheat-sheet/#connect-mongodb-shell">MongoDB</a> 此备忘单包含一些方便的提示、命令和快速参考，可让您立即连接并进行 CRUD</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="连接-MongoDB-Shell"><a href="#连接-MongoDB-Shell" class="headerlink" title="连接 MongoDB Shell"></a>连接 MongoDB Shell</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mongo <span class="comment"># 默认连接到 mongodb://127.0.0.1:27017</span></span><br><span class="line">mongo --host &lt;host&gt; --port &lt;port&gt; -u &lt;user&gt; -p &lt;<span class="built_in">pwd</span>&gt; <span class="comment"># 如果需要提示，请省略密码</span></span><br><span class="line">mongo <span class="string">&quot;mongodb://192.168.1.1:27017&quot;</span></span><br><span class="line"><span class="comment"># MongoDB 地图集</span></span><br><span class="line">mongo <span class="string">&quot;mongodb+srv://cluster-name.abcde.mongodb.net/&lt;dbname&gt;&quot;</span> --username &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show dbs</span><br><span class="line">db // 打印当前数据库</span><br></pre></td></tr></table></figure>
+
+<h3 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use &lt;database_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示集合"><a href="#显示集合" class="headerlink" title="显示集合"></a>显示集合</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show collections</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行-JavaScript-文件"><a href="#运行-JavaScript-文件" class="headerlink" title="运行 JavaScript 文件"></a>运行 JavaScript 文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">load(&quot;myScript.js&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.insertOne(&#123; name: &quot;Max&quot; &#125;)</span><br><span class="line">db.coll.insert([&#123; name: &quot;Max&quot;&#125;, &#123;name:&quot;Alex&quot;&#125;]) // 批量插入</span><br><span class="line">db.coll.insert([&#123; name: &quot;Max&quot;&#125;, &#123;name:&quot;Alex&quot;&#125;], &#123;ordered: false&#125;) // 无序批量插入</span><br><span class="line">db.coll.insert(&#123; date: ISODate()&#125;)</span><br><span class="line">db.coll.insert(&#123; name: &quot;Max&quot;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="寻找文件"><a href="#寻找文件" class="headerlink" title="寻找文件"></a>寻找文件</h3><table>
+<thead>
+<tr>
+<th align="left">Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>db.docx.findOne()</code></td>
+<td>查找一个随机文档</td>
+</tr>
+<tr>
+<td align="left"><code>db.docx.find().prettyPrint()</code></td>
+<td>查找所有文档</td>
+</tr>
+<tr>
+<td align="left"><code>db.docx.find(&#123;&#125;, &#123;name:true, _id:false&#125;)</code></td>
+<td>仅显示文档 Docx 的名称</td>
+</tr>
+<tr>
+<td align="left"><code>db.docx.find(&#123;&#125;, &#123;name:true, _id:false&#125;)</code></td>
+<td>可以在多个文件中按属性查找一个文件</td>
+</tr>
+</tbody></table>
+<h3 id="使用运算符查找文档"><a href="#使用运算符查找文档" class="headerlink" title="使用运算符查找文档"></a>使用运算符查找文档</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">Operator</th>
+<th>Description</th>
+<th>Commands</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>$gt</code></td>
+<td>大于</td>
+<td><code>db.docx.find(&#123;class:&#123;$gt:&#39;T&#39;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>$gte</code></td>
+<td>大于等于</td>
+<td><code>db.docx.find(&#123;class:&#123;$gt:&#39;T&#39;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>$lt</code></td>
+<td>小于</td>
+<td><code>db.docx.find(&#123;class:&#123;$lt:&#39;T&#39;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>$lte</code></td>
+<td>小于等于</td>
+<td><code>db.docx.find(&#123;class:&#123;$lte:&#39;T&#39;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>$exists</code></td>
+<td>属性是否存在</td>
+<td><code>db.docx.find(&#123;class:&#123;$gt:&#39;T&#39;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>$regex</code></td>
+<td>正则表达式匹配</td>
+<td><code>db.docx.find(&#123;name:&#123;$regex:&#39;^USS\\sE&#39;&#125;&#125;)</code></td>
+</tr>
+<tr>
+<td align="left"><code>$type</code></td>
+<td>按元素类型搜索</td>
+<td><code>db.docx.find(&#123;name : &#123;$type:4&#125;&#125;)</code></td>
+</tr>
+</tbody></table>
+<h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.findOne() // 返回单个文档</span><br><span class="line">db.coll.find()    // 返回一个游标 - 显示 20 个结果 - &quot;it&quot; 显示更多</span><br><span class="line">db.coll.find().pretty()</span><br><span class="line">db.coll.find(&#123;name: &quot;Max&quot;, age: 32&#125;) // 隐式逻辑“与”。</span><br><span class="line">db.coll.find(&#123;date: ISODate(&quot;2020-09-25T13:57:17.180Z&quot;)&#125;)</span><br><span class="line"></span><br><span class="line">// 或“queryPlanner”或“allPlansExecution”</span><br><span class="line">db.coll.find(&#123;name: &quot;Max&quot;, age: 32&#125;).explain(&quot;executionStats&quot;) </span><br><span class="line">db.coll.distinct(&quot;name&quot;)</span><br><span class="line"></span><br><span class="line">// 数数</span><br><span class="line">db.coll.count(&#123;age: 32&#125;)          // 基于馆藏元数据的估计</span><br><span class="line">db.coll.estimatedDocumentCount()  // 基于馆藏元数据的估计</span><br><span class="line">db.coll.countDocuments(&#123;age: 32&#125;) // 聚合管道的别名 - 准确计数</span><br><span class="line"></span><br><span class="line">// Comparison 比较</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$gt: 1970&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$gte: 1970&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$lt: 1970&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$lte: 1970&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$ne: 1970&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$in: [1958, 1959]&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;year&quot;: &#123;$nin: [1958, 1959]&#125;&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Logical 逻辑</span><br><span class="line">db.coll.find(&#123;name:&#123;$not: &#123;$eq: &quot;Max&quot;&#125;&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;$or: [&#123;&quot;year&quot; : 1958&#125;, &#123;&quot;year&quot; : 1959&#125;]&#125;)</span><br><span class="line">db.coll.find(&#123;$nor: [&#123;price: 1.99&#125;, &#123;sale: true&#125;]&#125;)</span><br><span class="line">db.coll.find(&#123;</span><br><span class="line">  $and: [</span><br><span class="line">    &#123;$or: [&#123;qty: &#123;$lt :10&#125;&#125;, &#123;qty :&#123;$gt: 50&#125;&#125;]&#125;,</span><br><span class="line">    &#123;$or: [&#123;sale: true&#125;, &#123;price: &#123;$lt: 5 &#125;&#125;]&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// Element 元素</span><br><span class="line">db.coll.find(&#123;name: &#123;$exists: true&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;zipCode&quot;: &#123;$type: 2 &#125;&#125;)</span><br><span class="line">db.coll.find(&#123;&quot;zipCode&quot;: &#123;$type: &quot;string&quot;&#125;&#125;)</span><br><span class="line"></span><br><span class="line">// Aggregation Pipeline 聚合管道</span><br><span class="line">db.coll.aggregate([</span><br><span class="line">  &#123;$match: &#123;status: &quot;A&quot;&#125;&#125;,</span><br><span class="line">  &#123;$group: &#123;_id: &quot;$cust_id&quot;, total: &#123;$sum: &quot;$amount&quot;&#125;&#125;&#125;,</span><br><span class="line">  &#123;$sort: &#123;total: -1&#125;&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">// 使用“文本”索引进行文本搜索</span><br><span class="line">db.coll.find(&#123;$text: &#123;$search: &quot;cake&quot;&#125;&#125;, &#123;score: &#123;$meta: &quot;textScore&quot;&#125;&#125;)</span><br><span class="line">        .sort(&#123;score: &#123;$meta: &quot;textScore&quot;&#125;&#125;)</span><br><span class="line"></span><br><span class="line">// Regex 正则表达式</span><br><span class="line">db.coll.find(&#123;name: /^Max/&#125;)   // 正则表达式：以字母“M”开头</span><br><span class="line">db.coll.find(&#123;name: /^Max$/i&#125;) // 正则表达式不区分大小写</span><br><span class="line"></span><br><span class="line">// Array</span><br><span class="line">db.coll.find(&#123;tags: &#123;$all: [&quot;Realm&quot;, &quot;Charts&quot;]&#125;&#125;)</span><br><span class="line">db.coll.find(&#123;field: &#123;$size: 2&#125;&#125;) // 无法索引 - 更喜欢存储数组的大小并更新它</span><br><span class="line">db.coll.find(&#123;results: &#123;$elemMatch: &#123;product: &quot;xyz&quot;, score: &#123;$gte: 8&#125;&#125;&#125;&#125;)</span><br><span class="line"></span><br><span class="line">// Projections 预测</span><br><span class="line">db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 1&#125;)               // actors + _id</span><br><span class="line">db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 1, &quot;_id&quot;: 0&#125;)     // actors</span><br><span class="line">db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 0, &quot;summary&quot;: 0&#125;) // 除了“actors”和“summary”之外的所有内容</span><br><span class="line"></span><br><span class="line">// Sort 排序, skip 跳过, limit 限制</span><br><span class="line">db.coll.find(&#123;&#125;).sort(&#123;&quot;year&quot;: 1, &quot;rating&quot;: -1&#125;).skip(10).limit(3)</span><br><span class="line"></span><br><span class="line">// Read Concern 阅读关注</span><br><span class="line">db.coll.find().readConcern(&quot;majority&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;&quot;year&quot;: 2016&#125;) // 警告！ 替换整个文档</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$set: &#123;&quot;year&quot;: 2016, name: &quot;Max&quot;&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$unset: &#123;&quot;year&quot;: 1&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$rename: &#123;&quot;year&quot;: &quot;date&quot;&#125; &#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$inc: &#123;&quot;year&quot;: 5&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$mul: &#123;price: NumberDecimal(&quot;1.25&quot;), qty: 2&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$min: &#123;&quot;imdb&quot;: 5&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$max: &#123;&quot;imdb&quot;: 8&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$currentDate: &#123;&quot;lastModified&quot;: true&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$currentDate: &#123;&quot;lastModified&quot;: &#123;$type: &quot;timestamp&quot;&#125;&#125;&#125;)</span><br><span class="line"></span><br><span class="line">// Array</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$push :&#123;&quot;array&quot;: 1&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pull :&#123;&quot;array&quot;: 1&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$addToSet :&#123;&quot;array&quot;: 2&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pop: &#123;&quot;array&quot;: 1&#125;&#125;)  // 最后一个元素</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pop: &#123;&quot;array&quot;: -1&#125;&#125;) // 第一个元素</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pullAll: &#123;&quot;array&quot; :[3, 4, 5]&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$push: &#123;scores: &#123;$each: [90, 92, 85]&#125;&#125;&#125;)</span><br><span class="line">db.coll.updateOne(&#123;&quot;_id&quot;: 1, &quot;grades&quot;: 80&#125;, &#123;$set: &#123;&quot;grades.$&quot;: 82&#125;&#125;)</span><br><span class="line">db.coll.updateMany(&#123;&#125;, &#123;$inc: &#123;&quot;grades.$[]&quot;: 10&#125;&#125;)</span><br><span class="line">db.coll.update(&#123;&#125;, &#123;$set: &#123;&quot;grades.$[element]&quot;: 100&#125;&#125;, &#123;multi: true, arrayFilters: [&#123;&quot;element&quot;: &#123;$gte: 100&#125;&#125;]&#125;)</span><br><span class="line"></span><br><span class="line">// 更新很多</span><br><span class="line">db.coll.update(&#123;&quot;year&quot;: 1999&#125;, &#123;$set: &#123;&quot;decade&quot;: &quot;90&#x27;s&quot;&#125;&#125;, &#123;&quot;multi&quot;:true&#125;)</span><br><span class="line">db.coll.updateMany(&#123;&quot;year&quot;: 1999&#125;, &#123;$set: &#123;&quot;decade&quot;: &quot;90&#x27;s&quot;&#125;&#125;)</span><br><span class="line"></span><br><span class="line">// FindOneAndUpdate 查找并更新</span><br><span class="line">db.coll.findOneAndUpdate(&#123;&quot;name&quot;: &quot;Max&quot;&#125;, &#123;$inc: &#123;&quot;points&quot;: 5&#125;&#125;, &#123;returnNewDocument: true&#125;)</span><br><span class="line"></span><br><span class="line">// Upsert 更新插入</span><br><span class="line">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$set: &#123;item: &quot;apple&quot;&#125;, $setOnInsert: &#123;defaultQty: 100&#125;&#125;, &#123;upsert: true&#125;)</span><br><span class="line"></span><br><span class="line">// Replace 代替</span><br><span class="line">db.coll.replaceOne(&#123;&quot;name&quot;: &quot;Max&quot;&#125;, &#123;&quot;firstname&quot;: &quot;Maxime&quot;, &quot;surname&quot;: &quot;Beugnet&quot;&#125;)</span><br><span class="line"></span><br><span class="line">// Save 保存</span><br><span class="line">db.coll.save(&#123;&quot;item&quot;: &quot;book&quot;, &quot;qty&quot;: 40&#125;)</span><br><span class="line"></span><br><span class="line">// Write concern 写关注</span><br><span class="line">db.coll.update(&#123;&#125;, &#123;$set: &#123;&quot;x&quot;: 1&#125;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.remove(&#123;name: &quot;Max&quot;&#125;)</span><br><span class="line">db.coll.remove(&#123;name: &quot;Max&quot;&#125;, &#123;justOne: true&#125;)</span><br><span class="line">db.coll.remove(&#123;&#125;) // 警告！删除所有文档但不删除集合本身及其索引定义</span><br><span class="line">db.coll.remove(&#123;name: &quot;Max&quot;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)</span><br><span class="line">db.coll.findOneAndDelete(&#123;&quot;name&quot;: &quot;Max&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库和集合"><a href="#数据库和集合" class="headerlink" title="数据库和集合"></a>数据库和集合</h2><h3 id="Drop"><a href="#Drop" class="headerlink" title="Drop"></a>Drop</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 删除集合及其索引定义</span><br><span class="line">db.coll.drop()    </span><br><span class="line">// 仔细检查你*不*在 PROD 集群上......:-)</span><br><span class="line">db.dropDatabase() </span><br></pre></td></tr></table></figure>
+
+<h3 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 使用 $jsonschema 创建集合</span><br><span class="line">db.createCollection(&quot;contacts&quot;, &#123;</span><br><span class="line">   validator: &#123;$jsonSchema: &#123;</span><br><span class="line">      bsonType: &quot;object&quot;,</span><br><span class="line">      required: [&quot;phone&quot;],</span><br><span class="line">      properties: &#123;</span><br><span class="line">         phone: &#123;</span><br><span class="line">            bsonType: &quot;string&quot;,</span><br><span class="line">            description: &quot;必须是一个字符串并且是必需的&quot;</span><br><span class="line">         &#125;,</span><br><span class="line">         email: &#123;</span><br><span class="line">            bsonType: &quot;string&quot;,</span><br><span class="line">            pattern: &quot;@mongodb\.com$&quot;,</span><br><span class="line">            description: &quot;必须是字符串并匹配正则表达式模式&quot;</span><br><span class="line">         &#125;,</span><br><span class="line">         status: &#123;</span><br><span class="line">            enum: [ &quot;Unknown&quot;, &quot;Incomplete&quot; ],</span><br><span class="line">            description: &quot;只能是枚举值之一&quot;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他采集功能"><a href="#其他采集功能" class="headerlink" title="其他采集功能"></a>其他采集功能</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.stats()</span><br><span class="line">db.coll.storageSize()</span><br><span class="line">db.coll.totalIndexSize()</span><br><span class="line">db.coll.totalSize()</span><br><span class="line">db.coll.validate(&#123;full: true&#125;)</span><br><span class="line">// 第二个参数用于删除目标集合（如果存在）</span><br><span class="line">db.coll.renameCollection(&quot;new_coll&quot;, true)</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="列表索引"><a href="#列表索引" class="headerlink" title="列表索引"></a>列表索引</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.getIndexes()</span><br><span class="line">db.coll.getIndexKeys()</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><!--rehype:wrap-class=col-span-2 row-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 索引类型</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;)                // 单字段索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1, &quot;date&quot;: 1&#125;)     // 复合索引</span><br><span class="line">db.coll.createIndex(&#123;foo: &quot;text&quot;, bar: &quot;text&quot;&#125;) // 文本索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;$**&quot;: &quot;text&quot;&#125;)            // 通配符文本索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;userMetadata.$**&quot;: 1&#125;)    // 通配符索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;loc&quot;: &quot;2d&quot;&#125;)              // 二维索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;loc&quot;: &quot;2dsphere&quot;&#125;)        // 2dsphere 索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;_id&quot;: &quot;hashed&quot;&#125;)          // 哈希索引</span><br><span class="line"></span><br><span class="line">// Index Options</span><br><span class="line">db.coll.createIndex(&#123;&quot;lastModifiedDate&quot;: 1&#125;, &#123;expireAfterSeconds: 3600&#125;)      // TTL指数</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;unique: true&#125;)</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;partialFilterExpression: &#123;age: &#123;$gt: 18&#125;&#125;&#125;) // 部分索引</span><br><span class="line">// 强度为 1 或 2 的不区分大小写的索引</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;collation: &#123;locale: &#x27;en&#x27;, strength: 1&#125;&#125;)</span><br><span class="line">db.coll.createIndex(&#123;&quot;name&quot;: 1 &#125;, &#123;sparse: true&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.dropIndex(&quot;name_1&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏-取消隐藏索引"><a href="#隐藏-取消隐藏索引" class="headerlink" title="隐藏&#x2F;取消隐藏索引"></a>隐藏&#x2F;取消隐藏索引</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.coll.hideIndex(&quot;name_1&quot;)</span><br><span class="line">db.coll.unhideIndex(&quot;name_1&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="方便的命令"><a href="#方便的命令" class="headerlink" title="方便的命令"></a>方便的命令</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><!--rehype:wrap-class=col-span-3&style=display:none;&wrap-style=padding-top: 0;-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(&#123;&quot;user&quot;: &quot;root&quot;, &quot;pwd&quot;: passwordPrompt(), &quot;roles&quot;: [&quot;root&quot;]&#125;)</span><br><span class="line">db.dropUser(&quot;root&quot;)</span><br><span class="line">db.auth( &quot;user&quot;, passwordPrompt() )</span><br><span class="line"></span><br><span class="line">use test</span><br><span class="line">db.getSiblingDB(&quot;dbname&quot;)</span><br><span class="line">db.currentOp()</span><br><span class="line">db.killOp(123) // opid</span><br><span class="line"></span><br><span class="line">db.fsyncLock()</span><br><span class="line">db.fsyncUnlock()</span><br><span class="line"></span><br><span class="line">db.getCollectionNames()</span><br><span class="line">db.getCollectionInfos()</span><br><span class="line">db.printCollectionStats()</span><br><span class="line">db.stats()</span><br><span class="line"></span><br><span class="line">db.getReplicationInfo()</span><br><span class="line">db.printReplicationInfo()</span><br><span class="line">db.isMaster()</span><br><span class="line">db.hostInfo()</span><br><span class="line">db.printShardingStatus()</span><br><span class="line">db.shutdownServer()</span><br><span class="line">db.serverStatus()</span><br><span class="line"></span><br><span class="line">db.setSlaveOk()</span><br><span class="line">db.getSlaveOk()</span><br><span class="line"></span><br><span class="line">db.getProfilingLevel()</span><br><span class="line">db.getProfilingStatus()</span><br><span class="line">db.setProfilingLevel(1, 200) // 0 == OFF, 1 == ON with slowms, 2 == ON</span><br><span class="line"></span><br><span class="line">db.enableFreeMonitoring()</span><br><span class="line">db.disableFreeMonitoring()</span><br><span class="line">db.getFreeMonitoringStatus()</span><br><span class="line"></span><br><span class="line">db.createView(&quot;viewName&quot;, &quot;sourceColl&quot;, [&#123;$project:&#123;department: 1&#125;&#125;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="各种各样的"><a href="#各种各样的" class="headerlink" title="各种各样的"></a>各种各样的</h2><h3 id="改变流"><a href="#改变流" class="headerlink" title="改变流"></a>改变流</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watchCursor = db.coll.watch([</span><br><span class="line">   &#123;</span><br><span class="line">      $match : &#123;&quot;operationType&quot;: &quot;insert&quot; &#125;</span><br><span class="line">   &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">while (!watchCursor.isExhausted())&#123;</span><br><span class="line">   if (watchCursor.hasNext())&#123;</span><br><span class="line">      print(tojson(watchCursor.next()));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h3><!--rehype:wrap-class=col-span-2 row-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh.status()</span><br><span class="line">sh.addShard(&quot;rs1/mongodbd1.example.net:27017&quot;)</span><br><span class="line">sh.shardCollection(&quot;mydb.coll&quot;, &#123;zipcode: 1&#125;)</span><br><span class="line"></span><br><span class="line">sh.moveChunk(&quot;mydb.coll&quot;, &#123; zipcode: &quot;53187&quot; &#125;, &quot;shard0019&quot;)</span><br><span class="line">sh.splitAt(&quot;mydb.coll&quot;, &#123;x: 70&#125;)</span><br><span class="line">sh.splitFind(&quot;mydb.coll&quot;, &#123;x: 70&#125;)</span><br><span class="line">sh.disableAutoSplit()</span><br><span class="line">sh.enableAutoSplit()</span><br><span class="line"></span><br><span class="line">sh.startBalancer()</span><br><span class="line">sh.stopBalancer()</span><br><span class="line">sh.disableBalancing(&quot;mydb.coll&quot;)</span><br><span class="line">sh.enableBalancing(&quot;mydb.coll&quot;)</span><br><span class="line">sh.getBalancerState()</span><br><span class="line">sh.setBalancerState(true/false)</span><br><span class="line">sh.isBalancerRunning()</span><br><span class="line"></span><br><span class="line">sh.addTagRange(&quot;mydb.coll&quot;, &#123;state: &quot;NY&quot;,zip: MinKey&#125;, &#123;state: &quot;NY&quot;,zip: MaxKey&#125;, &quot;NY&quot;)</span><br><span class="line">sh.removeTagRange(&quot;mydb.coll&quot;, &#123;state: &quot;NY&quot;,zip: MinKey&#125;, &#123;state: &quot;NY&quot;,zip: MaxKey&#125;, &quot;NY&quot;)</span><br><span class="line">sh.addShardTag(&quot;shard0000&quot;, &quot;NYC&quot;)</span><br><span class="line">sh.removeShardTag(&quot;shard0000&quot;, &quot;NYC&quot;)</span><br><span class="line"></span><br><span class="line">sh.addShardToZone(&quot;shard0000&quot;, &quot;JFK&quot;)</span><br><span class="line">sh.removeShardFromZone(&quot;shard0000&quot;, &quot;NYC&quot;)</span><br><span class="line">sh.removeRangeFromZone(&quot;mydb.coll&quot;, &#123;a: 1, b: 1&#125;, &#123;a: 10, b: 10&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="副本集"><a href="#副本集" class="headerlink" title="副本集"></a>副本集</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rs.status()</span><br><span class="line">rs.initiate(&#123;&quot;_id&quot;: &quot;replicaTest&quot;,</span><br><span class="line">  members: [</span><br><span class="line">    &#123; _id: 0, host: &quot;127.0.0.1:27017&quot; &#125;,</span><br><span class="line">    &#123; _id: 1, host: &quot;127.0.0.1:27018&quot; &#125;,</span><br><span class="line">    &#123; _id: 2, host: &quot;127.0.0.1:27019&quot;,</span><br><span class="line">    arbiterOnly:true &#125;]</span><br><span class="line">&#125;)</span><br><span class="line">rs.add(&quot;mongodbd1.example.net:27017&quot;)</span><br><span class="line">rs.addArb(&quot;mongodbd2.example.net:27017&quot;)</span><br><span class="line">rs.remove(&quot;mongodbd1.example.net:27017&quot;)</span><br><span class="line">rs.conf()</span><br><span class="line">rs.isMaster()</span><br><span class="line">rs.printReplicationInfo()</span><br><span class="line">rs.printSlaveReplicationInfo()</span><br><span class="line">rs.reconfig(&lt;valid_conf&gt;)</span><br><span class="line">rs.slaveOk()</span><br><span class="line">rs.stepDown(20, 5)</span><br><span class="line">// (stepDownSecs, secondaryCatchUpPeriodSecs)</span><br></pre></td></tr></table></figure>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

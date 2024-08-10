@@ -1,0 +1,675 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Find 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这是 Linux find 命令备忘清单的快速参考列表，包含常用选项和示例。 入门用法$ find [path...] [options] [expression]  通配符 $ find . -name &quot;*.txt&quot;$ find . -name &quot;2020*.csv&quot;$ find . -name &quot;json_*&quot;    Find 备忘">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Find 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/find/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这是 Linux find 命令备忘清单的快速参考列表，包含常用选项和示例。 入门用法$ find [path...] [options] [expression]  通配符 $ find . -name &quot;*.txt&quot;$ find . -name &quot;2020*.csv&quot;$ find . -name &quot;json_*&quot;    Find 备忘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.685Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.685Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/find/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Find 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Find 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>这是 Linux find 命令备忘清单的快速参考列表，包含常用选项和示例。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find [path...] [options] [expression]</span></span><br></pre></td></tr></table></figure>
+
+<p>通配符</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name <span class="string">&quot;*.txt&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name <span class="string">&quot;2020*.csv&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name <span class="string">&quot;json_*&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/gr1ev0us/3a9b9d9dbdd38f6379288eb2686fc538">Find 备忘清单</a> <em>(gist.github.com)</em></li>
+</ul>
+<h3 id="参数示例"><a href="#参数示例" class="headerlink" title="参数示例"></a>参数示例</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-type</code></td>
+<td>find . -type d</td>
+<td>仅查找目录</td>
+</tr>
+<tr>
+<td><code>-name</code></td>
+<td>find . -type f -name “*.txt”</td>
+<td>按名称查找文件</td>
+</tr>
+<tr>
+<td><code>-iname</code></td>
+<td>find . -type f -iname “hello”</td>
+<td>按名称查找文件（不区分大小写）</td>
+</tr>
+<tr>
+<td><code>-size</code></td>
+<td>find . -size +1G</td>
+<td>查找大于 1G 的文件</td>
+</tr>
+<tr>
+<td><code>-user</code></td>
+<td>find . -type d -user jack</td>
+<td>查找杰克的文件</td>
+</tr>
+<tr>
+<td><code>-regex</code></td>
+<td>find &#x2F;var -regex ‘.*&#x2F;tmp&#x2F;.*[0-9]*.file’</td>
+<td>将正则表达式与查找一起使用</td>
+</tr>
+<tr>
+<td><code>-maxdepth</code></td>
+<td>find . -maxdepth 1 -name “a.txt”</td>
+<td>在当前目录和子目录中</td>
+</tr>
+<tr>
+<td><code>-mindepth</code></td>
+<td>find &#x2F; -mindepth 3 -maxdepth 5 -name pass</td>
+<td>在子目录级别 2 和 4 之间</td>
+</tr>
+</tbody></table>
+<!--rehype:className=show-header-->
+
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-type d</code></td>
+<td>目录</td>
+</tr>
+<tr>
+<td><code>-type f</code></td>
+<td>文件</td>
+</tr>
+<tr>
+<td><code>-type l</code></td>
+<td>符号链接</td>
+</tr>
+<tr>
+<td><code>-type b</code></td>
+<td>缓冲块</td>
+</tr>
+<tr>
+<td><code>-type c</code></td>
+<td>无缓冲字符</td>
+</tr>
+<tr>
+<td><code>-type p</code></td>
+<td>命名管道</td>
+</tr>
+<tr>
+<td><code>-type s</code></td>
+<td>插座</td>
+</tr>
+</tbody></table>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-size b</code></td>
+<td>512 字节块（默认）</td>
+</tr>
+<tr>
+<td><code>-size c</code></td>
+<td>字节</td>
+</tr>
+<tr>
+<td><code>-size k</code></td>
+<td>千字节</td>
+</tr>
+<tr>
+<td><code>-size M</code></td>
+<td>兆字节</td>
+</tr>
+<tr>
+<td><code>-size G</code></td>
+<td>千兆字节</td>
+</tr>
+<tr>
+<td><code>-size T</code></td>
+<td>太字节_（仅限 BSD）_</td>
+</tr>
+<tr>
+<td><code>-size P</code></td>
+<td>PB <em>（仅 BSD）</em></td>
+</tr>
+</tbody></table>
+<h3 id="大小-1"><a href="#大小-1" class="headerlink" title="大小 +&#x2F;-"></a>大小 +&#x2F;-</h3><p>查找所有大于 10MB 的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -size +10M</span></span><br></pre></td></tr></table></figure>
+
+<p>查找所有小于 10MB 的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -size -10M</span></span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">查找所有正好为 10M 的文件</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -size 10M</span></span><br></pre></td></tr></table></figure>
+
+<p>查找 100MB 和 1GB 之间的大小</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -size +100M -size -1G</span></span><br></pre></td></tr></table></figure>
+
+<p>像往常一样，<code>+</code> 和 <code>-</code> 前缀表示大于和小于。</p>
+<h3 id="名称"><a href="#名称" class="headerlink" title="名称"></a>名称</h3><p>在当前目录中使用名称查找文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name tecmint.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>查找主目录下的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /home -name tecmint.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>使用名称查找文件并忽略大小写</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /home -iname tecmint.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>使用名称查找目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> d -name tecmint</span></span><br></pre></td></tr></table></figure>
+
+<p>使用名称查找php文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name tecmint.php</span></span><br></pre></td></tr></table></figure>
+
+<p>查找目录下的所有php文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.php&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>查找权限为 777 的文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -perm 0777 -<span class="built_in">print</span></span></span><br></pre></td></tr></table></figure>
+
+<p>查找未经许可的文件 777.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> f ! -perm 777</span></span><br></pre></td></tr></table></figure>
+
+<p>查找 SUID 集文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -perm /u=s</span></span><br></pre></td></tr></table></figure>
+
+<p>查找 SGID 集文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -perm /g=s</span></span><br></pre></td></tr></table></figure>
+
+<p>查找只读文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -perm /u=r</span></span><br></pre></td></tr></table></figure>
+
+<p>查找可执行文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -perm /a=x</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="所有者和组"><a href="#所有者和组" class="headerlink" title="所有者和组"></a>所有者和组</h3><p>根据用户查找单个文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -user root -name tecmint.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>根据用户查找所有文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /home -user tecmint</span></span><br></pre></td></tr></table></figure>
+
+<p>根据组查找所有文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /home -group developer</span></span><br></pre></td></tr></table></figure>
+
+<p>查找用户的特定文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /home -user tecmint -iname <span class="string">&quot;*.txt&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="多个文件名"><a href="#多个文件名" class="headerlink" title="多个文件名"></a>多个文件名</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f \( -name <span class="string">&quot;*.sh&quot;</span> -or -name <span class="string">&quot;*.txt&quot;</span> \)</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>查找带有 <code>.sh</code> 或 <code>.txt</code> 扩展名的文件</p>
+<h3 id="多个目录"><a href="#多个目录" class="headerlink" title="多个目录"></a>多个目录</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find /opt /usr /var -name foo.scala -<span class="built_in">type</span> f</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>查找具有多个目录的文件</p>
+<h3 id="空的"><a href="#空的" class="headerlink" title="空的"></a>空的</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> d -empty</span></span><br></pre></td></tr></table></figure>
+
+<p>删除目录中的所有空文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -empty -delete</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查找日期和时间"><a href="#查找日期和时间" class="headerlink" title="查找日期和时间"></a>查找日期和时间</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><!--rehype:wrap-class=col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>atime</code></td>
+<td>访问时间（上次文件<yel>打开</yel>）</td>
+</tr>
+<tr>
+<td><code>mtime</code></td>
+<td>修改时间（上次文件<yel>内容被修改</yel>）</td>
+</tr>
+<tr>
+<td><code>ctime</code></td>
+<td>更改时间（上次文件 <yel>inode 已更改</yel>）</td>
+</tr>
+</tbody></table>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-mtime +0</code></td>
+<td>24 小时前修改</td>
+</tr>
+<tr>
+<td><code>-mtime 0</code></td>
+<td>从现在到 1 天前修改</td>
+</tr>
+<tr>
+<td><code>-mtime -1</code></td>
+<td>不到 1 天前修改（与 <code>-mtime 0</code> 相同）</td>
+</tr>
+<tr>
+<td><code>-mtime 1</code></td>
+<td>24 至 48 小时前修改</td>
+</tr>
+<tr>
+<td><code>-mtime +1</code></td>
+<td>超过 48 小时前修改</td>
+</tr>
+<tr>
+<td><code>-mtime +1w</code></td>
+<td>上次修改时间超过 1 周前</td>
+</tr>
+<tr>
+<td><code>-atime 0</code></td>
+<td>从现在到 24 小时前最后一次访问</td>
+</tr>
+<tr>
+<td><code>-atime +0</code></td>
+<td>访问时间超过 24 小时</td>
+</tr>
+<tr>
+<td><code>-atime 1</code></td>
+<td>在 24 至 48 小时前访问</td>
+</tr>
+<tr>
+<td><code>-atime +1</code></td>
+<td>访问时间超过 48 小时</td>
+</tr>
+<tr>
+<td><code>-atime -1</code></td>
+<td>不到 24 小时前访问过（与 <code>-atime 0</code> 相同）</td>
+</tr>
+<tr>
+<td><code>-ctime -6h30m</code></td>
+<td>文件状态在过去 6 小时 30 分钟内发生变化</td>
+</tr>
+</tbody></table>
+<h3 id="更多示例"><a href="#更多示例" class="headerlink" title="更多示例"></a>更多示例</h3><p>查找最近 50 天修改的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -mtime 50</span></span><br></pre></td></tr></table></figure>
+
+<p>查找最近 50 天访问的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -atime 50</span></span><br></pre></td></tr></table></figure>
+
+<p>查找最近 50-100 天修改的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -mtime +50 –mtime -100</span></span><br></pre></td></tr></table></figure>
+
+<p>查找最近 1 小时内更改的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -cmin -60</span></span><br></pre></td></tr></table></figure>
+
+<p>查找最近 1 小时内修改过的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -mmin -60</span></span><br></pre></td></tr></table></figure>
+
+<p>查找最近 1 小时内访问过的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -amin -60</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查找并"><a href="#查找并" class="headerlink" title="查找并"></a>查找并</h2><!--rehype:body-class=cols-2-->
+
+<h3 id="查找和删除"><a href="#查找和删除" class="headerlink" title="查找和删除"></a>查找和删除</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>查找并删除多个文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.mp3&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -f &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找和删除单个文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;tecmint.txt&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -f &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找和删除 100mb 文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> f -size +100m -<span class="built_in">exec</span> <span class="built_in">rm</span> -f &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找特定文件并删除</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> f -name *.mp3 -size +10m -<span class="built_in">exec</span> <span class="built_in">rm</span> &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find ./ -<span class="built_in">type</span> f -<span class="built_in">exec</span> sed -i <span class="string">&#x27;s/find/replace/g&#x27;</span> &#123;&#125; \;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find ./ -<span class="built_in">type</span> f -readable -writable -<span class="built_in">exec</span> sed -i <span class="string">&quot;s/old/new/g&quot;</span> &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>参见：<a href="./sed.md">sed</a> 命令</p>
+<h3 id="查找和重命名"><a href="#查找和重命名" class="headerlink" title="查找和重命名"></a>查找和重命名</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&#x27;file*&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;_renamed \;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&#x27;file*&#x27;</span> -<span class="built_in">exec</span> sh -c <span class="string">&#x27;x=&quot;&#123;&#125;&quot;; mv &quot;$x&quot; &quot;$&#123;x&#125;.bak&quot;&#x27;</span> \;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找和移动"><a href="#查找和移动" class="headerlink" title="查找和移动"></a>查找和移动</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name <span class="string">&#x27;*.mp3&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; /tmp/music \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找并将其移动到特定目录</p>
+<h3 id="查找和复制"><a href="#查找和复制" class="headerlink" title="查找和复制"></a>查找和复制</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -name <span class="string">&#x27;*2020*.xml&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">cp</span> -r <span class="string">&quot;&#123;&#125;&quot;</span> /tmp/backup \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找并将其复制到特定目录</p>
+<h3 id="查找并连接"><a href="#查找并连接" class="headerlink" title="查找并连接"></a>查找并连接</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find download -<span class="built_in">type</span> f -iname <span class="string">&#x27;*.csv&#x27;</span> | xargs <span class="built_in">cat</span> &gt; merged.csv</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find download -<span class="built_in">type</span> f -name <span class="string">&#x27;*.gz&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">cat</span> &#123;&#125; \; &gt; output</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找和排序"><a href="#查找和排序" class="headerlink" title="查找和排序"></a>查找和排序</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">printf</span> <span class="string">&quot;%T+\t%p\n&quot;</span> | <span class="built_in">sort</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">printf</span> <span class="string">&quot;%T+\t%p\n&quot;</span> | <span class="built_in">sort</span> -r</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找和-chmod"><a href="#查找和-chmod" class="headerlink" title="查找和 chmod"></a>查找和 chmod</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>查找文件并将权限设置为 644。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> f -perm 0777 -<span class="built_in">print</span> -<span class="built_in">exec</span> <span class="built_in">chmod</span> 644 &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<p>查找目录并将权限设置为 755。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find / -<span class="built_in">type</span> d -perm 777 -<span class="built_in">print</span> -<span class="built_in">exec</span> <span class="built_in">chmod</span> 755 &#123;&#125; \;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找并-tar"><a href="#查找并-tar" class="headerlink" title="查找并 tar"></a>查找并 tar</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.java&quot;</span> | xargs tar cvf myfile.tar</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.java&quot;</span> | xargs tar rvf myfile.tar</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找并排除目录"><a href="#查找并排除目录" class="headerlink" title="查找并排除目录"></a>查找并排除目录</h3><p>查找当前目录及子目录中的所有<code>js</code>文件，但是排除掉<code>node_modules</code>目录中的</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.js&quot;</span> -not -path <span class="string">&quot;./node_modules/*&quot;</span></span></span><br></pre></td></tr></table></figure>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

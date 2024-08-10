@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Elixir 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="提供基本语法和方法的 Elixir 快速参考备忘单。 入门安装 Elixir  Elixir 自带了 iex 这样一个交互 shell，可以随时计算 Elixir 表达式的值，运行iex命令，继续输入几个简单的表达式试试： iex 2+35iex 2+3 &#x3D;&#x3D; 5trueiex String.length(&quot;快速的狐狸跳过了懒惰的狗&quot;)43  每个操作系统的文档可以在官网网站上">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elixir 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/elixir/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="提供基本语法和方法的 Elixir 快速参考备忘单。 入门安装 Elixir  Elixir 自带了 iex 这样一个交互 shell，可以随时计算 Elixir 表达式的值，运行iex命令，继续输入几个简单的表达式试试： iex 2+35iex 2+3 &#x3D;&#x3D; 5trueiex String.length(&quot;快速的狐狸跳过了懒惰的狗&quot;)43  每个操作系统的文档可以在官网网站上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.642Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.642Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/elixir/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Elixir 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Elixir 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>提供基本语法和方法的 Elixir 快速参考备忘单。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="安装-Elixir"><a href="#安装-Elixir" class="headerlink" title="安装 Elixir"></a>安装 Elixir</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>Elixir 自带了 <code>iex</code> 这样一个交互 shell，可以随时计算 Elixir 表达式的值，运行<code>iex</code>命令，继续输入几个简单的表达式试试：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">iex 2+3</span><br><span class="line">5</span><br><span class="line">iex 2+3 == 5</span><br><span class="line">true</span><br><span class="line">iex String.length(&quot;快速的狐狸跳过了懒惰的狗&quot;)</span><br><span class="line">43</span><br></pre></td></tr></table></figure>
+
+<p>每个操作系统的文档可以在<a target="_blank" rel="noopener" href="https://elixir-lang.org/">官网</a>网站上 <a target="_blank" rel="noopener" href="http://elixir-lang.org/install.html">Installing Elixir</a> 部分找到</p>
+<h3 id="hello-exs"><a href="#hello-exs" class="headerlink" title="hello.exs"></a>hello.exs</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="title class_">IO</span>.puts(<span class="string">&quot;Hello world from Elixir&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Elixir 运行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">elixir hello.exs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>Elixir 支持多种基本类型：整数、浮点、布尔值、原子和字符串。其他数据类型，如列表和元组</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># integer 整数</span></span><br><span class="line">iex&gt; <span class="number">1</span>          </span><br><span class="line"><span class="comment"># integer（支持2进制、8进制和16进制的整数）</span></span><br><span class="line">iex&gt; <span class="number">0x1F</span>       </span><br><span class="line"><span class="comment"># float</span></span><br><span class="line">iex&gt; <span class="number">1.0</span>        </span><br><span class="line"><span class="comment"># boolean</span></span><br><span class="line">iex&gt; <span class="literal">true</span>       </span><br><span class="line"><span class="comment"># atom / symbol</span></span><br><span class="line">iex&gt; <span class="symbol">:atom</span>      </span><br><span class="line"><span class="comment"># string</span></span><br><span class="line">iex&gt; <span class="string">&quot;elixir&quot;</span>   </span><br><span class="line"><span class="comment"># list</span></span><br><span class="line">iex&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]  </span><br><span class="line"><span class="comment"># tuple</span></span><br><span class="line">iex&gt; &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这是一个单行注释</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串插值与拼接"><a href="#字符串插值与拼接" class="headerlink" title="字符串插值与拼接"></a>字符串插值与拼接</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; name = <span class="string">&quot;Sean&quot;</span></span><br><span class="line">iex&gt; <span class="string">&quot;Hello <span class="subst">#&#123;name&#125;</span>&quot;</span></span><br><span class="line"><span class="string">&quot;Hello Sean&quot;</span></span><br><span class="line"></span><br><span class="line">iex&gt; <span class="string">&quot;Hello &quot;</span> &lt;&gt; <span class="string">&quot;world!&quot;</span></span><br><span class="line"><span class="string">&quot;Hello world!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="变量和模式匹配"><a href="#变量和模式匹配" class="headerlink" title="变量和模式匹配"></a>变量和模式匹配</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="comment"># =&gt; x 现在等于 1</span></span><br><span class="line"></span><br><span class="line">&#123;a, b&#125; = &#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line"><span class="comment"># =&gt; a 等于 1，b 等于 2</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Elixir 中，使用 <code>=</code> 来进行赋值操作，但实际上是模式匹配。左边是模式，右边是值</p>
+<h3 id="原子（Atoms）"><a href="#原子（Atoms）" class="headerlink" title="原子（Atoms）"></a>原子（Atoms）</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="symbol">:ok</span></span><br></pre></td></tr></table></figure>
+
+<p>原子是常量，它们的名称就是它们的值</p>
+<h3 id="列表（Lists）"><a href="#列表（Lists）" class="headerlink" title="列表（Lists）"></a>列表（Lists）</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="元组（Tuples）"><a href="#元组（Tuples）" class="headerlink" title="元组（Tuples）"></a>元组（Tuples）</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">tuple = &#123;<span class="symbol">:ok</span>, <span class="string">&quot;value&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">MyModule</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">my_function</span></span>(parameter) <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 函数体</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">add = <span class="keyword">fn</span> a, b -&gt; a + b <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h3><!--rehype:wrap-class=row-span-2-->
+
+<p><code>if/else</code></p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">  <span class="string">&quot;Positive&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="string">&quot;Non-positive&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>case</code></p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> &#123;<span class="number">1</span>, <span class="number">2</span>&#125; <span class="keyword">do</span></span><br><span class="line">  &#123;<span class="number">1</span>, x&#125; -&gt; <span class="string">&quot;Matched <span class="subst">#&#123;x&#125;</span>&quot;</span></span><br><span class="line">  _ -&gt; <span class="string">&quot;Not matched&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>cond</code></p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cond</span> <span class="keyword">do</span></span><br><span class="line">  x &gt; <span class="number">2</span> -&gt; <span class="string">&quot;Greater than 2&quot;</span></span><br><span class="line">  x == <span class="number">2</span> -&gt; <span class="string">&quot;Equal to 2&quot;</span></span><br><span class="line">  <span class="literal">true</span> -&gt; <span class="string">&quot;Less than 2&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="基本算术"><a href="#基本算术" class="headerlink" title="基本算术"></a>基本算术</h3><!--rehype:wrap-class=row-span-4-->
+
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="number">1</span> + <span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">iex&gt; <span class="number">5</span> * <span class="number">5</span></span><br><span class="line"><span class="number">25</span></span><br><span class="line">iex&gt; <span class="number">10</span> / <span class="number">2</span></span><br><span class="line"><span class="number">5.0</span></span><br></pre></td></tr></table></figure>
+
+<p>运算符<code>/</code>总是返回一个 float。如果你想做整数除法或得到除法余数，你可以调用 div 和 rem 函数:</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; div(<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>允许在调用需要一个或多个参数的函数时删除括号</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; div <span class="number">10</span>, <span class="number">2</span> </span><br><span class="line"><span class="number">5</span></span><br><span class="line">iex&gt; rem <span class="number">10</span>, <span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>可以调用 round 函数来获取与给定浮点数最接近的整数，或者调用 trunc 函数来获取浮点数的整数部分</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; round(<span class="number">3.58</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line">iex&gt; trunc(<span class="number">3.58</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用 is_integer、is_float 或 is_number 分别检查参数是否为 integer、float 或 number 类型</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; is_integer(<span class="number">1</span>)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; is_float(<span class="number">2.0</span>)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; is_number(<span class="number">2.0</span>)</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="布尔算术"><a href="#布尔算术" class="headerlink" title="布尔算术"></a>布尔算术</h3><!--rehype:wrap-class=row-span-4-->
+
+<p>Elixir 提供了 <code>||</code>、<code>&amp;&amp;</code> 和 <code>!</code> 布尔操作符，它们支持任何类型的操作：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="number">-20</span> || <span class="literal">true</span></span><br><span class="line"><span class="number">-20</span></span><br><span class="line">iex&gt; <span class="literal">false</span> || <span class="number">42</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line"></span><br><span class="line">iex&gt; <span class="number">42</span> &amp;&amp; <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; <span class="number">42</span> &amp;&amp; <span class="literal">nil</span></span><br><span class="line"><span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">iex&gt; !<span class="number">42</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line">iex&gt; !<span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>还有三个操作符（and、or、not），它们的第一个参数<strong>必须是布尔类型</strong>（true 和 false）:</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="literal">true</span> <span class="keyword">and</span> <span class="number">42</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line">iex&gt; <span class="literal">false</span> <span class="keyword">or</span> <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; <span class="keyword">not</span> <span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; <span class="number">42</span> <span class="keyword">and</span> <span class="literal">true</span></span><br><span class="line">** (<span class="title class_">ArgumentError</span>) argument <span class="symbol">error:</span> <span class="number">42</span></span><br><span class="line">iex&gt; <span class="keyword">not</span> <span class="number">42</span></span><br><span class="line">** (<span class="title class_">ArgumentError</span>) argument error</span><br></pre></td></tr></table></figure>
+
+<h3 id="模块和函数导入"><a href="#模块和函数导入" class="headerlink" title="模块和函数导入"></a>模块和函数导入</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">List</span>, <span class="symbol">only:</span> [<span class="symbol">duplicate:</span> <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="管道操作符"><a href="#管道操作符" class="headerlink" title="管道操作符"></a>管道操作符</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">result = data</span><br><span class="line">         |&gt; process1()</span><br><span class="line">         |&gt; process2()</span><br></pre></td></tr></table></figure>
+
+<p><code>|&gt;</code> 用于链式调用函数，将前一个函数的结果作为下一个函数的第一个参数</p>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>比较运算符 ：<code>==</code>, <code>!=</code>, <code>===</code>, <code>!==</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>&lt;</code> 和 <code>&gt;</code></p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="number">1</span> &gt; <span class="number">2</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line">iex&gt; <span class="number">1</span> != <span class="number">2</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; <span class="number">2</span> == <span class="number">2</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">iex&gt; <span class="number">2</span> &lt;= <span class="number">3</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><blockquote>
+<p>列表（list）、元组（tuple）、关键字列表（keyword list）、映射（map）。</p>
+</blockquote>
+<h3 id="列表（List）"><a href="#列表（List）" class="headerlink" title="列表（List）"></a>列表（List）</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; [<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br><span class="line">[<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br><span class="line"></span><br><span class="line">iex&gt; list = [<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br><span class="line">iex&gt; [<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>列表的开头添加元素</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; [<span class="string">&quot;π&quot;</span> | list]</span><br><span class="line">[<span class="string">&quot;π&quot;</span>, <span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>列表的尾部添加元素&#x2F;列表拼接</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; list ++ [<span class="string">&quot;Cherry&quot;</span>]</span><br><span class="line">[<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Cherry&quot;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>获取列表的头部元素</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; hd [<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br><span class="line"><span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+<p>获取列表的尾部元素</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; tl [<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br><span class="line">[<span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="元组（Tuple）"><a href="#元组（Tuple）" class="headerlink" title="元组（Tuple）"></a>元组（Tuple）</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; &#123;<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>&#125;</span><br><span class="line">&#123;<span class="number">3.14</span>, <span class="symbol">:pie</span>, <span class="string">&quot;Apple&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键字列表（Keyword-List）"><a href="#关键字列表（Keyword-List）" class="headerlink" title="关键字列表（Keyword List）"></a>关键字列表（Keyword List）</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; [<span class="symbol">foo:</span> <span class="string">&quot;bar&quot;</span>, <span class="symbol">hello:</span> <span class="string">&quot;world&quot;</span>]</span><br><span class="line">[<span class="symbol">foo:</span> <span class="string">&quot;bar&quot;</span>, <span class="symbol">hello:</span> <span class="string">&quot;world&quot;</span>]</span><br><span class="line">iex&gt; [&#123;<span class="symbol">:foo</span>, <span class="string">&quot;bar&quot;</span>&#125;, &#123;<span class="symbol">:hello</span>, <span class="string">&quot;world&quot;</span>&#125;]</span><br><span class="line">[<span class="symbol">foo:</span> <span class="string">&quot;bar&quot;</span>, <span class="symbol">hello:</span> <span class="string">&quot;world&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>关键字列表非常重要，它有以下的特性：</p>
+<ul>
+<li>键（key）都是原子（atom）</li>
+<li>键（key）是有序的（定义后，顺序不会改变）</li>
+<li>键（key）不必是唯一的</li>
+</ul>
+<p>因为这些原因，常见的用法是作为参数传递给函数</p>
+<h3 id="映射（Map）"><a href="#映射（Map）" class="headerlink" title="映射（Map）"></a>映射（Map）</h3><p>Elixir 的映射（maps）是键值对结构的第一选择，和关键字列表（keywords）不同，映射允许任意类型的数据作为键，而且数据并不严格排序。 你可以使用 %{} 来定义映射：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; map = %&#123;<span class="symbol">:foo</span> =&gt; <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;hello&quot;</span> =&gt; <span class="symbol">:world</span>&#125;</span><br><span class="line">%&#123;<span class="symbol">:foo</span> =&gt; <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;hello&quot;</span> =&gt; <span class="symbol">:world</span>&#125;</span><br><span class="line">iex&gt; map[<span class="symbol">:foo</span>]</span><br><span class="line"><span class="string">&quot;bar&quot;</span></span><br><span class="line">iex&gt; map[<span class="string">&quot;hello&quot;</span>]</span><br><span class="line"><span class="symbol">:world</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><blockquote>
+<p>模式匹配是 Elixir 很强大的特性，它允许我们匹配简单值、数据结构、甚至函数。</p>
+</blockquote>
+<h3 id="匹配元组"><a href="#匹配元组" class="headerlink" title="匹配元组"></a>匹配元组</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; &#123;a, b, c&#125; = &#123;<span class="symbol">:hello</span>, <span class="string">&quot;world&quot;</span>, <span class="number">42</span>&#125;</span><br><span class="line">&#123;<span class="symbol">:hello</span>, <span class="string">&quot;world&quot;</span>, <span class="number">42</span>&#125;</span><br><span class="line">iex&gt; a</span><br><span class="line"><span class="symbol">:hello</span></span><br><span class="line">iex&gt; b</span><br><span class="line"><span class="string">&quot;world&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配列表"><a href="#匹配列表" class="headerlink" title="匹配列表"></a>匹配列表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iex&gt; [a, b, c] = [1, 2, 3]</span><br><span class="line">[1, 2, 3]</span><br><span class="line">iex&gt; a</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配列表的头部元素"><a href="#匹配列表的头部元素" class="headerlink" title="匹配列表的头部元素"></a>匹配列表的头部元素</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iex&gt; [head | tail] = [1, 2, 3]</span><br><span class="line">[1, 2, 3]</span><br><span class="line">iex&gt; head</span><br><span class="line">1</span><br><span class="line">iex&gt; tail</span><br><span class="line">[2, 3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pin-操作符"><a href="#Pin-操作符" class="headerlink" title="Pin 操作符"></a>Pin 操作符</h3><p>pin 操作符，就是用已经绑定的值去匹配，而不是重新绑定一个新值。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; &#123;x, ^x&#125; = &#123;<span class="number">2</span>, <span class="number">1</span>&#125;</span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">1</span>&#125;</span><br><span class="line">iex&gt; x</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用下划线-忽略匹配的值"><a href="#使用下划线-忽略匹配的值" class="headerlink" title="使用下划线 _ 忽略匹配的值"></a>使用下划线 <code>_</code> 忽略匹配的值</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; [head | _] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">iex&gt; head</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><h3 id="if-else-end"><a href="#if-else-end" class="headerlink" title="if&#x2F;else&#x2F;end"></a>if&#x2F;else&#x2F;end</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> condition <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 条件成立时执行的代码</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="comment"># 条件不成立时执行的代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="case-end"><a href="#case-end" class="headerlink" title="case&#x2F;end"></a>case&#x2F;end</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> expression <span class="keyword">do</span></span><br><span class="line">  pattern1 -&gt; <span class="comment"># 匹配 pattern1 时执行的代码</span></span><br><span class="line">  pattern2 -&gt; <span class="comment"># 匹配 pattern2 时执行的代码</span></span><br><span class="line">  _ -&gt; <span class="comment"># 其他情况执行的代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="cond-end"><a href="#cond-end" class="headerlink" title="cond&#x2F;end"></a>cond&#x2F;end</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cond</span> <span class="keyword">do</span></span><br><span class="line">  condition1 -&gt; <span class="comment"># 条件1成立时执行的代码</span></span><br><span class="line">  condition2 -&gt; <span class="comment"># 条件2成立时执行的代码</span></span><br><span class="line">  <span class="literal">true</span> -&gt; <span class="comment"># 如果没有任何条件成立，执行这里的代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="unless-do-end"><a href="#unless-do-end" class="headerlink" title="unless&#x2F;do&#x2F;end"></a>unless&#x2F;do&#x2F;end</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unless</span> condition <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 条件为假时执行的代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="try-rescue-end"><a href="#try-rescue-end" class="headerlink" title="try&#x2F;rescue&#x2F;end"></a>try&#x2F;rescue&#x2F;end</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 可能会引发异常的代码</span></span><br><span class="line"><span class="keyword">rescue</span></span><br><span class="line">  pattern1 -&gt; <span class="comment"># 匹配 pattern1 的异常处理代码</span></span><br><span class="line">  pattern2 -&gt; <span class="comment"># 匹配 pattern2 的异常处理代码</span></span><br><span class="line">  _ -&gt; <span class="comment"># 其他异常处理代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>允许将一个值与许多模式进行比较，直到找到匹配的模式：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="keyword">case</span> &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125; <span class="keyword">do</span></span><br><span class="line">  &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125; -&gt;</span><br><span class="line">    <span class="string">&quot;This clause won&#x27;t match&quot;</span></span><br><span class="line">  &#123;<span class="number">1</span>, x, <span class="number">3</span>&#125; -&gt;</span><br><span class="line">    <span class="string">&quot;该子句将匹配并绑定 x 到该子句中的 2&quot;</span></span><br><span class="line">  _ -&gt;</span><br><span class="line">    <span class="string">&quot;This clause would match any value&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="string">&quot;该子句将匹配并绑定 x 到该子句中的 2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以使用when指定额外的条件</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="keyword">case</span> &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125; <span class="keyword">do</span></span><br><span class="line">  &#123;<span class="number">1</span>, x, <span class="number">3</span>&#125; <span class="keyword">when</span> x &gt; <span class="number">0</span> -&gt;</span><br><span class="line">    <span class="string">&quot;Will match&quot;</span></span><br><span class="line">  _ -&gt;</span><br><span class="line">    <span class="string">&quot;如果不满足保护条件，将匹配&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="string">&quot;Will match&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="cond"><a href="#cond" class="headerlink" title="cond"></a>cond</h3><p>当我们需要根据条件进行匹配而不是值时，类似于其他语言的 <code>else if</code> 或 <code>elsif</code>，可以使用 <code>cond</code> 控制结构。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="keyword">cond</span> <span class="keyword">do</span></span><br><span class="line">  <span class="number">2</span> + <span class="number">2</span> == <span class="number">5</span> -&gt;</span><br><span class="line">    <span class="string">&quot;This will not be true&quot;</span></span><br><span class="line">  <span class="number">2</span> * <span class="number">2</span> == <span class="number">3</span> -&gt;</span><br><span class="line">    <span class="string">&quot;Nor this&quot;</span></span><br><span class="line">  <span class="number">1</span> + <span class="number">1</span> == <span class="number">2</span> -&gt;</span><br><span class="line">    <span class="string">&quot;But this will&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="string">&quot;But this will&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果所有的条件都返回 <code>nil</code> 或 <code>false</code>，则会引发一个错误（CondClauseError）。因此，需要添加一个 <code>final</code> 条件，等于 <code>true</code>，它将始终匹配：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="keyword">cond</span> <span class="keyword">do</span></span><br><span class="line">  <span class="number">2</span> + <span class="number">2</span> == <span class="number">5</span> -&gt;</span><br><span class="line">    <span class="string">&quot;This is never true&quot;</span></span><br><span class="line">  <span class="number">2</span> * <span class="number">2</span> == <span class="number">3</span> -&gt;</span><br><span class="line">    <span class="string">&quot;Nor this&quot;</span></span><br><span class="line">  <span class="literal">true</span> -&gt;</span><br><span class="line">    <span class="string">&quot;这始终为真（等同于 else）&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="string">&quot;这始终为真（等同于 else）&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>如果在if、case和类似的构造中声明或更改了任何变量，则声明和更改将只在构造中可见。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; x = <span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">  x = x + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">iex&gt; x</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要更改值，则必须从if返回值：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; x = <span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">iex&gt; x = <span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">  x + <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  x</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数定义-1"><a href="#函数定义-1" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_name</span></span>(param1, param2) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 函数体</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(a, b) <span class="keyword">do</span></span><br><span class="line">  a + b</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="模式匹配的多个函数定义"><a href="#模式匹配的多个函数定义" class="headerlink" title="模式匹配的多个函数定义"></a>模式匹配的多个函数定义</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_name</span></span>(<span class="symbol">:atom</span>) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 对于 :atom 的处理</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_name</span></span>(<span class="string">&quot;string&quot;</span>) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 对于 &quot;string&quot; 的处理</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_name</span></span>(number) <span class="keyword">when</span> is_integer(number) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 对于整数的处理</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_positive</span></span>(number) <span class="keyword">when</span> number &gt; <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">  <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_positive</span></span>(_), <span class="symbol">do:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">module_name.function_name(arg1, arg2)</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Enum</span>.map([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], &amp;(&amp;<span class="number">1</span> * <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_name</span></span>(parameter \\ 默认值) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 函数体</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span></span>(name \\ <span class="string">&quot;World&quot;</span>) <span class="keyword">do</span></span><br><span class="line">  <span class="string">&quot;Hello, <span class="subst">#&#123;name&#125;</span>!&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可变参数数量"><a href="#可变参数数量" class="headerlink" title="可变参数数量"></a>可变参数数量</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_name</span></span>(param1, param2 \\ []) <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 函数体</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(numbers) <span class="keyword">do</span></span><br><span class="line">  <span class="title class_">Enum</span>.sum(numbers)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数文档注释"><a href="#函数文档注释" class="headerlink" title="函数文档注释"></a>函数文档注释</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">@doc</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">这是函数的文档。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">@doc</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Adds two numbers together.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 示例</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    iex&gt; MyModule.add(1, 2)</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(a, b) <span class="keyword">do</span></span><br><span class="line">  a + b</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>这些是 Elixir 函数语法的基本要点，可以帮助你开始编写函数。</p>
+<h3 id="匿名函数-1"><a href="#匿名函数-1" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; sum = <span class="keyword">fn</span> (a, b) -&gt; a + b <span class="keyword">end</span></span><br><span class="line">iex&gt; sum.(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用 &amp; 语法来简化匿名函数的定义：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; sum = &amp;(&amp;<span class="number">1</span> + &amp;<span class="number">2</span>)</span><br><span class="line">iex&gt; sum.(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>匿名函数去引用外部的变量，这通常被称为闭包。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; double = <span class="keyword">fn</span> a -&gt; add.(a, a) <span class="keyword">end</span></span><br><span class="line"><span class="comment">#Function&lt;6.71889879/1 in :erl_eval.expr/5&gt;</span></span><br><span class="line">double.(<span class="number">2</span>)</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>闭包与守卫</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; f = <span class="keyword">fn</span></span><br><span class="line">  x, y <span class="keyword">when</span> x &gt; <span class="number">0</span> -&gt; x + y</span><br><span class="line">  x, y -&gt; x * y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">iex&gt; f.(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line">iex&gt; f.(<span class="number">-1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">-3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="命名函数"><a href="#命名函数" class="headerlink" title="命名函数"></a>命名函数</h3><p>命名函数是通过 def 关键字定义在某个模块中</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Greeter</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(name) <span class="keyword">do</span></span><br><span class="line">    <span class="string">&quot;Hello, &quot;</span> &lt;&gt; name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">iex&gt; <span class="title class_">Greeter</span>.hello(<span class="string">&quot;Sean&quot;</span>)</span><br><span class="line"><span class="string">&quot;Hello, Sean&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>简写为一行：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Greeter</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(name), <span class="symbol">do:</span> <span class="string">&quot;Hello, &quot;</span> &lt;&gt; name</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>私有函数</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Greeter</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(name), <span class="symbol">do:</span> phrase &lt;&gt; name</span><br><span class="line">  <span class="comment"># 使用defp来定义私有函数</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">phrase</span></span>, <span class="symbol">do:</span> <span class="string">&quot;Hello, &quot;</span> </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>函数的默认参数：使用 <code>\\</code> 来定义默认参数</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Greeter</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(name, language_code \\ <span class="string">&quot;en&quot;</span>) <span class="keyword">do</span></span><br><span class="line">    phrase(language_code) &lt;&gt; name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">phrase</span></span>(<span class="string">&quot;en&quot;</span>), <span class="symbol">do:</span> <span class="string">&quot;Hello, &quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">phrase</span></span>(<span class="string">&quot;es&quot;</span>), <span class="symbol">do:</span> <span class="string">&quot;Hola, &quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Enumerables-与-Streams"><a href="#Enumerables-与-Streams" class="headerlink" title="Enumerables 与 Streams"></a>Enumerables 与 Streams</h2><blockquote>
+<p>Elixir 提供了 Enum 和 Stream 两个模块，用于处理集合。</p>
+</blockquote>
+<h3 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h3><blockquote>
+<p>Enum 模块提供了对集合的常用操作，如 map、filter、reduce、sort、chunk、join、into 等。</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="title class_">Enum</span>.map([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="keyword">fn</span> x -&gt; x * <span class="number">2</span> <span class="keyword">end</span>)</span><br><span class="line">[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</span><br><span class="line">iex&gt; <span class="title class_">Enum</span>.map(%&#123;<span class="number">1</span> =&gt; <span class="number">2</span>, <span class="number">3</span> =&gt; <span class="number">4</span>&#125;, <span class="keyword">fn</span> &#123;k, v&#125; -&gt; k * v <span class="keyword">end</span>)</span><br><span class="line">[<span class="number">2</span>, <span class="number">12</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><blockquote>
+<p>作为Enum的替代品，Elixir提供了支持懒惰操作的Stream模块</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; <span class="number">1</span>..<span class="number">100_000</span> |&gt; <span class="title class_">Stream</span>.map(&amp;(&amp;<span class="number">1</span> * <span class="number">3</span>)) |&gt; <span class="title class_">Stream</span>.filter(odd?) |&gt; <span class="title class_">Enum</span>.sum()</span><br><span class="line"><span class="number">7500000000</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>流文件操作</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">iex&gt; stream = <span class="title class_">File</span>.stream!(<span class="string">&quot;path/to/file&quot;</span>)</span><br><span class="line">%<span class="title class_">File</span>.<span class="title class_">Stream</span>&#123;</span><br><span class="line">  <span class="symbol">line_or_bytes:</span> <span class="symbol">:line</span>,</span><br><span class="line">  <span class="symbol">modes:</span> [<span class="symbol">:raw</span>, <span class="symbol">:read_ahead</span>, <span class="symbol">:binary</span>],</span><br><span class="line">  <span class="symbol">path:</span> <span class="string">&quot;path/to/file&quot;</span>,</span><br><span class="line">  <span class="symbol">raw:</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Enum</span>.take(stream, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面的例子将提取所选文件的前10行。这意味着流对于处理大型文件甚至是网络资源等慢速资源非常有用。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://elixir-lang.org/">Elixir 官方</a> <em>(elixir-lang.org)</em></li>
+<li><a target="_blank" rel="noopener" href="https://elixirschool.com/">Elixir School</a> <em>(elixirschool.com)</em></li>
+</ul>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

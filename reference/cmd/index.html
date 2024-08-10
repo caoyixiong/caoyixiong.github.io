@@ -1,0 +1,1034 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cmd 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="cmd 快速参考备忘单含括了常用的 cmd 命令 常用操作磁盘操作format 参数   参数 action    &#x2F;q 快速格式化   &#x2F;u 不可恢复   &#x2F;autotest 不提示   &#x2F;s 创建 MS-DOS 引导盘   format 示例format c: &#x2F;q &#x2F;u &#x2F;autotest  目录操作(一)dir 参数   参数 action    &#x2F;s 查找子目录   &#x2F;w 只显示文件名">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cmd 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/cmd/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="cmd 快速参考备忘单含括了常用的 cmd 命令 常用操作磁盘操作format 参数   参数 action    &#x2F;q 快速格式化   &#x2F;u 不可恢复   &#x2F;autotest 不提示   &#x2F;s 创建 MS-DOS 引导盘   format 示例format c: &#x2F;q &#x2F;u &#x2F;autotest  目录操作(一)dir 参数   参数 action    &#x2F;s 查找子目录   &#x2F;w 只显示文件名">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.589Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.589Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/cmd/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cmd 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Cmd 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>cmd 快速参考备忘单含括了常用的 cmd 命令</p>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="磁盘操作"><a href="#磁盘操作" class="headerlink" title="磁盘操作"></a>磁盘操作</h3><h4 id="format-参数"><a href="#format-参数" class="headerlink" title="format 参数"></a>format 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/q</code></td>
+<td align="left">快速格式化</td>
+</tr>
+<tr>
+<td align="left"><code>/u</code></td>
+<td align="left">不可恢复</td>
+</tr>
+<tr>
+<td align="left"><code>/autotest</code></td>
+<td align="left">不提示</td>
+</tr>
+<tr>
+<td align="left"><code>/s</code></td>
+<td align="left">创建 MS-DOS 引导盘</td>
+</tr>
+</tbody></table>
+<h4 id="format-示例"><a href="#format-示例" class="headerlink" title="format 示例"></a>format 示例</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">format c: /q /u /autotest</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录操作-一"><a href="#目录操作-一" class="headerlink" title="目录操作(一)"></a>目录操作(一)</h3><h4 id="dir-参数"><a href="#dir-参数" class="headerlink" title="dir 参数"></a>dir 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/s</code></td>
+<td align="left">查找子目录</td>
+</tr>
+<tr>
+<td align="left"><code>/w</code></td>
+<td align="left">只显示文件名</td>
+</tr>
+<tr>
+<td align="left"><code>/p</code></td>
+<td align="left">分页</td>
+</tr>
+<tr>
+<td align="left"><code>/a</code></td>
+<td align="left">显示隐藏文件</td>
+</tr>
+</tbody></table>
+<h4 id="dir-示例"><a href="#dir-示例" class="headerlink" title="dir 示例"></a>dir 示例</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dir format.exe /s</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>查找该盘的 <code>format.exe</code> 文件并报告位置</p>
+<h3 id="目录操作-二"><a href="#目录操作-二" class="headerlink" title="目录操作(二)"></a>目录操作(二)</h3><h4 id="cd-参数"><a href="#cd-参数" class="headerlink" title="cd 参数"></a>cd 参数</h4><p>可以使用相对目录或绝对目录</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cd …</code></td>
+<td align="left">进入上一个文件夹</td>
+</tr>
+<tr>
+<td align="left"><code>cd \</code></td>
+<td align="left">返回根目录</td>
+</tr>
+<tr>
+<td align="left"><code>cd c:\windows</code></td>
+<td align="left">进入 <code>c:\windows</code> 文件夹</td>
+</tr>
+</tbody></table>
+<h4 id="md-MKDIR-参数"><a href="#md-MKDIR-参数" class="headerlink" title="md(MKDIR) 参数"></a>md(MKDIR) 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>md HELLOWORLD</code></td>
+<td align="left">创建 <code>HELLOWORLD</code> 目录</td>
+</tr>
+</tbody></table>
+<h4 id="rd-RMDIR-参数"><a href="#rd-RMDIR-参数" class="headerlink" title="rd (RMDIR) 参数"></a>rd (RMDIR) 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>rd HELLOWORLD</code></td>
+<td align="left">删除 <code>HELLOWORLD</code> 目录</td>
+</tr>
+</tbody></table>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h4 id="rmdir-参数"><a href="#rmdir-参数" class="headerlink" title="rmdir 参数"></a>rmdir 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>rmdir c:\qqdownload/s</code></td>
+<td align="left">删除 <code>C</code> 盘的 <code>qqdownload</code> 目录</td>
+</tr>
+</tbody></table>
+<h4 id="del-参数"><a href="#del-参数" class="headerlink" title="del 参数"></a>del 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/f</code></td>
+<td align="left">删除只读文件</td>
+</tr>
+<tr>
+<td align="left"><code>/s</code></td>
+<td align="left">删除该目录及其下的所有内容</td>
+</tr>
+<tr>
+<td align="left"><code>/q</code></td>
+<td align="left">删除前不确认</td>
+</tr>
+</tbody></table>
+<h4 id="del-示例"><a href="#del-示例" class="headerlink" title="del 示例"></a>del 示例</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>del c:\del /s /q</code></td>
+<td align="left">自动删除 c 盘的 del 目录</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h4 id="copy-参数"><a href="#copy-参数" class="headerlink" title="copy 参数"></a>copy 参数</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>copy d:\pwin98*.* c:\presetup</code></td>
+<td align="left">将d盘的pwin98的所有文件复制到 c 盘的 presetup 下</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h4 id="attrib-参数"><a href="#attrib-参数" class="headerlink" title="attrib 参数"></a>attrib 参数</h4><p>attrib命令可以列出或修改磁盘上文件的属性，<br>文件属性包括文档（A）、只读、隐藏(H)、系统(S)</p>
+<h4 id="attrib-示例"><a href="#attrib-示例" class="headerlink" title="attrib 示例"></a>attrib 示例</h4><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>attrib -h -r -s io.sys</code></td>
+<td align="left">io.sys文件的只读、隐藏、系统属性去掉</td>
+</tr>
+<tr>
+<td align="left"><code>attrib +h +r +s autoexec.bat</code></td>
+<td align="left">为自动批处理文件增加以上属性</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="net-命令-一"><a href="#net-命令-一" class="headerlink" title="net 命令(一)"></a>net 命令(一)</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>net use ipipc$ &quot; &quot; /user:&quot; &quot;</code></td>
+<td align="left">建立IPC空链接</td>
+</tr>
+<tr>
+<td align="left"><code>net use ipipc$ &quot; &quot; /user:&quot; &quot;</code></td>
+<td align="left">建立IPC空链接</td>
+</tr>
+<tr>
+<td align="left"><code>net use ipipc$ “密码” /user:&quot;</code></td>
+<td align="left">用户名” 建立IPC非空链接</td>
+</tr>
+<tr>
+<td align="left"><code>net use h: ipc$ “密码” /user:“用户名”</code></td>
+<td align="left">直接登陆后映射对方C：到本地为H:</td>
+</tr>
+<tr>
+<td align="left"><code>net use h: ipc$</code></td>
+<td align="left">登陆后映射对方C：到本地为H:</td>
+</tr>
+<tr>
+<td align="left"><code>net use ipipc$ /del</code></td>
+<td align="left">删除IPC链接</td>
+</tr>
+<tr>
+<td align="left"><code>net use h: /del</code></td>
+<td align="left">删除映射对方到本地的为H:的映射</td>
+</tr>
+<tr>
+<td align="left"><code>net user 用户名　密码　/add</code></td>
+<td align="left">建立用户</td>
+</tr>
+<tr>
+<td align="left"><code>net user guest /active:yes</code></td>
+<td align="left">激活guest用户</td>
+</tr>
+<tr>
+<td align="left"><code>net user</code></td>
+<td align="left">查看有哪些用户</td>
+</tr>
+<tr>
+<td align="left"><code>net user 帐户名</code></td>
+<td align="left">查看帐户的属性</td>
+</tr>
+<tr>
+<td align="left"><code>net localgroup administrators 用户名 /add</code></td>
+<td align="left">把“用户”添加到管理员中使其具有管理员权限</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="net-命令-二"><a href="#net-命令-二" class="headerlink" title="net 命令(二)"></a>net 命令(二)</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>net start</code></td>
+<td align="left">查看开启了哪些服务</td>
+</tr>
+<tr>
+<td align="left"><code>net start 服务名</code></td>
+<td align="left">开启服务；(如:net start telnet， net start schedule)</td>
+</tr>
+<tr>
+<td align="left"><code>net stop 服务名</code></td>
+<td align="left">停止某服务</td>
+</tr>
+<tr>
+<td align="left"><code>net time 目标ip</code></td>
+<td align="left">查看对方时间</td>
+</tr>
+<tr>
+<td align="left"><code>net view</code></td>
+<td align="left">查看本地局域网内开启了哪些共享</td>
+</tr>
+<tr>
+<td align="left"><code>net view ip</code></td>
+<td align="left">查看对方局域网内开启了哪些共享</td>
+</tr>
+<tr>
+<td align="left"><code>net config</code></td>
+<td align="left">显示系统网络设置</td>
+</tr>
+<tr>
+<td align="left"><code>net pause 服务名</code></td>
+<td align="left">暂停某服务</td>
+</tr>
+<tr>
+<td align="left"><code>net send ip “文本信息”</code></td>
+<td align="left">向对方发信息</td>
+</tr>
+<tr>
+<td align="left"><code>net ver</code></td>
+<td align="left">局域网内正在使用的网络连接类型和信息</td>
+</tr>
+<tr>
+<td align="left"><code>net share</code></td>
+<td align="left">查看本地开启的共享</td>
+</tr>
+<tr>
+<td align="left"><code>net share ipc$ /del</code></td>
+<td align="left">删除ipc$共享</td>
+</tr>
+<tr>
+<td align="left"><code>net share c$ /del</code></td>
+<td align="left">删除C：共享</td>
+</tr>
+<tr>
+<td align="left"><code>net user guest 12345</code></td>
+<td align="left">用guest用户登陆后用将密码改为12345</td>
+</tr>
+<tr>
+<td align="left"><code>net password 密码</code></td>
+<td align="left">更改系统登陆密码</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="ping-命令"><a href="#ping-命令" class="headerlink" title="ping 命令"></a>ping 命令</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-d</code></td>
+<td align="left">使用 Socket 的 SO_DEBUG 功能</td>
+</tr>
+<tr>
+<td align="left"><code>-c&lt;完成次数&gt;</code></td>
+<td align="left">设置完成要求回应的次数</td>
+</tr>
+<tr>
+<td align="left"><code>-f</code></td>
+<td align="left">极限检测</td>
+</tr>
+<tr>
+<td align="left"><code>-i&lt;间隔秒数&gt;</code></td>
+<td align="left">指定收发信息的间隔时间</td>
+</tr>
+<tr>
+<td align="left"><code>-I&lt;网络界面&gt;</code></td>
+<td align="left">使用指定的网络界面送出数据包</td>
+</tr>
+<tr>
+<td align="left"><code>-l&lt;前置载入&gt;</code></td>
+<td align="left">设置在送出要求信息之前，先行发出的数据包</td>
+</tr>
+<tr>
+<td align="left"><code>-n</code></td>
+<td align="left">只输出数值</td>
+</tr>
+<tr>
+<td align="left"><code>-p&lt;范本样式&gt;</code></td>
+<td align="left">设置填满数据包的范本样式</td>
+</tr>
+<tr>
+<td align="left"><code>-q</code></td>
+<td align="left">不显示指令执行过程，开头和结尾的相关信息除外</td>
+</tr>
+<tr>
+<td align="left"><code>-r</code></td>
+<td align="left">忽略普通的Routing Table，直接将数据包送到远端主机上</td>
+</tr>
+<tr>
+<td align="left"><code>-R</code></td>
+<td align="left">记录路由过程</td>
+</tr>
+<tr>
+<td align="left"><code>-s&lt;数据包大小&gt;</code></td>
+<td align="left">设置数据包的大小</td>
+</tr>
+<tr>
+<td align="left"><code>-t&lt;存活数值&gt;</code></td>
+<td align="left">设置存活数值TTL的大小</td>
+</tr>
+<tr>
+<td align="left"><code>-v</code></td>
+<td align="left">详细显示指令的执行过程</td>
+</tr>
+</tbody></table>
+<h3 id="tracert-命令"><a href="#tracert-命令" class="headerlink" title="tracert 命令"></a>tracert 命令</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-d</code></td>
+<td align="left">不将地址解析成主机名</td>
+</tr>
+<tr>
+<td align="left"><code>-h maximum_hops</code></td>
+<td align="left">搜索目标的最大跃点数，默认30</td>
+</tr>
+<tr>
+<td align="left"><code>-w timeout</code></td>
+<td align="left">等待每个回复的超时时间(以毫秒为单位)</td>
+</tr>
+<tr>
+<td align="left"><code>-R</code></td>
+<td align="left">跟踪往返行程路径(仅适用于 IPv6)</td>
+</tr>
+<tr>
+<td align="left"><code>-S srcaddr</code></td>
+<td align="left">要使用的源地址(仅适用于 IPv6)</td>
+</tr>
+<tr>
+<td align="left"><code>-4</code></td>
+<td align="left">强制使用 IPv4</td>
+</tr>
+<tr>
+<td align="left"><code>-6</code></td>
+<td align="left">强制使用 IPv6</td>
+</tr>
+</tbody></table>
+<h3 id="netstat-命令"><a href="#netstat-命令" class="headerlink" title="netstat 命令"></a>netstat 命令</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>netstat -a</code></td>
+<td align="left">查看开启了哪些端口,常用netstat -an</td>
+</tr>
+<tr>
+<td align="left"><code>netstat -n</code></td>
+<td align="left">查看端口的网络连接情况，常用netstat -an</td>
+</tr>
+<tr>
+<td align="left"><code>netstat -v</code></td>
+<td align="left">查看正在进行的工作</td>
+</tr>
+<tr>
+<td align="left"><code>netstat -p 协议名</code></td>
+<td align="left">例：netstat -p tcq&#x2F;ip 查看某协议使用情况</td>
+</tr>
+<tr>
+<td align="left"><code>netstat -s</code></td>
+<td align="left">查看正在使用的所有协议使用情况</td>
+</tr>
+<tr>
+<td align="left"><code>nbtstat -A ip</code></td>
+<td align="left">对方136到139其中一个端口开了的话，就可查看对方最近登陆的用户名</td>
+</tr>
+</tbody></table>
+<h2 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h2><h3 id="启动程序-一"><a href="#启动程序-一" class="headerlink" title="启动程序(一)"></a>启动程序(一)</h3><!--rehype:wrap-class=row-span-3-->
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>appwiz.cpl</code></td>
+<td align="left">程序和功能</td>
+</tr>
+<tr>
+<td align="left"><code>calc</code></td>
+<td align="left">启动计算器</td>
+</tr>
+<tr>
+<td align="left"><code>certmgr.msc</code></td>
+<td align="left">证书管理实用程序</td>
+</tr>
+<tr>
+<td align="left"><code>charmap</code></td>
+<td align="left">启动字符映射表</td>
+</tr>
+<tr>
+<td align="left"><code>chkdsk.exe</code></td>
+<td align="left">Chkdsk磁盘检查（管理员身份运行命令提示符）</td>
+</tr>
+<tr>
+<td align="left"><code>cleanmgr</code></td>
+<td align="left">打开磁盘清理工具</td>
+</tr>
+<tr>
+<td align="left"><code>cliconfg</code></td>
+<td align="left">SQL SERVER 客户端网络实用工具</td>
+</tr>
+<tr>
+<td align="left"><code>cmstp</code></td>
+<td align="left">连接管理器配置文件安装程序</td>
+</tr>
+<tr>
+<td align="left"><code>compmgmt.msc</code></td>
+<td align="left">计算机管理</td>
+</tr>
+<tr>
+<td align="left"><code>omexp.msc</code></td>
+<td align="left">打开系统组件服务</td>
+</tr>
+<tr>
+<td align="left"><code>control</code></td>
+<td align="left">控制面版</td>
+</tr>
+</tbody></table>
+<h3 id="启动程序-二"><a href="#启动程序-二" class="headerlink" title="启动程序(二)"></a>启动程序(二)</h3><!--rehype:wrap-class=row-span-3-->
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>dcomcnfg</code></td>
+<td align="left">打开系统组件服务</td>
+</tr>
+<tr>
+<td align="left"><code>devmgmt.msc</code></td>
+<td align="left">设备管理器</td>
+</tr>
+<tr>
+<td align="left"><code>diskmgmt.msc</code></td>
+<td align="left">磁盘管理</td>
+</tr>
+<tr>
+<td align="left"><code>eventvwr</code></td>
+<td align="left">事件查看器</td>
+</tr>
+<tr>
+<td align="left"><code>explorer</code></td>
+<td align="left">打开资源管理器</td>
+</tr>
+<tr>
+<td align="left"><code>Firewall.cpl</code></td>
+<td align="left">Windows防火墙</td>
+</tr>
+<tr>
+<td align="left"><code>fsmgmt.msc</code></td>
+<td align="left">共享文件夹管理器</td>
+</tr>
+<tr>
+<td align="left"><code>hdwwiz.cpl</code></td>
+<td align="left">设备管理器</td>
+</tr>
+<tr>
+<td align="left"><code>lusrmgr.msc</code></td>
+<td align="left">本地用户和组</td>
+</tr>
+<tr>
+<td align="left"><code>Msra</code></td>
+<td align="left">远程协助</td>
+</tr>
+<tr>
+<td align="left"><code>mstsc</code></td>
+<td align="left">远程桌面连接</td>
+</tr>
+<tr>
+<td align="left"><code>notepad</code></td>
+<td align="left">打开记事本</td>
+</tr>
+<tr>
+<td align="left"><code>shrpubw</code></td>
+<td align="left">创建共享文件夹</td>
+</tr>
+</tbody></table>
+<h3 id="自动关机"><a href="#自动关机" class="headerlink" title="自动关机"></a>自动关机</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>shutdown -s -t 600</code></td>
+<td align="left">表示600秒后自动关机</td>
+</tr>
+<tr>
+<td align="left"><code>shutdown -a</code></td>
+<td align="left">可取消定时关机</td>
+</tr>
+<tr>
+<td align="left"><code>shutdown -r -t 600</code></td>
+<td align="left">表示600秒后自动重启</td>
+</tr>
+<tr>
+<td align="left"><code>rundll32 user32.dll, LockWorkStation</code></td>
+<td align="left">表示锁定计算机</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="一"><a href="#一" class="headerlink" title="(一)"></a>(一)</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ipconfig (winipcfg)</code></td>
+<td align="left">查看本地ip，可加&#x2F;all</td>
+</tr>
+<tr>
+<td align="left"><code>kill -F 进程名</code></td>
+<td align="left">加-F参数后强制结束某进程</td>
+</tr>
+<tr>
+<td align="left"><code>del -F 文件名</code></td>
+<td align="left">加-F参数可删除只读文件</td>
+</tr>
+<tr>
+<td align="left"><code>move 源路径文件　目的路径</code></td>
+<td align="left">移动文件，可修改文件名</td>
+</tr>
+<tr>
+<td align="left"><code>fc one.txt two.txt &gt; 3st.txt</code></td>
+<td align="left">对比文件并输出到3st.txt</td>
+</tr>
+<tr>
+<td align="left"><code>finger username @host</code></td>
+<td align="left">查看最近用户登陆</td>
+</tr>
+<tr>
+<td align="left"><code>telnet</code></td>
+<td align="left">进入本机的telnet</td>
+</tr>
+<tr>
+<td align="left"><code>telnet ip 端口</code></td>
+<td align="left">远程登陆服务器,默认端口为23</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="（二）"><a href="#（二）" class="headerlink" title="（二）"></a>（二）</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>copy c:srv.exe ipadmin$</code></td>
+<td align="left">复制本地c:srv.exe到对方的admin下</td>
+</tr>
+<tr>
+<td align="left"><code>set</code></td>
+<td align="left">显示当前所有的环境变量</td>
+</tr>
+<tr>
+<td align="left"><code>set 环境变量名称=变量的字符</code></td>
+<td align="left">添加环境变量</td>
+</tr>
+<tr>
+<td align="left"><code>set p(或其它字符)</code></td>
+<td align="left">显示出当前以字符p(或其它字符)开头的所有环境变量</td>
+</tr>
+<tr>
+<td align="left"><code>pause</code></td>
+<td align="left">暂停批处理程序，并显示出：请按任意键继续…</td>
+</tr>
+<tr>
+<td align="left"><code>echo on/off</code></td>
+<td align="left">打开或关闭echo，仅用echo不加参数则显示当前echo设置</td>
+</tr>
+<tr>
+<td align="left"><code>echo 信息</code></td>
+<td align="left">在屏幕上显示出信息</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h3 id="（三）"><a href="#（三）" class="headerlink" title="（三）"></a>（三）</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>echo 信息 &gt;&gt; pass.txt</code></td>
+<td align="left">将”信息”保存到pass.txt文件中</td>
+</tr>
+<tr>
+<td align="left"><code>findstr “Hello” aa.txt</code></td>
+<td align="left">在aa.txt文件中寻找字符串hello</td>
+</tr>
+<tr>
+<td align="left"><code>find 文件名</code></td>
+<td align="left">查找某文件</td>
+</tr>
+<tr>
+<td align="left"><code>regedit /s</code></td>
+<td align="left">注册表文件名 导入注册表；参数&#x2F;S指安静模式导入，无任何提示</td>
+</tr>
+<tr>
+<td align="left"><code>regedit /e</code></td>
+<td align="left">注册表文件名 导出注册表</td>
+</tr>
+<tr>
+<td align="left"><code>cacls 文件名</code></td>
+<td align="left">查看文件的访问用户权限列表</td>
+</tr>
+<tr>
+<td align="left"><code>REM 文本内容</code></td>
+<td align="left">在批处理文件中添加注解</td>
+</tr>
+<tr>
+<td align="left"><code>netsh</code></td>
+<td align="left">查看或更改本地网络配置情况</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>StyleX 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这是 StyleX 用户界面的样式系统的快速参考指南备忘单 入门 StyleX介绍  StyleX 是一个 CSS In JS 的用户界面的样式系统  StyleX Intellisense VSCode 插件  Vite   vite-plugin-stylex vite-plugin-stylex-dev  Babel 插件   tailwind-to-stylex 支持在 Tailwind">
+<meta property="og:type" content="website">
+<meta property="og:title" content="StyleX 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/stylex/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这是 StyleX 用户界面的样式系统的快速参考指南备忘单 入门 StyleX介绍  StyleX 是一个 CSS In JS 的用户界面的样式系统  StyleX Intellisense VSCode 插件  Vite   vite-plugin-stylex vite-plugin-stylex-dev  Babel 插件   tailwind-to-stylex 支持在 Tailwind">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:16.086Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:16.086Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/stylex/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'StyleX 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">StyleX 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>这是 <a target="_blank" rel="noopener" href="https://github.com/facebook/stylex">StyleX</a> 用户界面的样式系统的快速参考指南备忘单</p>
+<h2 id="入门-StyleX"><a href="#入门-StyleX" class="headerlink" title="入门 StyleX"></a>入门 StyleX</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>StyleX 是一个 CSS In JS 的用户界面的样式系统</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=yash-singh.stylex">StyleX Intellisense</a> <em>VSCode 插件</em></li>
+</ul>
+<h4 id="Vite"><a href="#Vite" class="headerlink" title="Vite"></a>Vite</h4><!--rehype:style=text-align: left;color: var(--primary-color)-->
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-plugin-stylex">vite-plugin-stylex</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-plugin-stylex-dev">vite-plugin-stylex-dev</a></li>
+</ul>
+<h4 id="Babel-插件"><a href="#Babel-插件" class="headerlink" title="Babel 插件"></a>Babel 插件</h4><!--rehype:style=text-align: left;color: var(--primary-color)-->
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/tailwind-to-stylex">tailwind-to-stylex</a> 支持在 Tailwind CSS 中使用</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nonzzz/stylex-extend/tree/main/packages/babel-plugin">@stylex-extend&#x2F;babel-plugin</a> 使用 JSX 属性定义 StyleX</li>
+</ul>
+<h4 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h4><!--rehype:style=text-align: left;color: var(--primary-color)-->
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/nedjulius/prettier-plugin-stylex-key-sort">prettier-plugin-stylex-key-sort</a></li>
+</ul>
+<h4 id="Bun"><a href="#Bun" class="headerlink" title="Bun"></a>Bun</h4><!--rehype:style=text-align: left;color: var(--primary-color)-->
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/bun-plugin-stylex">bun-plugin-stylex</a></li>
+</ul>
+<h4 id="入门模板"><a href="#入门模板" class="headerlink" title="入门模板"></a>入门模板</h4><!--rehype:style=text-align: left;color: var(--primary-color)-->
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/nmn/nextjs-app-dir-stylex">next.js</a> <em>支持 StyleX 的 next.js 项目</em></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nmn/qwik-stylex">qwik</a> <em>使用 StyleX 和 tailwind-to-stylex 的 Qwik 项目</em></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nmn/docusaurus-stylex">docusaurus 3</a> <em>支持 StyleX 的 docusaurus 3 项目</em></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nmn/sveltekit-stylex">SvelteKit</a> <em>支持 StyleX 的 SvelteKit 项目</em></li>
+</ul>
+<h3 id="配置编译器"><a href="#配置编译器" class="headerlink" title="配置编译器"></a>配置编译器</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> plg <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/rollup-plugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">config</span> = (<span class="params"></span>) =&gt; (&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title function_">plg</span>(&#123; ...options &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用样式"><a href="#使用样式" class="headerlink" title="使用样式"></a>使用样式</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123; ... &#125;);</span><br><span class="line"><span class="keyword">const</span> colorStyles = stylex.<span class="title function_">create</span>(&#123; ... &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在 <a href="./react.md">React</a> 中使用</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ReactDemo</span>(<span class="params"></span></span><br><span class="line"><span class="params">    &#123; color,isActive,style &#125;</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...stylex.props</span>(</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">styles.main</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">有条件地应用样式</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">isActive</span> &amp;&amp; <span class="attr">styles.active</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">根据属性选择样式变体</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">colorStyles</span>[<span class="attr">color</span>],</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">将样式作为</span> <span class="attr">props</span> <span class="attr">传递</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      )&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义样式"><a href="#定义样式" class="headerlink" title="定义样式"></a>定义样式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">root</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="string">&#x27;100%&#x27;</span>,</span><br><span class="line">    <span class="attr">maxWidth</span>: <span class="number">800</span>,</span><br><span class="line">    <span class="attr">minHeight</span>: <span class="number">40</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>样式是使用对象语法和 <code>create()</code> API 定义的</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><!--rehype:body-class=cols-4-->
+
+<h3 id="StyleX-运行时包"><a href="#StyleX-运行时包" class="headerlink" title="StyleX 运行时包"></a>StyleX 运行时包</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save @stylexjs/stylex</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器-生产-Rollup"><a href="#编译器-生产-Rollup" class="headerlink" title="编译器(生产) Rollup"></a>编译器(生产) Rollup</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/rollup-plugin</span><br></pre></td></tr></table></figure>
+
+<p>修改 Rollup 配置 <em>rollup.config.js</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> stylexPlugin <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/rollup-plugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">input</span>: <span class="string">&#x27;./index.js&#x27;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">file</span>: <span class="string">&#x27;./.build/bundle.js&#x27;</span>,</span><br><span class="line">    <span class="attr">format</span>: <span class="string">&#x27;es&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 确保在 Babel 之前使用 stylex 插件</span></span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">stylexPlugin</span>(&#123;</span><br><span class="line">    <span class="comment">// 必需项。生成的 CSS 文件的文件路径。</span></span><br><span class="line">    <span class="attr">fileName</span>: <span class="string">&#x27;./.build/stylex.css&#x27;</span>,</span><br><span class="line">    <span class="comment">// 默认值：false</span></span><br><span class="line">    <span class="attr">dev</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 所有生成的类名的前缀</span></span><br><span class="line">    <span class="attr">classNamePrefix</span>: <span class="string">&#x27;x&#x27;</span>,</span><br><span class="line">    <span class="comment">// CSS 变量支持所必需</span></span><br><span class="line">    <span class="attr">unstable_moduleResolution</span>: &#123;</span><br><span class="line">      <span class="comment">// 类型：&#x27;commonJS&#x27; | &#x27;haste&#x27;</span></span><br><span class="line">      <span class="comment">// 默认值：&#x27;commonJS&#x27;</span></span><br><span class="line">      <span class="attr">type</span>: <span class="string">&#x27;commonJS&#x27;</span>,</span><br><span class="line">      <span class="comment">// 项目根目录的绝对路径</span></span><br><span class="line">      <span class="attr">rootDir</span>: __dirname,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器-开发"><a href="#编译器-开发" class="headerlink" title="编译器(开发)"></a>编译器(开发)</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/babel-plugin</span><br></pre></td></tr></table></figure>
+
+<p>修改 Babel 配置 <em>(babel.config.js)</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> styleX <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/babel-plugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    [styleX, &#123;</span><br><span class="line">        <span class="attr">dev</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="comment">// 设置为 true 以进行快照测试</span></span><br><span class="line">        <span class="comment">// 默认值：false</span></span><br><span class="line">        <span class="attr">test</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="comment">// CSS 变量支持所必需</span></span><br><span class="line">        <span class="attr">unstable_moduleResolution</span>: &#123;</span><br><span class="line">          <span class="comment">// 类型：&#x27;commonJS&#x27; | &#x27;haste&#x27;</span></span><br><span class="line">          <span class="comment">// 默认值：&#x27;commonJS&#x27;</span></span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;commonJS&#x27;</span>,</span><br><span class="line">          <span class="comment">// 项目根目录的绝对路径</span></span><br><span class="line">          <span class="attr">rootDir</span>: __dirname,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器-生产-Webpack"><a href="#编译器-生产-Webpack" class="headerlink" title="编译器(生产) Webpack"></a>编译器(生产) Webpack</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p>修改 Webpack 配置 <em>webpack.config.js</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">StylexPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;@stylexjs/webpack-plugin&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">config</span> = (<span class="params">env, argv</span>) =&gt; (&#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="attr">main</span>: <span class="string">&#x27;./src/index.js&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;.build&#x27;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;[name].js&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        <span class="attr">use</span>: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// 确保在 Babel 之前使用 stylex 插件</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">StylexPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;styles.[contenthash].css&#x27;</span>,</span><br><span class="line">      <span class="comment">// 获取 webpack 的模式并为开发设置值</span></span><br><span class="line">      <span class="attr">dev</span>: argv.<span class="property">mode</span> === <span class="string">&#x27;development&#x27;</span>,</span><br><span class="line">      <span class="comment">// 使用静态生成的 CSS 文件，而不是运行时注入的 CSS。</span></span><br><span class="line">      <span class="comment">// 即使在开发环境中也是如此。</span></span><br><span class="line">      <span class="attr">runtimeInjection</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="comment">// 可选的。默认值：&#x27;x&#x27;</span></span><br><span class="line">      <span class="attr">classNamePrefix</span>: <span class="string">&#x27;x&#x27;</span>,</span><br><span class="line">      <span class="comment">// CSS 变量支持所必需</span></span><br><span class="line">      <span class="attr">unstable_moduleResolution</span>: &#123;</span><br><span class="line">        <span class="comment">// 类型：&#x27;commonJS&#x27; | &#x27;haste&#x27;</span></span><br><span class="line">        <span class="comment">// 默认值：&#x27;commonJS&#x27;</span></span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;commonJS&#x27;</span>,</span><br><span class="line">        <span class="comment">// 项目根目录的绝对路径</span></span><br><span class="line">        <span class="attr">rootDir</span>: __dirname,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">cache</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器-生产-Next-js"><a href="#编译器-生产-Next-js" class="headerlink" title="编译器(生产) Next.js"></a>编译器(生产) Next.js</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/nextjs-plugin \</span><br><span class="line">                       @stylexjs/babel-plugin rimraf</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>package.json</code> 添加配置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;predev&quot;</span>: <span class="string">&quot;rimraf .next&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prebuild&quot;</span>: <span class="string">&quot;rimraf .next&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改 Babel 配置 <em>.babelrc.js</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [<span class="string">&quot;next/babel&quot;</span>],</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@stylexjs/babel-plugin&quot;</span>, &#123;</span><br><span class="line">        <span class="attr">dev</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;development&quot;</span>,</span><br><span class="line">        <span class="attr">test</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;test&quot;</span>,</span><br><span class="line">        <span class="attr">runtimeInjection</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">genConditionalClasses</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">treeshakeCompensation</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">unstable_moduleResolution</span>: &#123;</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&quot;commonJS&quot;</span>,</span><br><span class="line">          <span class="attr">rootDir</span>: __dirname,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>修改 Next.js 配置 <em>next.config.mjs</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@type</span> &#123;<span class="type">import(&#x27;next&#x27;).NextConfig</span>&#125; */</span></span><br><span class="line"><span class="keyword">import</span> stylexPlugin <span class="keyword">from</span> <span class="string">&quot;@stylexjs/nextjs-plugin&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nextConfig = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> __dirname = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&quot;.&quot;</span>, <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>).<span class="property">pathname</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">stylexPlugin</span>(&#123;</span><br><span class="line">  <span class="attr">rootDir</span>: __dirname,</span><br><span class="line">&#125;)(nextConfig);</span><br></pre></td></tr></table></figure>
+
+<h3 id="仅限本地开发"><a href="#仅限本地开发" class="headerlink" title="仅限本地开发"></a>仅限本地开发</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>要开始使用 <code>StyleX</code> 而无需配置编译器和构建过程，您可以安装本地开发运行时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/dev-runtime</span><br></pre></td></tr></table></figure>
+
+<p>开发运行时必须导入到应用程序的 <code>JavaScript</code> 入口点并进行配置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> inject <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/dev-runtime&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">inject</span>(&#123;</span><br><span class="line">  <span class="attr">classNamePrefix</span>: <span class="string">&#x27;x&#x27;</span>,</span><br><span class="line">  <span class="attr">dev</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">test</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="用-ESLint-捕捉错误"><a href="#用-ESLint-捕捉错误" class="headerlink" title="用 ESLint 捕捉错误"></a>用 ESLint 捕捉错误</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev @stylexjs/eslint-plugin</span><br></pre></td></tr></table></figure>
+
+<p>StyleX 编译器不会验证您的样式，并且会编译许多无效样式。当您创作样式时，您应该使用 ESLint 插件来捕获这些错误。修改 ESLint 配置 <code>.eslintrc.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="string">&quot;@stylexjs&quot;</span>],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&quot;@stylexjs/valid-styles&quot;</span>: <span class="string">&quot;error&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义样式-1"><a href="#定义样式-1" class="headerlink" title="定义样式"></a>定义样式</h2><h3 id="创建样式"><a href="#创建样式" class="headerlink" title="创建样式"></a>创建样式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="attr">fontSize</span>: <span class="number">16</span>,</span><br><span class="line">    <span class="attr">lineHeight</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;rgb(60,60,60)&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">highlighted</span>: &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;rebeccapurple&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">button</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundColor</span>: <span class="string">&#x27;lightblue&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>样式名为 <code>button</code> 的背景样式上添加 <code>:hover</code> 和 <code>:active</code> 伪类</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">button</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundColor</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;lightblue&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;:hover&#x27;</span>: <span class="string">&#x27;blue&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;:active&#x27;</span>: <span class="string">&#x27;darkblue&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">input</span>: &#123;</span><br><span class="line">    <span class="comment">// 伪元素</span></span><br><span class="line">    <span class="string">&#x27;::placeholder&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">color</span>: <span class="string">&#x27;#999&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">color</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;#333&#x27;</span>,</span><br><span class="line">      <span class="comment">// 伪类</span></span><br><span class="line">      <span class="string">&#x27;:invalid&#x27;</span>: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="媒体查询（和其他-规则）"><a href="#媒体查询（和其他-规则）" class="headerlink" title="媒体查询（和其他@规则）"></a>媒体查询（和其他@规则）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="number">800</span>,</span><br><span class="line">      <span class="string">&#x27;@media (max-width: 800px)&#x27;</span>: <span class="string">&#x27;100%&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@media (min-width: 1540px)&#x27;</span>: <span class="number">1366</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同样，媒体查询也可以作为样式值中的 “条件”</p>
+<h3 id="组合条件"><a href="#组合条件" class="headerlink" title="组合条件"></a>组合条件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">button</span>: &#123;</span><br><span class="line">    <span class="attr">color</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;var(--blue-link)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;:hover&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">default</span>: <span class="literal">null</span>,</span><br><span class="line">        <span class="string">&#x27;@media (hover: hover)&#x27;</span>: <span class="string">&#x27;scale(1.1)&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&#x27;:active&#x27;</span>: <span class="string">&#x27;scale(0.9)&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>当您需要组合媒体查询和伪选择器时，嵌套超过<code>一层</code></p>
+<h3 id="后备样式"><a href="#后备样式" class="headerlink" title="后备样式"></a>后备样式</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">position</span>: -webkit-sticky;</span><br><span class="line">  <span class="attribute">position</span>: sticky;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>firstThatWorks</code> 函数来实现相同的目的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">header</span>: &#123;</span><br><span class="line">    <span class="attr">position</span>: stylex.<span class="title function_">firstThatWorks</span>(<span class="string">&#x27;sticky&#x27;</span>, <span class="string">&#x27;-webkit-sticky&#x27;</span>, <span class="string">&#x27;fixed&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键帧动画"><a href="#关键帧动画" class="headerlink" title="关键帧动画"></a>关键帧动画</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fadeIn = stylex.<span class="title function_">keyframes</span>(&#123;</span><br><span class="line">  <span class="attr">from</span>: &#123;<span class="attr">opacity</span>: <span class="number">0</span>&#125;,</span><br><span class="line">  <span class="attr">to</span>: &#123;<span class="attr">opacity</span>: <span class="number">1</span>&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="attr">animationName</span>: fadeIn,</span><br><span class="line">    <span class="attr">animationDuration</span>: <span class="string">&#x27;1s&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>stylex.keyframes()</code> 函数来定义关键帧动画</p>
+<h3 id="动态样式"><a href="#动态样式" class="headerlink" title="动态样式"></a>动态样式</h3><!--rehype:wrap-class=col-span-2&style=background:#d7a100;-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="comment">// 函数参数必须是简单标识符</span></span><br><span class="line">  <span class="comment">// -- 不允许解构或默认值</span></span><br><span class="line">  <span class="attr">bar</span>: <span class="function">(<span class="params">height</span>) =&gt;</span> (&#123;</span><br><span class="line">    height,</span><br><span class="line">    <span class="comment">// 函数体必须是对象字面量</span></span><br><span class="line">    <span class="comment">// -- 不允许使用 &#123; return &#123;&#125; &#125;</span></span><br><span class="line">  &#125;),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// `height` 的值在编译时不能确定。</span></span><br><span class="line">  <span class="keyword">const</span> [height, setHeight] = <span class="title function_">useState</span>(<span class="number">10</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...stylex.props</span>(<span class="attr">styles.bar</span>(<span class="attr">height</span>))&#125; /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：动态样式是一项高级功能，应谨慎使用。对于大多数用例，条件样式应该足够了。</p>
+<h2 id="使用样式-1"><a href="#使用样式-1" class="headerlink" title="使用样式"></a>使用样式</h2><h3 id="合并样式"><a href="#合并样式" class="headerlink" title="合并样式"></a>合并样式</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="attr">fontSize</span>: <span class="number">16</span>,</span><br><span class="line">    <span class="attr">lineHeight</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;grey&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">highlighted</span>: &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;rebeccapurple&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...stylex.props</span>(</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">styles.base</span>, <span class="attr">styles.highlighted</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  )&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">/&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果样式的顺序颠倒，文本将为灰色</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div &#123;...stylex.<span class="title function_">props</span>(</span><br><span class="line">    styles.<span class="property">highlighted</span>, styles.<span class="property">base</span></span><br><span class="line">  )&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="条件样式"><a href="#条件样式" class="headerlink" title="条件样式"></a>条件样式</h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  &#123;...stylex.<span class="title function_">props</span>(</span><br><span class="line">    styles.<span class="property">base</span>,</span><br><span class="line">    props.<span class="property">isHighlighted</span> &amp;&amp; styles.<span class="property">highlighted</span>,</span><br><span class="line">    isActive ? styles.<span class="property">active</span> : styles.<span class="property">inactive</span>,</span><br><span class="line">  )&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过使用常见的 JavaScript 模式（例如三元表达式和 <code>&amp;&amp;</code> 运算符），可以在运行时有条件地应用样式。 <code>stylex.props</code> 忽略虚假值，例如 <code>null</code>、<code>undefined</code> 或 <code>false</code></p>
+<h3 id="样式变体"><a href="#样式变体" class="headerlink" title="样式变体"></a>样式变体</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">violet</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundColor</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;blueviolet&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;:hover&#x27;</span>: <span class="string">&#x27;darkviolet&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">gray</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundColor</span>: &#123;</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;gainsboro&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;:hover&#x27;</span>: <span class="string">&#x27;lightgray&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ... more variants here ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后，通过使用 <code>variant</code> 属性作为样式对象上的键来应用适当的样式</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Button</span>(<span class="params">&#123;variant, ...props&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> &#123;<span class="attr">...props</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#123;<span class="attr">...stylex.props</span>(<span class="attr">styles</span>[<span class="attr">variant</span>])&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="样式作为道具"><a href="#样式作为道具" class="headerlink" title="样式作为道具"></a>样式作为道具</h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">CustomComponent</span> style=&#123;styles.<span class="property">base</span>&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>stylex.props</code> 函数返回具有 <code>className</code> 和 <code>style</code> 的对象。当样式要合并到组件内时不要使用它：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ❌ 不要这样使用! ⚠️</span></span><br><span class="line">&lt;<span class="title class_">CustomComponent</span></span><br><span class="line">  style=&#123;stylex.<span class="title function_">props</span>(styles.<span class="property">base</span>)&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<!--rehype:style=background: #ff00002b;-->
+
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">CustomComponent</span></span><br><span class="line">  style=&#123;[</span><br><span class="line">    styles.<span class="property">base</span>,</span><br><span class="line">    isHighlighted &amp;&amp; styles.<span class="property">highlighted</span></span><br><span class="line">  ]&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接受组件中的样式"><a href="#接受组件中的样式" class="headerlink" title="接受组件中的样式"></a>接受组件中的样式</h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Local Styles</span></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="comment">/*...*/</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">CustomComponent</span>(<span class="params">&#123;style&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#123;<span class="attr">...stylex.props</span>(<span class="attr">styles.base</span>, <span class="attr">style</span>)&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将其与 <code>stylex.props</code> 函数一起应用</p>
+<h3 id="“取消设置”样式"><a href="#“取消设置”样式" class="headerlink" title="“取消设置”样式"></a>“取消设置”样式</h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">base</span>: &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="literal">null</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>将样式属性设置为 <code>null</code> 会删除 StyleX 之前为其应用的任何样式。</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h3 id="使用媒体查询"><a href="#使用媒体查询" class="headerlink" title="使用媒体查询"></a>使用媒体查询</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用常量来避免重复媒体查询</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DARK</span> = <span class="string">&#x27;@media (prefers-color-scheme: dark)&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;black&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;white&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">secondaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;#333&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;#ccc&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">accent</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;blue&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;lightblue&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">background</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;white&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;black&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">lineColor</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;gray&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;lightgray&#x27;</span>&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> tokens = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryText</span>: <span class="string">&#x27;black&#x27;</span>,</span><br><span class="line">  <span class="attr">secondaryText</span>: <span class="string">&#x27;#333&#x27;</span>,</span><br><span class="line">  <span class="attr">borderRadius</span>: <span class="string">&#x27;4px&#x27;</span>,</span><br><span class="line">  <span class="attr">fontFamily</span>: <span class="string">&#x27;system-ui, sans-serif&#x27;</span>,</span><br><span class="line">  <span class="attr">fontSize</span>: <span class="string">&#x27;16px&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这定义了 HTML 文档的 <code>:root</code> 处的变量。它们可以作为常量导入并在 <code>stylex.create</code> 调用中使用。</p>
+<h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用常量来避免重复媒体查询</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DARK</span> = <span class="string">&#x27;@media (prefers-color-scheme: dark)&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;black&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;white&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">secondaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;#333&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;#ccc&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">accent</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;blue&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;lightblue&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">background</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;white&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;black&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">lineColor</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;gray&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;lightgray&#x27;</span>&#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> spacing = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">none</span>: <span class="string">&#x27;0px&#x27;</span>,</span><br><span class="line">  <span class="attr">xsmall</span>: <span class="string">&#x27;4px&#x27;</span>,</span><br><span class="line">  <span class="attr">small</span>: <span class="string">&#x27;8px&#x27;</span>,</span><br><span class="line">  <span class="attr">medium</span>: <span class="string">&#x27;12px&#x27;</span>,</span><br><span class="line">  <span class="attr">large</span>: <span class="string">&#x27;20px&#x27;</span>,</span><br><span class="line">  <span class="attr">xlarge</span>: <span class="string">&#x27;32px&#x27;</span>,</span><br><span class="line">  <span class="attr">xxlarge</span>: <span class="string">&#x27;48px&#x27;</span>,</span><br><span class="line">  <span class="attr">xxxlarge</span>: <span class="string">&#x27;96px&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以像这样导入和使用这些样式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;colors, spacing&#125; <span class="keyword">from</span> <span class="string">&#x27;../tokens.stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">container</span>: &#123;</span><br><span class="line">    <span class="attr">color</span>: colors.<span class="property">primaryText</span>,</span><br><span class="line">    <span class="attr">backgroundColor</span>: colors.<span class="property">background</span>,</span><br><span class="line">    <span class="attr">padding</span>: spacing.<span class="property">medium</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义变量时的规则"><a href="#定义变量时的规则" class="headerlink" title="定义变量时的规则"></a>定义变量时的规则</h3><p>变量必须定义在 <code>.stylex.js</code> 文件中，变量必须位于具有以下扩展名之一的文件中：</p>
+<ul>
+<li>.stylex.js</li>
+<li>.stylex.mjs</li>
+<li>.stylex.cjs</li>
+<li>.stylex.ts</li>
+<li>.stylex.tsx</li>
+<li>.stylex.jsx</li>
+</ul>
+<p>变量必须命名为 <code>exports</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ✅ - 命名导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sizeVars = &#123; ... &#125;;</span><br><span class="line"><span class="comment">// ✅ - 另一个命名导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> sizes = stylex.<span class="title function_">defineVars</span>(sizeVars);</span><br></pre></td></tr></table></figure>
+
+<p>不允许：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ❌ - 只允许命名导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ - 变量必须直接导出</span></span><br><span class="line"><span class="keyword">const</span> x = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ - 变量不能嵌套在另一个对象内部</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = &#123;</span><br><span class="line">  <span class="attr">foregrounds</span>: stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">backgrounds</span>: stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">  &#125;),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<!--rehype:style=background: #ff00001a;-->
+
+<h3 id="创建主题"><a href="#创建主题" class="headerlink" title="创建主题"></a>创建主题</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;colors, spacing&#125; <span class="keyword">from</span> <span class="string">&#x27;./tokens.stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用常量来避免重复媒体查询</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DARK</span> = <span class="string">&#x27;@media (prefers-color-scheme: dark)&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Dracula 主题</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> dracula = stylex.<span class="title function_">createTheme</span>(colors, &#123;</span><br><span class="line">  <span class="attr">primaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;purple&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;lightpurple&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">secondaryText</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;pink&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;hotpink&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">accent</span>: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">  <span class="attr">background</span>: &#123;<span class="attr">default</span>: <span class="string">&#x27;#555&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;black&#x27;</span>&#125;,</span><br><span class="line">  <span class="attr">lineColor</span>: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>应用主题，主题对象类似于使用 <code>stylex.create()</code> 创建的样式对象。使用 <code>stylex.props()</code> 将它们应用于元素，以覆盖该元素及其所有后代的变量。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;div &#123;...stylex.<span class="title function_">props</span>(dracula, styles.<span class="property">container</span>)&#125;&gt;</span><br><span class="line">  &#123;children&#125;</span><br><span class="line">&lt;/div&gt;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建主题时必须覆盖变量组中的所有变量。这一选择是为了帮助发现意外遗漏</li>
+<li>主题可以在代码库中的任何位置使用 <code>stylex.createTheme()</code> 创建，并在文件或组件之间传递</li>
+<li>如果同一变量组的多个主题应用于同一 HTML 元素，则最后应用的主题获胜</li>
+</ul>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> tokens = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryTxt</span>: stylex.<span class="property">types</span>.<span class="title function_">color</span>(<span class="string">&#x27;black&#x27;</span>),</span><br><span class="line">  <span class="attr">secondaryTxt</span>: stylex.<span class="property">types</span>.<span class="title function_">color</span>(<span class="string">&#x27;#333&#x27;</span>),</span><br><span class="line">  <span class="attr">borderRadius</span>: stylex.<span class="property">types</span>.<span class="title function_">length</span>(<span class="string">&#x27;4px&#x27;</span>),</span><br><span class="line">  <span class="attr">angle</span>: stylex.<span class="property">types</span>.<span class="title function_">angle</span>(<span class="string">&#x27;0deg&#x27;</span>),</span><br><span class="line">  <span class="attr">int</span>: stylex.<span class="property">types</span>.<span class="title function_">integer</span>(<span class="number">2</span>),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>所有值都可以是任意字符串。要将类型分配给变量，可以使用适当的类型函数包装它们</p>
+<h3 id="变量类型-条件值"><a href="#变量类型-条件值" class="headerlink" title="变量类型 &amp; 条件值"></a>变量类型 &amp; 条件值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// tokens.stylex.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> colors = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryText</span>: stylex.<span class="property">types</span>.<span class="title function_">color</span>(&#123;</span><br><span class="line">    <span class="attr">default</span>: <span class="string">&#x27;black&#x27;</span>, [<span class="variable constant_">DARK</span>]: <span class="string">&#x27;white&#x27;</span></span><br><span class="line">  &#125;),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>用法保持不变，以上内容完全有效</p>
+<h3 id="源代码中的类型安全"><a href="#源代码中的类型安全" class="headerlink" title="源代码中的类型安全"></a>源代码中的类型安全</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// tokens.stylex.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;tokens&#125; <span class="keyword">from</span> <span class="string">&#x27;./tokens.stylex.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> high = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">primaryTxt</span>: stylex.<span class="property">types</span>.<span class="title function_">color</span>(<span class="string">&#x27;black&#x27;</span>),</span><br><span class="line">  <span class="attr">secondaryTxt</span>: stylex.<span class="property">types</span>.<span class="title function_">color</span>(<span class="string">&#x27;#222&#x27;</span>),</span><br><span class="line">  <span class="attr">borderRadius</span>: stylex.<span class="property">types</span>.<span class="title function_">length</span>(<span class="string">&#x27;8px&#x27;</span>),</span><br><span class="line">  <span class="attr">angle</span>: stylex.<span class="property">types</span>.<span class="title function_">angle</span>(<span class="string">&#x27;0deg&#x27;</span>),</span><br><span class="line">  <span class="attr">int</span>: stylex.<span class="property">types</span>.<span class="title function_">integer</span>(<span class="number">4</span>),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>当在 <code>stylex.defineVars</code> 中使用特定类型声明变量时，静态类型将强制在 <code>stylex.createTheme</code> 调用中为该变量设置主题时使用相同类型的函数</p>
+<h3 id="动画渐变"><a href="#动画渐变" class="headerlink" title="动画渐变"></a>动画渐变</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;tokens&#125; <span class="keyword">from</span> <span class="string">&#x27;./tokens.stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rotate = stylex.<span class="title function_">keyframes</span>(&#123;</span><br><span class="line">  <span class="attr">from</span>: &#123; [tokens.<span class="property">angle</span>]: <span class="string">&#x27;0deg&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">to</span>: &#123; [tokens.<span class="property">angle</span>]: <span class="string">&#x27;360deg&#x27;</span> &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">gradient</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundImage</span>: <span class="string">`conic-gradient(from <span class="subst">$&#123;tokens.angle&#125;</span>, ...colors)`</span>,</span><br><span class="line">    <span class="attr">animationName</span>: rotate,</span><br><span class="line">    <span class="attr">animationDuration</span>: <span class="string">&#x27;10s&#x27;</span>,</span><br><span class="line">    <span class="attr">animationTimingFunction</span>: <span class="string">&#x27;linear&#x27;</span>,</span><br><span class="line">    <span class="attr">animationIterationCount</span>: <span class="string">&#x27;infinite&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以通过对其中使用的角度进行动画处理来对渐变进行动画处理</p>
+<h3 id="模拟-round"><a href="#模拟-round" class="headerlink" title="模拟 round()"></a>模拟 round()</h3><p>现代浏览器开始支持 CSS 中的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/round">round()</a> 函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> styles = stylex.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">gradient</span>: &#123;</span><br><span class="line">    <span class="comment">// Math.floor</span></span><br><span class="line">    [tokens.<span class="property">int</span>]: <span class="string">`calc(16 / 9)`</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Math.round</span></span><br><span class="line">    [tokens.<span class="property">int</span>]: <span class="string">`calc((16 / 9) + 0.5)`</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>该功能通过一个整数类型的变量来模拟</p>
+<h2 id="TypeScript-类型"><a href="#TypeScript-类型" class="headerlink" title="TypeScript 类型"></a>TypeScript 类型</h2><h3 id="StyleXStyles-样式-props-类型"><a href="#StyleXStyles-样式-props-类型" class="headerlink" title="StyleXStyles 样式 props 类型"></a>StyleXStyles 样式 props 类型</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">StyleXStyles</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = &#123;</span><br><span class="line">  ...</span><br><span class="line">  style?: <span class="title class_">StyleXStyles</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params"></span></span><br><span class="line"><span class="params">  &#123; style, ...otherProps &#125;: <span class="title class_">Props</span></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#123;<span class="attr">...stylex.props</span>(</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">localStyles.foo</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">localStyles.bar</span>, <span class="attr">style</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      )&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;/* ... */&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="StyleXStylesWithout-禁止属性"><a href="#StyleXStylesWithout-禁止属性" class="headerlink" title="StyleXStylesWithout 禁止属性"></a>StyleXStylesWithout 禁止属性</h3><!--rehype:wrap-class=col-span-2 row-span-3-->
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">StyleXStylesWithout</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">NoLayout</span> = <span class="title class_">StyleXStylesWithout</span>&lt;&#123;</span><br><span class="line">  <span class="attr">position</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">display</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">top</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">start</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">end</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">bottom</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">border</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">borderWidth</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">borderBottomWidth</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">borderEndWidth</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">borderStartWidth</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">borderTopWidth</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">margin</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">marginBottom</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">marginEnd</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">marginStart</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">marginTop</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">padding</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">paddingBottom</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">paddingEnd</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">paddingStart</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">paddingTop</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">width</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">flexBasis</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">overflow</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">overflowX</span>: <span class="built_in">unknown</span>,</span><br><span class="line">  <span class="attr">overflowY</span>: <span class="built_in">unknown</span>,</span><br><span class="line">&#125;&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  style?: <span class="title class_">NoLayout</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params">&#123;style, ...&#125;: <span class="title class_">Props</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      &#123;<span class="attr">...stylex.props</span>(<span class="attr">localStyles.foo</span>, <span class="attr">localStyles.bar</span>, <span class="attr">style</span>)&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;/* ... */&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处对象类型中列出的属性将被禁止，但所有其他样式仍将被接受。</p>
+<h3 id="从一组样式属性中接受"><a href="#从一组样式属性中接受" class="headerlink" title="从一组样式属性中接受"></a>从一组样式属性中接受</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">StyleXStyles</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  style?: <span class="title class_">StyleXStyles</span>&lt;&#123;</span><br><span class="line">    color?: <span class="built_in">string</span>;</span><br><span class="line">    backgroundColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderTopColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderEndColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderBottomColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderStartColor?: <span class="built_in">string</span>;</span><br><span class="line">  &#125;&gt;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="限制样式的可能值"><a href="#限制样式的可能值" class="headerlink" title="限制样式的可能值"></a>限制样式的可能值</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">StyleXStyles</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 只接受 marginTop 的样式，其他不接受。</span></span><br><span class="line">  <span class="comment">// marginTop 的值只能是 0、4、8 或 16。</span></span><br><span class="line">  style?: <span class="title class_">StyleXStyles</span>&lt;&#123;</span><br><span class="line">    <span class="attr">marginTop</span>: <span class="number">0</span> | <span class="number">4</span> | <span class="number">8</span> | <span class="number">16</span></span><br><span class="line">  &#125;&gt;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="VarGroup"><a href="#VarGroup" class="headerlink" title="VarGroup"></a>VarGroup</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> vars = stylex.<span class="title function_">defineVars</span>(&#123;</span><br><span class="line">  <span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">  <span class="attr">backgroundColor</span>: <span class="string">&#x27;blue&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">Vars</span> = <span class="keyword">typeof</span> vars;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  Vars = VarGroup&lt;&#123;</span></span><br><span class="line"><span class="comment">    color: string,</span></span><br><span class="line"><span class="comment">    backgroundColor: string,</span></span><br><span class="line"><span class="comment">  &#125;&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>VarGroup 是调用 <code>stylex.defineVars</code> 生成的对象的类型。它将键映射到 CSS 自定义属性的引用</p>
+<h3 id="StaticStyles"><a href="#StaticStyles" class="headerlink" title="StaticStyles"></a>StaticStyles</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">StaticStyles</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  style?: <span class="title class_">StaticStyles</span>&lt;&#123;</span><br><span class="line">    color?: <span class="string">&#x27;red&#x27;</span> | <span class="string">&#x27;blue&#x27;</span> | <span class="string">&#x27;green&#x27;</span>;</span><br><span class="line">    padding?: <span class="number">0</span> | <span class="number">4</span> | <span class="number">8</span> | <span class="number">16</span> | <span class="number">32</span>;</span><br><span class="line">    backgroundColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderTopColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderEndColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderBottomColor?: <span class="built_in">string</span>;</span><br><span class="line">    borderStartColor?: <span class="built_in">string</span>;</span><br><span class="line">  &#125;&gt;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>不允许使用函数定义的动态样式</p>
+<h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123;<span class="title class_">VarGroup</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> stylex <span class="keyword">from</span> <span class="string">&#x27;@stylexjs/stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;vars&#125; <span class="keyword">from</span> <span class="string">&#x27;./vars.stylex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="attr">theme</span>: <span class="title class_">Theme</span>&lt;<span class="keyword">typeof</span> vars&gt; = stylex.<span class="title function_">createTheme</span>(vars, &#123;</span><br><span class="line">  <span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span>, <span class="comment">// OK</span></span><br><span class="line">  <span class="attr">backgroundColor</span>: <span class="string">&#x27;blue&#x27;</span>, <span class="comment">// OK</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

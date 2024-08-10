@@ -1,0 +1,1379 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Neo4j 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这个 neo4j 快速参考备忘单显示了它的常用命令 入门Neo4JNeo4j是一个图形数据库，由节点通过关系连接在一起。如果您有一个高度相互连接的数据集或者有很多连接的查询，您可能会考虑使用图数据库。  下载 Neo4j Desktop 下载 Neo4j 桌面版或服务器版 Neo4j 沙盒 选择一个数据集 - 无需安装 Neo4j Aura 在云端获得免费的 Neo4j 实例 Neo4j 图形学院">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neo4j 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/neo4j/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这个 neo4j 快速参考备忘单显示了它的常用命令 入门Neo4JNeo4j是一个图形数据库，由节点通过关系连接在一起。如果您有一个高度相互连接的数据集或者有很多连接的查询，您可能会考虑使用图数据库。  下载 Neo4j Desktop 下载 Neo4j 桌面版或服务器版 Neo4j 沙盒 选择一个数据集 - 无需安装 Neo4j Aura 在云端获得免费的 Neo4j 实例 Neo4j 图形学院">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.851Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.851Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/neo4j/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Neo4j 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Neo4j 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>这个 <a target="_blank" rel="noopener" href="https://neo4j.com/docs/">neo4j</a> 快速参考备忘单显示了它的常用命令</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="Neo4J"><a href="#Neo4J" class="headerlink" title="Neo4J"></a>Neo4J</h3><p>Neo4j是一个图形数据库，由节点通过关系连接在一起。如果您有一个高度相互连接的数据集或者有很多连接的查询，您可能会考虑使用图数据库。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://neo4j.com/download">下载 Neo4j Desktop</a> <em>下载 Neo4j 桌面版或服务器版</em></li>
+<li><a target="_blank" rel="noopener" href="https://sandbox.neo4j.com/">Neo4j 沙盒</a> <em>选择一个数据集 - 无需安装</em></li>
+<li><a target="_blank" rel="noopener" href="https://neo4j.com/aura">Neo4j Aura</a> <em>在云端获得免费的 Neo4j 实例</em></li>
+<li><a target="_blank" rel="noopener" href="https://neo4j.com/graphacademy">Neo4j 图形学院</a> <em>免费、自主学习、实践性的在线培训</em></li>
+<li><a target="_blank" rel="noopener" href="https://neo4j.com/graphgists">GraphGists</a> <em>使用案例和行业特定的示例图</em></li>
+</ul>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">bin/neo4j start</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Mac 或者 Linux 中，安装好 JDK 后，直接解压下载好的 Neo4j 包，然后运行上面命令即可。</p>
+<h3 id="Neo4J-使用"><a href="#Neo4J-使用" class="headerlink" title="Neo4J 使用"></a>Neo4J 使用</h3><p>Neo4J 提供了一个用户友好的 web 界面，可以进行各项配置、写入、查询等操作，并且提供了可视化功能。类似ElasticSearch 一样，我个人非常喜欢这种开箱即用的设计。</p>
+<h4 id="进入管理页面"><a href="#进入管理页面" class="headerlink" title="进入管理页面"></a>进入管理页面</h4><p>打开浏览器，输入下面网址，可以进入管理页面</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1:7474/browser/</span><br></pre></td></tr></table></figure>
+
+<h3 id="图数据库概念"><a href="#图数据库概念" class="headerlink" title="图数据库概念"></a>图数据库概念</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>节点</code></td>
+<td>节点通常用于表示数据中的 <em>实体</em> 或 _事物_。例如，一个 <strong>Person（人）</strong> 或 <strong>Movie（电影）</strong>。</td>
+</tr>
+<tr>
+<td><code>关系</code></td>
+<td>关系用于将两个节点连接在一起，并将数据组织成结构。例如，一个人 <strong>acted in（出演）</strong> 一部电影。关系有一个 <em>类型</em> 和 _方向_，尽管在查询时可以忽略方向。</td>
+</tr>
+<tr>
+<td><code>标签</code></td>
+<td>标签用于将节点分组到不同的类别中。例如，一个人可以有 <code>Person(人)</code> 和 <code>Actor(演员)</code> 标签。</td>
+</tr>
+<tr>
+<td><code>关系类型</code></td>
+<td>每个关系都有一个类型。关系允许您在图中探索较小的部分。</td>
+</tr>
+<tr>
+<td><code>属性</code></td>
+<td>节点和关系都可以设置属性。属性是 <a target="_blank" rel="noopener" href="https://neo4j.com/docs/cypher-manual/4.3/syntax/values/#cypher-values">名称-值对</a>。</td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-arrow-->
+
+<h2 id="Neo4j-语法"><a href="#Neo4j-语法" class="headerlink" title="Neo4j 语法"></a>Neo4j 语法</h2><h3 id="读取查询结构"><a href="#读取查询结构" class="headerlink" title="读取查询结构"></a>读取查询结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[USE] // (使用)</span><br><span class="line">[MATCH WHERE] //  (匹配条件)</span><br><span class="line">[OPTIONAL MATCH WHERE] //  (可选匹配条件)</span><br><span class="line">//  (传递结果并进行排序、跳过或限制)</span><br><span class="line">[WITH [ORDER BY] [SKIP] [LIMIT]]</span><br><span class="line">// (返回结果并进行排序、跳过或限制)</span><br><span class="line">RETURN [ORDER BY] [SKIP] [LIMIT] </span><br></pre></td></tr></table></figure>
+
+<h3 id="仅写入查询结构"><a href="#仅写入查询结构" class="headerlink" title="仅写入查询结构"></a>仅写入查询结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[USE] // (使用)</span><br><span class="line">(CREATE | MERGE)* // (创建或合并节点和关系)</span><br><span class="line">// (设置、删除、移除或循环操作)</span><br><span class="line">[SET|DELETE|REMOVE|FOREACH]* </span><br><span class="line">// (返回结果并进行排序、跳过或限制)</span><br><span class="line">[RETURN [ORDER BY] [SKIP] [LIMIT] </span><br></pre></td></tr></table></figure>
+
+<h3 id="读取-写入查询结构"><a href="#读取-写入查询结构" class="headerlink" title="读取-写入查询结构"></a>读取-写入查询结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[USE]       // (使用)</span><br><span class="line">[MATCH WHERE]          //  (匹配条件)</span><br><span class="line">[OPTIONAL MATCH WHERE] // (可选匹配条件)</span><br><span class="line">// (传递结果并进行排序、跳过或限制)</span><br><span class="line">[WITH [ORDER BY] [SKIP] [LIMIT]]</span><br><span class="line">(CREATE | MERGE)* // (创建或合并节点和关系)</span><br><span class="line">// (设置、删除、移除或循环操作)</span><br><span class="line">[SET|DELETE|REMOVE|FOREACH]* </span><br><span class="line">// (返回结果并进行排序、跳过或限制)</span><br><span class="line">[RETURN [ORDER BY] [SKIP] [LIMIT] </span><br></pre></td></tr></table></figure>
+
+<h2 id="Neo4j-读取数据"><a href="#Neo4j-读取数据" class="headerlink" title="Neo4j 读取数据"></a>Neo4j 读取数据</h2><h3 id="MATCH"><a href="#MATCH" class="headerlink" title="MATCH"></a>MATCH</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)-[:KNOWS]-&gt;(m:Person)</span><br><span class="line">WHERE n.name = &#x27;Alice&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>节点模式可以包含标签和属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n)--&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>在 MATCH 中可以使用任何模式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n &#123;name: &#x27;Alice&#x27;&#125;)--&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>带有节点属性的模式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH p = (n)--&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>将路径分配给 p</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OPTIONAL MATCH (n)-[r]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>可选模式：缺失部分将使用空值</p>
+<h3 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WHERE n.property &lt;&gt; $value</span><br></pre></td></tr></table></figure>
+
+<p>使用谓词进行过滤。请注意，WHERE 总是作为 MATCH、OPTIONAL MATCH 或 WITH 子句的一部分。在查询中的其他子句之后放置它将改变它的作用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WHERE EXISTS &#123;</span><br><span class="line">  MATCH (n)--&gt;(m) WHERE n.age = m.age</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用存在性子查询进行过滤。</p>
+<h3 id="RETURN"><a href="#RETURN" class="headerlink" title="RETURN"></a>RETURN</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RETURN *</span><br></pre></td></tr></table></figure>
+
+<p>返回所有变量的值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RETURN n AS columnName</span><br></pre></td></tr></table></figure>
+
+<p>为结果列名使用别名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RETURN DISTINCT n</span><br></pre></td></tr></table></figure>
+
+<p>返回唯一的行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ORDER BY n.property</span><br></pre></td></tr></table></figure>
+
+<p>对结果进行排序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ORDER BY n.property DESC</span><br></pre></td></tr></table></figure>
+
+<p>按降序对结果进行排序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SKIP $skipNumber</span><br></pre></td></tr></table></figure>
+
+<p>跳过一定数量的结果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LIMIT $limitNumber</span><br></pre></td></tr></table></figure>
+
+<p>限制结果的数量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SKIP $skipNumber LIMIT $limitNumber</span><br></pre></td></tr></table></figure>
+
+<p>跳过顶部的结果并限制结果的数量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RETURN count(*)</span><br></pre></td></tr></table></figure>
+
+<p>匹配行的数量。参见聚合函数了解更多</p>
+<h3 id="WITH"><a href="#WITH" class="headerlink" title="WITH"></a>WITH</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (user)-[:FRIEND]-(friend)</span><br><span class="line">WHERE user.name = $name</span><br><span class="line">WITH user, count(friend) AS friends</span><br><span class="line">WHERE friends &gt; 10</span><br><span class="line">RETURN user</span><br></pre></td></tr></table></figure>
+
+<p>WITH 语法类似于 RETURN。它明确地分隔查询部分，允许您声明要传递到下一部分的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (user)-[:FRIEND]-(friend)</span><br><span class="line">WITH user, count(friend) AS friends</span><br><span class="line">ORDER BY friends DESC</span><br><span class="line">  SKIP 1</span><br><span class="line">  LIMIT 3</span><br><span class="line">RETURN user</span><br></pre></td></tr></table></figure>
+
+<p>ORDER BY、SKIP 和 LIMIT 也可以与 WITH 一起使用</p>
+<h3 id="UNION"><a href="#UNION" class="headerlink" title="UNION"></a>UNION</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (a)-[:KNOWS]-&gt;(b)</span><br><span class="line">RETURN b.name</span><br><span class="line">UNION</span><br><span class="line">MATCH (a)-[:LOVES]-&gt;(b)</span><br><span class="line">RETURN b.name</span><br></pre></td></tr></table></figure>
+
+<p>返回所有查询结果的唯一并集。结果列的类型和名称必须匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (a)-[:KNOWS]-&gt;(b)</span><br><span class="line">RETURN b.name</span><br><span class="line">UNION ALL</span><br><span class="line">MATCH (a)-[:LOVES]-&gt;(b)</span><br><span class="line">RETURN b.name</span><br></pre></td></tr></table></figure>
+
+<p>返回所有查询结果的并集，包括重复行</p>
+<h2 id="Neo4j-写入数据"><a href="#Neo4j-写入数据" class="headerlink" title="Neo4j 写入数据"></a>Neo4j 写入数据</h2><h3 id="CREATE"><a href="#CREATE" class="headerlink" title="CREATE"></a>CREATE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE (n &#123;name: $value&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>创建具有指定属性的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE (n $map)</span><br></pre></td></tr></table></figure>
+
+<p>创建具有指定属性的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UNWIND $listOfMaps AS properties</span><br><span class="line">CREATE (n) SET n = properties</span><br></pre></td></tr></table></figure>
+
+<p>创建具有指定属性的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE (n)-[r:KNOWS]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>创建具有指定类型和方向的关系；将变量绑定到它</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE (n)-[:LOVES &#123;since: $value&#125;]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>创建具有指定类型、方向和属性的关系</p>
+<h3 id="SET"><a href="#SET" class="headerlink" title="SET"></a>SET</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET n.property1 = $value1,</span><br><span class="line">    n.property2 = $value2</span><br></pre></td></tr></table></figure>
+
+<p>更新或创建属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET n = $map</span><br></pre></td></tr></table></figure>
+
+<p>设置所有属性。这将删除任何现有属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET n += $map</span><br></pre></td></tr></table></figure>
+
+<p>添加和更新属性，同时保留现有属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET n:Person</span><br></pre></td></tr></table></figure>
+
+<p>向节点添加一个标签 Person</p>
+<h3 id="MERGE"><a href="#MERGE" class="headerlink" title="MERGE"></a>MERGE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MERGE (n:Person &#123;name: $value&#125;)</span><br><span class="line">  ON CREATE SET n.created = timestamp()</span><br><span class="line">  ON MATCH SET</span><br><span class="line">    n.counter = coalesce(n.counter, 0) + 1,</span><br><span class="line">    n.accessTime = timestamp()</span><br></pre></td></tr></table></figure>
+
+<p>匹配模式或在不存在时创建它。使用 ON CREATE 和 ON MATCH 进行条件更新</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (a:Person &#123;name: $value1&#125;),</span><br><span class="line">      (b:Person &#123;name: $value2&#125;)</span><br><span class="line">MERGE (a)-[r:LOVES]-&gt;(b)</span><br></pre></td></tr></table></figure>
+
+<p>MERGE 查找或创建节点之间的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (a:Person &#123;name: $value1&#125;)</span><br><span class="line">MERGE</span><br><span class="line">  (a)-[r:KNOWS]-&gt;(b:Person &#123;name: $value3&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>MERGE 查找或创建与节点关联的路径</p>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE n, r</span><br></pre></td></tr></table></figure>
+
+<p>删除一个节点和一个关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DETACH DELETE n</span><br></pre></td></tr></table></figure>
+
+<p>删除一个节点以及与其连接的所有关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n)</span><br><span class="line">DETACH DELETE n</span><br></pre></td></tr></table></figure>
+
+<p>从数据库中删除所有节点和关系</p>
+<h3 id="REMOVE"><a href="#REMOVE" class="headerlink" title="REMOVE"></a>REMOVE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REMOVE n:Person</span><br></pre></td></tr></table></figure>
+
+<p>从 n 中移除一个标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REMOVE n.property</span><br></pre></td></tr></table></figure>
+
+<p>移除一个属性</p>
+<h3 id="FOREACH"><a href="#FOREACH" class="headerlink" title="FOREACH"></a>FOREACH</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FOREACH (r IN relationships(path) |</span><br><span class="line">  SET r.marked = true)</span><br></pre></td></tr></table></figure>
+
+<p>对路径中的每个关系执行一个变异操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FOREACH (value IN coll |</span><br><span class="line"> CREATE (:Person &#123;name: value&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>对列表中的每个元素执行一个变异操作。</p>
+<h3 id="调用子查询"><a href="#调用子查询" class="headerlink" title="调用子查询"></a>调用子查询</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALL &#123;</span><br><span class="line">  MATCH (p:Person)-[:FRIEND_OF]-&gt;(other:Person) RETURN p, other</span><br><span class="line">  UNION</span><br><span class="line">  MATCH (p:Child)-[:CHILD_OF]-&gt;(other:Parent) RETURN p, other</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这调用了一个具有两个联合部分的子查询。子查询的结果之后可以进行后处理。</p>
+<h3 id="调用存储过程"><a href="#调用存储过程" class="headerlink" title="调用存储过程"></a>调用存储过程</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALL db.labels() YIELD label</span><br></pre></td></tr></table></figure>
+
+<p>这显示了对内置过程 db.labels 的独立调用，以列出数据库中使用的所有标签。请注意，所需的过程参数在过程名称后的括号中明确给出。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALL db.labels() YIELD *</span><br></pre></td></tr></table></figure>
+
+<p>独立调用可以使用 YIELD * 返回所有列。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALL java.stored.procedureWithArgs</span><br></pre></td></tr></table></figure>
+
+<p>独立调用可以省略 YIELD，并且也可以通过语句参数隐式提供参数，例如，一个需要一个参数输入的独立调用可以通过传递参数映射 {input: ‘foo’} 来运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALL db.labels() YIELD label</span><br><span class="line">RETURN count(label) AS count</span><br></pre></td></tr></table></figure>
+
+<p>在更大的查询中调用内置过程 db.labels 来计算数据库中使用的所有标签。在更大的查询中进行调用时，总是需要显式传递参数和使用 YIELD 明确命名结果。</p>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><!--rehype:wrap-class=col-span-2 row-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOAD CSV FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists.csv&#x27; AS line</span><br><span class="line">CREATE (:Artist &#123;name: line[1], year: toInteger(line[2])&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>从 CSV 文件加载数据并创建节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOAD CSV WITH HEADERS FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists-with-headers.csv&#x27; AS line</span><br><span class="line">CREATE (:Artist &#123;name: line.Name, year: toInteger(line.Year)&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>加载包含标题的 CSV 数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">USING PERIODIC COMMIT 500</span><br><span class="line">LOAD CSV WITH HEADERS FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists-with-headers.csv&#x27; AS line</span><br><span class="line">CREATE (:Artist &#123;name: line.Name, year: toInteger(line.Year)&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在导入大量数据时，每处理500行后提交当前事务。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOAD CSV FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists-fieldterminator.csv&#x27;</span><br><span class="line">AS line FIELDTERMINATOR &#x27;;&#x27;</span><br><span class="line">CREATE (:Artist &#123;name: line[1], year: toInteger(line[2])&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用不同的字段分隔符，而不是默认的逗号（周围没有空白）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOAD CSV FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists.csv&#x27; AS line</span><br><span class="line">RETURN DISTINCT file()</span><br></pre></td></tr></table></figure>
+
+<p>返回 LOAD CSV 处理的文件的绝对路径，如果在 LOAD CSV 上下文之外调用则返回 null。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOAD CSV FROM</span><br><span class="line">&#x27;https://neo4j.com/docs/cypher-refcard/4.3/csv/artists.csv&#x27; AS line</span><br><span class="line">RETURN linenumber()</span><br></pre></td></tr></table></figure>
+
+<p>返回 LOAD CSV 当前正在处理的行号，如果在 LOAD CSV 上下文之外调用则返回 null。</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>通用</strong></td>
+<td>DISTINCT, ., []</td>
+</tr>
+<tr>
+<td><strong>数学</strong></td>
+<td>+, -, *, &#x2F;, %, ^</td>
+</tr>
+<tr>
+<td><strong>比较</strong></td>
+<td>&#x3D;, &lt;&gt;, &lt;, &gt;, &lt;&#x3D;, &gt;&#x3D;, IS NULL, IS NOT NULL</td>
+</tr>
+<tr>
+<td><strong>布尔</strong></td>
+<td>AND, OR, XOR, NOT</td>
+</tr>
+<tr>
+<td><strong>字符串</strong></td>
+<td>+</td>
+</tr>
+<tr>
+<td><strong>列表</strong></td>
+<td>+, IN, [x], [x .. y]</td>
+</tr>
+<tr>
+<td><strong>正则表达式</strong></td>
+<td>&#x3D;~</td>
+</tr>
+<tr>
+<td><strong>字符串匹配</strong></td>
+<td>STARTS WITH, ENDS WITH, CONTAINS</td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
+<li><code>null</code> 用于表示缺失&#x2F;未定义的值。</li>
+<li><code>null</code> 不等于 <code>null</code>。不知道两个值是否相等并不意味着它们是相同的值。因此，表达式 <code>null = null</code> 得到的是 <code>null</code> 而不是 <code>true</code>。要检查表达式是否为 <code>null</code>，请使用 <code>IS NULL</code>。</li>
+<li>算术表达式、比较和函数调用（除了 <code>coalesce</code>）将返回 <code>null</code> 如果任何参数为 <code>null</code>。</li>
+<li>尝试访问列表中缺失的元素或不存在的属性将得到 <code>null</code>。</li>
+<li>在 <code>OPTIONAL MATCH</code> 子句中，缺失部分的模式将使用 <code>null</code>。</li>
+</ul>
+<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><!--rehype:wrap-class=row-span-4-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n:Person)</span><br></pre></td></tr></table></figure>
+
+<p>具有 Person 标签的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n:Person:Swedish)</span><br></pre></td></tr></table></figure>
+
+<p>具有 Person 和 Swedish 标签的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n:Person &#123;name: $value&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>具有声明的属性的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">()-[r &#123;name: $value&#125;]-()</span><br></pre></td></tr></table></figure>
+
+<p>匹配具有声明的属性的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)--&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>从 n 到 m 的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)--(m)</span><br></pre></td></tr></table></figure>
+
+<p>在 n 和 m 之间的任意方向上的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n:Person)--&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>带有指向 m 的关系的标记为 Person 的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(m)&lt;-[:KNOWS]-(n)</span><br></pre></td></tr></table></figure>
+
+<p>从 n 到 m 的类型为 KNOWS 的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[:KNOWS|:LOVES]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>从 n 到 m 的类型为 KNOWS 或类型为 LOVES 的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[r]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>将关系绑定到变量 r</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[*1..5]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>从 n 到 m 之间的 1 到 5 个关系的变长路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[*]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>从 n 到 m 之间的任意数量的关系的变长路径。（请参阅性能部分）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[:KNOWS]-&gt;(m &#123;property: $value&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>从节点 n 到节点 m，类型为 KNOWS 的关系，具有声明的属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shortestPath((n1:Person)-[*..6]-(n2:Person))</span><br></pre></td></tr></table></figure>
+
+<p>查找单一最短路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">allShortestPaths((n1:Person)-[*..6]-&gt;(n2:Person))</span><br></pre></td></tr></table></figure>
+
+<p>查找所有最短路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">size((n)--&gt;()--&gt;())</span><br></pre></td></tr></table></figure>
+
+<p>计算与模式匹配的路径数量</p>
+<h3 id="USE"><a href="#USE" class="headerlink" title="USE"></a>USE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">USE myDatabase</span><br></pre></td></tr></table></figure>
+
+<p>选择 myDatabase 来执行查询，或针对其执行查询的部分</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">USE neo4j</span><br><span class="line">MATCH (n:Person)-[:KNOWS]-&gt;(m:Person)</span><br><span class="line">WHERE n.name = &#x27;Alice&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>针对 Neo4j 数据库执行的 MATCH 查询</p>
+<h3 id="SHOW-FUNCTIONS-和-PROCEDURES"><a href="#SHOW-FUNCTIONS-和-PROCEDURES" class="headerlink" title="SHOW FUNCTIONS 和 PROCEDURES"></a>SHOW FUNCTIONS 和 PROCEDURES</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW FUNCTIONS</span><br></pre></td></tr></table></figure>
+
+<p>列出所有可用函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW PROCEDURES EXECUTABLE YIELD name</span><br></pre></td></tr></table></figure>
+
+<p>列出当前用户可以执行的所有过程，并仅返回过程的名称</p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE (n:Person &#123;name: $value&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>创建一个带有标签和属性的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MERGE (n:Person &#123;name: $value&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>匹配或创建具有该标签和属性的唯一节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET n:Spouse:Parent:Employee</span><br></pre></td></tr></table></figure>
+
+<p>向节点添加标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)</span><br></pre></td></tr></table></figure>
+
+<p>匹配标记为“Person”的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)</span><br><span class="line">WHERE n.name = $value</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>匹配具有给定名称的标记为“Person”的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WHERE (n:Person)</span><br></pre></td></tr></table></figure>
+
+<p>检查节点上标签的存在</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">labels(n)</span><br></pre></td></tr></table></figure>
+
+<p>节点的标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REMOVE n:Person</span><br></pre></td></tr></table></figure>
+
+<p>从节点中移除标签</p>
+<h3 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;] AS list</span><br></pre></td></tr></table></figure>
+
+<p>文字列表用方括号声明</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">size($list) AS len, $list[0] AS value</span><br></pre></td></tr></table></figure>
+
+<p>列表可以作为参数传递</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">range($firstNum, $lastNum, $step) AS list</span><br></pre></td></tr></table></figure>
+
+<p>range() 创建一个数字列表（step是可选的），其他返回列表的函数有：labels()、nodes()、relationships()</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH p = (a)-[:KNOWS*]-&gt;()</span><br><span class="line">RETURN relationships(p) AS r</span><br></pre></td></tr></table></figure>
+
+<p>可以使用命名路径和 relationships() 返回变长路径的关系列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RETURN matchedNode.list[0] AS value,</span><br><span class="line">       size(matchedNode.list) AS len</span><br></pre></td></tr></table></figure>
+
+<p>属性可以是字符串、数字或布尔值的列表。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">list[$idx] AS value,</span><br><span class="line">list[$startIdx..$endIdx] AS slice</span><br></pre></td></tr></table></figure>
+
+<p>可以使用方括号中的 idx 下标来访问列表元素。无效的索引返回 null。可以使用起始索引到结束索引的间隔来检索片段，每个索引都可以省略或为负数。超出范围的元素将被忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UNWIND $names AS name</span><br><span class="line">MATCH (n &#123;name: name&#125;)</span><br><span class="line">RETURN avg(n.age)</span><br></pre></td></tr></table></figure>
+
+<p>使用 UNWIND，任何列表都可以转换回单独的行。该示例匹配一个名字列表中的所有名字</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (a)</span><br><span class="line">RETURN [(a)--&gt;(b) WHERE b.name = &#x27;Bob&#x27; | b.age]</span><br></pre></td></tr></table></figure>
+
+<p>可以使用模式推导直接从匹配中进行自定义投影</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (person)</span><br><span class="line">RETURN person &#123; .name, .age&#125;</span><br></pre></td></tr></table></figure>
+
+<p>映射投影可以很容易地从节点、关系和其他映射值构造出来</p>
+<h3 id="Maps"><a href="#Maps" class="headerlink" title="Maps"></a>Maps</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;name: &#x27;Alice&#x27;, age: 38, address: &#123;</span><br><span class="line">      city: &#x27;London&#x27;,residential: true&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>文字映射使用大括号声明，就像属性映射一样。支持列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WITH &#123;person: &#123;name: &#x27;Anne&#x27;, age: 25&#125;&#125; AS p</span><br><span class="line">RETURN p.person.name</span><br></pre></td></tr></table></figure>
+
+<p>访问嵌套映射的属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MERGE (p:Person &#123;name: $map.name&#125;)</span><br><span class="line">  ON CREATE SET p = $map</span><br></pre></td></tr></table></figure>
+
+<p>映射可以作为参数传递，并且可以作为映射或通过访问键来使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (matchedNode:Person)</span><br><span class="line">RETURN matchedNode</span><br></pre></td></tr></table></figure>
+
+<p>节点和关系被返回为它们数据的映射</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map.name, map.age, map.children[0]</span><br></pre></td></tr></table></figure>
+
+<p>可以通过它们的键访问映射条目。无效的键会导致错误</p>
+<h3 id="CASE"><a href="#CASE" class="headerlink" title="CASE"></a>CASE</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CASE n.eyes</span><br><span class="line">  WHEN &#x27;blue&#x27; THEN 1</span><br><span class="line">  WHEN &#x27;brown&#x27; THEN 2</span><br><span class="line">  ELSE 3</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<p>从匹配的 WHEN 值返回 THEN 值。ELSE 值是可选的，如果缺失，则替换为 null</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CASE</span><br><span class="line">  WHEN n.eyes = &#x27;blue&#x27; THEN 1</span><br><span class="line">  WHEN n.age &lt; 40 THEN 2</span><br><span class="line">  ELSE 3</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<p>从第一个评估为 true 的 WHEN 谓词返回 THEN 值。谓词按顺序进行评估</p>
+<h3 id="Predicates-谓词"><a href="#Predicates-谓词" class="headerlink" title="Predicates 谓词"></a>Predicates 谓词</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property &lt;&gt; $value</span><br></pre></td></tr></table></figure>
+
+<p>使用比较运算符</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toString(n.property) = $value</span><br></pre></td></tr></table></figure>
+
+<p>使用函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.number &gt;= 1 AND n.number &lt;= 10</span><br></pre></td></tr></table></figure>
+
+<p>使用布尔运算符来组合谓词</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 &lt;= n.number &lt;= 10</span><br></pre></td></tr></table></figure>
+
+<p>使用链接运算符来组合谓词</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n:Person</span><br></pre></td></tr></table></figure>
+
+<p>检查节点标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">variable IS NOT NULL</span><br></pre></td></tr></table></figure>
+
+<p>检查某物是否不为 null，例如某个属性是否存在</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property IS NULL OR n.property = $value</span><br></pre></td></tr></table></figure>
+
+<p>要么属性不存在，要么谓词为 true</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property = $value</span><br></pre></td></tr></table></figure>
+
+<p>不存在的属性返回 null，它与任何值都不相等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n[&quot;property&quot;] = $value</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用动态计算的属性名称来访问属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property STARTS WITH &#x27;Tim&#x27; OR</span><br><span class="line">n.property ENDS WITH &#x27;n&#x27; OR</span><br><span class="line">n.property CONTAINS &#x27;goodie&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>字符串匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property =~ &#x27;Tim.*&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>字符串正则表达式匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(n)-[:KNOWS]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>确保模式至少有一个匹配项</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">NOT (n)-[:KNOWS]-&gt;(m)</span><br></pre></td></tr></table></figure>
+
+<p>从结果中排除对 (n)-[:KNOWS]-&gt;(m) 的匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n.property IN [$value1, $value2]</span><br></pre></td></tr></table></figure>
+
+<p>检查一个元素是否存在于列表中</p>
+<h3 id="列表谓词"><a href="#列表谓词" class="headerlink" title="列表谓词"></a>列表谓词</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">all(x IN coll WHERE x.property IS NOT NULL)</span><br></pre></td></tr></table></figure>
+
+<p>如果列表中所有元素都满足谓词，则返回 true。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">any(x IN coll WHERE x.property IS NOT NULL)</span><br></pre></td></tr></table></figure>
+
+<p>如果列表中至少有一个元素满足谓词，则返回 true。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">none(x IN coll WHERE x.property IS NOT NULL)</span><br></pre></td></tr></table></figure>
+
+<p>如果列表中所有元素都不满足谓词，则返回 true。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">single(x IN coll WHERE x.property IS NOT NULL)</span><br></pre></td></tr></table></figure>
+
+<p>如果列表中恰好有一个元素满足谓词，则返回 true。</p>
+<h3 id="列表表达式"><a href="#列表表达式" class="headerlink" title="列表表达式"></a>列表表达式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">size($list)</span><br></pre></td></tr></table></figure>
+
+<p>列表中的元素数量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reverse($list)</span><br></pre></td></tr></table></figure>
+
+<p>反转列表中元素的顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">head($list), last($list), tail($list)</span><br></pre></td></tr></table></figure>
+
+<p>head() 返回列表的第一个元素，last() 返回列表的最后一个元素。tail() 返回除第一个元素外的所有元素。对于空列表，所有函数返回 null</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[x IN list | x.prop]</span><br></pre></td></tr></table></figure>
+
+<p>对原始列表中每个元素的表达式值组成的列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[x IN list WHERE x.prop &lt;&gt; $value]</span><br></pre></td></tr></table></figure>
+
+<p>过滤出谓词为 true 的元素组成的列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[x IN list WHERE x.prop &lt;&gt; $value | x.prop]</span><br></pre></td></tr></table></figure>
+
+<p>对列表进行过滤，并从每个符合条件的元素中提取表达式的值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reduce(s = &quot;&quot;, x IN list | s + x.prop)</span><br></pre></td></tr></table></figure>
+
+<p>对列表中的每个元素求值，并累积结果</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">coalesce(n.property, $defaultValue)</span><br></pre></td></tr></table></figure>
+
+<p>返回第一个非空表达式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">timestamp()</span><br></pre></td></tr></table></figure>
+
+<p>自1970年1月1日UTC午夜以来的毫秒数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id(nodeOrRelationship)</span><br></pre></td></tr></table></figure>
+
+<p>关系或节点的内部ID</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toInteger($expr)</span><br></pre></td></tr></table></figure>
+
+<p>将给定的输入转换为整数（如果可能），否则返回 null</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toFloat($expr)</span><br></pre></td></tr></table></figure>
+
+<p>将给定的输入转换为浮点数（如果可能），否则返回 null</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toBoolean($expr)</span><br></pre></td></tr></table></figure>
+
+<p>将给定的输入转换为布尔值（如果可能），否则返回 null</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">keys($expr)</span><br></pre></td></tr></table></figure>
+
+<p>返回节点、关系或映射的属性名称的字符串表示形式列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">properties($expr)</span><br></pre></td></tr></table></figure>
+
+<p>返回包含节点或关系的所有属性的映射</p>
+<h3 id="路径函数"><a href="#路径函数" class="headerlink" title="路径函数"></a>路径函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">length(path)</span><br></pre></td></tr></table></figure>
+
+<p>路径中的关系数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nodes(path)</span><br></pre></td></tr></table></figure>
+
+<p>路径中的节点列表。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">relationships(path)</span><br></pre></td></tr></table></figure>
+
+<p>路径中的关系列表。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[x IN nodes(path) | x.prop]</span><br></pre></td></tr></table></figure>
+
+<p>从路径中的节点中提取属性。</p>
+<h3 id="空间函数"><a href="#空间函数" class="headerlink" title="空间函数"></a>空间函数</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">point(&#123;x: $x, y: $y&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个二维笛卡尔坐标系中的点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">point(&#123;latitude: $y, longitude: $x&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个二维地理坐标系中的点，坐标以十进制度数指定。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">point(&#123;x: $x, y: $y, z: $z&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个三维笛卡尔坐标系中的点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">point(&#123;latitude: $y, longitude: $x, height: $z&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个三维地理坐标系中的点，纬度和经度以十进制度数表示，高度以米为单位。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">distance(point(&#123;x: $x1, y: $y1&#125;), point(&#123;x: $x2, y: $y2&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>返回一个浮点数，表示两点之间的线性距离。返回的单位将与点坐标的单位相同，它适用于二维和三维笛卡尔点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">distance(point(&#123;latitude: $y1, longitude: $x1&#125;), point(&#123;latitude: $y2, longitude: $x2&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>返回两点之间的大地距离，单位为米。它也可以用于三维地理点。</p>
+<h2 id="Neo4j-函数"><a href="#Neo4j-函数" class="headerlink" title="Neo4j 函数"></a>Neo4j 函数</h2><h3 id="时间函数"><a href="#时间函数" class="headerlink" title="时间函数"></a>时间函数</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date(&quot;2018-04-05&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>从字符串解析并返回日期。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localtime(&quot;12:45:30.25&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个没有时区的时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time(&quot;12:45:30.25+01:00&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回指定时区的时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localdatetime(&quot;2018-04-05T12:34:00&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回一个没有时区的日期时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">datetime(&quot;2018-04-05T12:34:00[Europe/Berlin]&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回指定时区的日期时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">datetime(&#123;epochMillis: 3360000&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>将 3360000 作为 UNIX Epoch 时间转换为普通日期时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date(&#123;year: $year, month: $month, day: $day&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>所有的时间函数也可以接受命名组件的映射。这个例子从年、月和日组件返回一个日期。每个函数支持不同的可能组件集。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">datetime(&#123;date: $date, time: $time&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以通过组合其他类型来创建时间类型。这个例子从日期和时间创建一个日期时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date(&#123;date: $datetime, day: 5&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以通过选择更复杂的类型来创建时间类型，也可以覆盖单个组件。这个例子从日期时间中选择，同时覆盖了天组件，创建了一个日期。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WITH date(&quot;2018-04-05&quot;) AS d</span><br><span class="line">RETURN d.year, d.month, d.day, d.week, d.dayOfWeek</span><br></pre></td></tr></table></figure>
+
+<p>访问器允许提取时间类型的组件。</p>
+<h3 id="时长函数"><a href="#时长函数" class="headerlink" title="时长函数"></a>时长函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">duration(&quot;P1Y2M10DT12H45M30.25S&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回 1 年、2 个月、10 天、12 小时、45 分钟和 30.25 秒的持续时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">duration.between($date1,$date2)</span><br></pre></td></tr></table></figure>
+
+<p>返回两个时间实例之间的持续时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WITH duration(&quot;P1Y2M10DT12H45M&quot;) AS d</span><br><span class="line">RETURN d.years, d.months, d.days, d.hours, d.minutes</span><br></pre></td></tr></table></figure>
+
+<p>返回 1 年、14 个月、10 天、12 小时和 765 分钟。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WITH duration(&quot;P1Y2M10DT12H45M&quot;) AS d</span><br><span class="line">RETURN d.years, d.monthsOfYear, d.days, d.hours, d.minutesOfHour</span><br></pre></td></tr></table></figure>
+
+<p>返回 1 年、2 个月、10 天、12 小时和 45 分钟。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date(&quot;2015-01-01&quot;) + duration(&quot;P1Y1M1D&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>返回 2016-02-02 的日期。也可以从时间实例中减去持续时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">duration(&quot;PT30S&quot;) * 10</span><br></pre></td></tr></table></figure>
+
+<p>返回 5 分钟的持续时间。也可以将持续时间除以一个数字。</p>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">abs($expr)</span><br></pre></td></tr></table></figure>
+
+<p>绝对值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rand()</span><br></pre></td></tr></table></figure>
+
+<p>返回范围从 0（包含）到 1（不包含）的随机数，[0,1)。每次调用都会返回一个新值。也可用于选择子集或随机排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">round($expr)</span><br></pre></td></tr></table></figure>
+
+<p>四舍五入到最近的整数；ceil() 和 floor() 分别向上或向下找到下一个整数。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqrt($expr)</span><br></pre></td></tr></table></figure>
+
+<p>平方根。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sign($expr)</span><br></pre></td></tr></table></figure>
+
+<p>如果为零，则为 0；如果为负，则为 -1；如果为正，则为 1。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sin($expr)</span><br></pre></td></tr></table></figure>
+
+<p>三角函数还包括 cos()、tan()、cot()、asin()、acos()、atan()、atan2() 和 haversin()。如果没有另外指定，三角函数的所有参数都应该以弧度为单位。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">degrees($expr), radians($expr), pi()</span><br></pre></td></tr></table></figure>
+
+<p>将弧度转换为度；使用 radians() 进行反向转换，使用 pi() 表示 π。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">log10($expr), log($expr), exp($expr), e()</span><br></pre></td></tr></table></figure>
+
+<p>以 10 为底的对数、自然对数、e 的参数次幂，以及 e 的值。</p>
+<h3 id="关系函数"><a href="#关系函数" class="headerlink" title="关系函数"></a>关系函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type(a_relationship)</span><br></pre></td></tr></table></figure>
+
+<p>关系类型的字符串表示。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">startNode(a_relationship)</span><br></pre></td></tr></table></figure>
+
+<p>关系的起始节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">endNode(a_relationship)</span><br></pre></td></tr></table></figure>
+
+<p>关系的结束节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id(a_relationship)</span><br></pre></td></tr></table></figure>
+
+<p>关系的内部ID</p>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toString($expression)</span><br></pre></td></tr></table></figure>
+
+<p>表达式的字符串表示。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">replace($original, $search, $replacement)</span><br></pre></td></tr></table></figure>
+
+<p>用 replacement 替换所有出现的 search。所有参数都必须是表达式。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substring($original, $begin, $subLength)</span><br></pre></td></tr></table></figure>
+
+<p>获取字符串的部分。subLength 参数是可选的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">left($original, $subLength),</span><br><span class="line">  right($original, $subLength)</span><br></pre></td></tr></table></figure>
+
+<p>字符串的前部分。字符串的后部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">trim($original), lTrim($original),</span><br><span class="line">  rTrim($original)</span><br></pre></td></tr></table></figure>
+
+<p>修剪所有空格，或在左侧或右侧。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toUpper($original), toLower($original)</span><br></pre></td></tr></table></figure>
+
+<p>大写和小写。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">split($original, $delimiter)</span><br></pre></td></tr></table></figure>
+
+<p>将字符串拆分为字符串列表。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reverse($original)</span><br></pre></td></tr></table></figure>
+
+<p>反转字符串。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">size($string)</span><br></pre></td></tr></table></figure>
+
+<p>计算字符串中的字符数。</p>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">count(*)</span><br></pre></td></tr></table></figure>
+
+<p>匹配行的数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">count(variable)</span><br></pre></td></tr></table></figure>
+
+<p>非空值的数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">count(DISTINCT variable)</span><br></pre></td></tr></table></figure>
+
+<p>所有聚合函数也接受 DISTINCT 运算符，它从值中去除重复项。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">collect(n.property)</span><br></pre></td></tr></table></figure>
+
+<p>从值中创建列表，忽略 null 值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sum(n.property)</span><br></pre></td></tr></table></figure>
+
+<p>求数值的总和。类似的函数有 avg()、min()、max()。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">percentileDisc(n.property, $percentile)</span><br></pre></td></tr></table></figure>
+
+<p>离散百分位数。连续百分位数是 percentileCont()。百分位数参数范围从 0.0 到 1.0。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stDev(n.property)</span><br></pre></td></tr></table></figure>
+
+<p>样本标准差。对于整个总体，请使用 stDevP()。</p>
+<h2 id="Neo4j-模式操作"><a href="#Neo4j-模式操作" class="headerlink" title="Neo4j 模式操作"></a>Neo4j 模式操作</h2><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><!--rehype:wrap-class=col-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE INDEX FOR (p:Person) ON (p.name)</span><br></pre></td></tr></table></figure>
+
+<p>在具有标签 Person 和属性 name 的节点上创建索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE INDEX index_name FOR ()-[k:KNOWS]-() ON (k.since)</span><br></pre></td></tr></table></figure>
+
+<p>在具有类型 KNOWS 和属性 since 的关系上创建索引，并命名为 index_name。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE INDEX FOR (p:Person) ON (p.surname)</span><br><span class="line">OPTIONS &#123;indexProvider: &#x27;native-btree-1.0&#x27;, indexConfig: &#123;`spatial.cartesian.min`: [-100.0, -100.0], `spatial.cartesian.max`: [100.0, 100.0]&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在具有标签 Person 和属性 surname 的节点上创建索引，使用本地 btree 索引提供程序，以及给定的空间笛卡尔设置。其他索引设置将使用它们的默认值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE INDEX FOR (p:Person) ON (p.name, p.age)</span><br></pre></td></tr></table></figure>
+
+<p>在具有标签 Person 和属性 name 和 age 的节点上创建复合索引，如果索引已存在则抛出错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE INDEX IF NOT EXISTS FOR (p:Person) ON (p.name, p.age)</span><br></pre></td></tr></table></figure>
+
+<p>在具有标签 Person 和属性 name 和 age 的节点上创建复合索引，如果尚不存在则创建，如果已存在则不执行任何操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE LOOKUP INDEX lookup_index_name FOR (n) ON EACH labels(n)</span><br></pre></td></tr></table></figure>
+
+<p>在具有任何标签的节点上创建一个名为 lookup_index_name 的令牌查找索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE LOOKUP INDEX FOR ()-[r]-() ON EACH type(r)</span><br></pre></td></tr></table></figure>
+
+<p>在具有任何关系类型的关系上创建一个令牌查找索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE FULLTEXT INDEX node_fulltext_index_name FOR (n:Friend) ON EACH [n.name]</span><br><span class="line">OPTIONS &#123;indexConfig: &#123;`fulltext.analyzer`: &#x27;swedish&#x27;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在具有名称 node_fulltext_index_name 和分析器为 swedish 的节点上创建全文索引。节点上的全文索引只能由存储过程 db.index.fulltext.queryNodes 使用。其他索引设置将使用它们的默认值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE FULLTEXT INDEX rel_fulltext_index_name FOR ()-[r:HAS_PET|BROUGHT_PET]-() ON EACH [r.since, r.price]</span><br></pre></td></tr></table></figure>
+
+<p>在具有名称 rel_fulltext_index_name 的关系上创建全文索引。关系上的全文索引只能由存储过程 db.index.fulltext.queryRelationships 使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW INDEXES</span><br></pre></td></tr></table></figure>
+
+<p>列出所有索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person) WHERE n.name = $value</span><br></pre></td></tr></table></figure>
+
+<p>索引可以自动用于相等比较。请注意，例如 toLower(n.name) &#x3D; $value 将不会使用索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)</span><br><span class="line">WHERE n.name IN [$value]</span><br></pre></td></tr></table></figure>
+
+<p>索引可以自动用于 IN 列表检查。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)</span><br><span class="line">WHERE n.name = $value and n.age = $value2</span><br></pre></td></tr></table></figure>
+
+<p>复合索引可以自动用于两个属性的相等比较。请注意，必须对复合索引的所有属性进行谓词处理才能使用该索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (n:Person)</span><br><span class="line">USING INDEX n:Person(name)</span><br><span class="line">WHERE n.name = $value</span><br></pre></td></tr></table></figure>
+
+<p>在 Cypher 使用了次优索引或应该使用多个索引时，可以强制使用索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP INDEX index_name</span><br></pre></td></tr></table></figure>
+
+<p>删除名为 index_name 的索引，如果索引不存在则抛出错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP INDEX index_name IF EXISTS</span><br></pre></td></tr></table></figure>
+
+<p>如果存在则删除名为 index_name 的索引，如果不存在则不执行任何操作。</p>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT ON (p:Person)</span><br><span class="line">       ASSERT p.name IS UNIQUE</span><br></pre></td></tr></table></figure>
+
+<p>在标签为 Person 且属性为 name 的节点上创建唯一属性约束。如果更新或创建具有相同名称的该标签的任何其他节点，则写入操作将失败。此约束将创建一个相应的索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT uniqueness ON (p:Person)</span><br><span class="line">       ASSERT p.age IS UNIQUE</span><br></pre></td></tr></table></figure>
+
+<p>在标签为 Person 且属性为 age 的节点上创建唯一属性约束，命名为 uniqueness。如果更新或创建具有相同年龄的该标签的任何其他节点，则写入操作将失败。此约束将创建一个相应的索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT ON (p:Person)</span><br><span class="line">       ASSERT p.surname IS UNIQUE</span><br><span class="line">       OPTIONS &#123;indexProvider: &#x27;native-btree-1.0&#x27;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在标签为 Person 且属性为 surname 的节点上创建唯一属性约束，并使用 indexProvider native-btree-1.0 创建相应的索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT ON (p:Person)</span><br><span class="line">       ASSERT p.name IS NOT NULL</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在标签为 Person 且属性为 name 的节点上创建节点属性存在约束。如果该约束已存在，则抛出错误。如果创建具有该标签但没有 name 的节点，或者从具有 Person 标签的现有节点中删除 name 属性，则写入操作将失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT node_exists IF NOT EXISTS ON (p:Person)</span><br><span class="line">       ASSERT p.name IS NOT NULL</span><br></pre></td></tr></table></figure>
+
+<p>(★) 如果标签为 Person 且属性为 name 的节点存在节点属性存在约束，或者名为 node_exists 的约束已存在，则不执行任何操作。如果不存在此类约束，则将创建该约束。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT ON ()-[l:LIKED]-()</span><br><span class="line">       ASSERT l.when IS NOT NULL</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在关系类型为 LIKED 且属性为 when 的关系上创建关系属性存在约束。如果创建具有此类型但没有 when 的关系，或者从具有 LIKED 类型的现有关系中删除 when 属性，则写入操作将失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT relationship_exists ON ()-[l:LIKED]-()</span><br><span class="line">       ASSERT l.since IS NOT NULL</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在关系类型为 LIKED 且属性为 since 的关系上创建关系属性存在约束，并命名为 relationship_exists。如果创建具有此类型但没有 since 的关系，或者从具有 LIKED 类型的现有关系中删除 since 属性，则写入操作将失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW UNIQUE CONSTRAINTS YIELD *</span><br></pre></td></tr></table></figure>
+
+<p>列出所有唯一约束。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT ON (p:Person)</span><br><span class="line">      ASSERT (p.firstname, p.surname) IS NODE KEY</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在标签为 Person 且属性为 firstname 和 surname 的节点上创建节点键约束。如果创建具有此标签但没有 firstname 和 surname 的节点，或者如果两者的组合不是唯一的，或者如果修改具有 Person 标签的现有节点上的 firstname 和&#x2F;或 surname 属性以违反这些约束，则写入操作将失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT node_key ON (p:Person)</span><br><span class="line">      ASSERT (p.name, p.surname) IS NODE KEY</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在标签为 Person 且属性为 name 和 surname 的节点上创建节点键约束，并命名为 node_key。如果创建具有此标签但没有 name 和 surname 的节点，或者如果两者的组合不是唯一的，或者如果修改具有 Person 标签的现有节点上的 name 和&#x2F;或 surname 属性以违反这些约束，则写入操作将失败。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE CONSTRAINT node_key_with_config ON (p:Person)</span><br><span class="line">      ASSERT (p.name, p.age) IS NODE KEY</span><br><span class="line">      OPTIONS &#123;indexConfig: &#123;`spatial.wgs-84.min`: [-100.0, -100.0], `spatial.wgs-84.max`: [100.0, 100.0]&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(★) 在标签为 Person 且属性为 name 和 age 的节点上创建节点键约束，并命名为 node_key_with_config，以及给定的 spatial.wgs-84 设置以创建相应的索引。其他索引设置将使用它们的默认值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP CONSTRAINT uniqueness</span><br></pre></td></tr></table></figure>
+
+<p>删除名为 uniqueness 的约束，如果约束不存在则抛出错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP CONSTRAINT uniqueness IF EXISTS</span><br></pre></td></tr></table></figure>
+
+<p>如果名为 uniqueness 的约束存在，则删除它，如果不存在则不执行任何操作。</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><ul>
+<li>尽可能使用参数而不是文字常量。这样可以让 Cypher 重用你的查询，而不必解析和构建新的执行计划。</li>
+<li>始终为你的变长模式设置一个上限。有可能一个查询会因为错误而无限制地访问图中的所有节点。</li>
+<li>只返回你需要的数据。避免返回整个节点和关系，而是选择你需要的数据并只返回那部分。</li>
+<li>使用 <code>PROFILE</code> &#x2F; <code>EXPLAIN</code> 来分析你的查询性能。查看<a target="_blank" rel="noopener" href="https://neo4j.com/docs/cypher-manual/4.3/query-tuning">查询调优</a>了解更多关于这些以及其他主题的信息。</li>
+</ul>
+<h3 id="Neo4j-多数据库管理"><a href="#Neo4j-多数据库管理" class="headerlink" title="Neo4j 多数据库管理"></a>Neo4j 多数据库管理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE OR REPLACE DATABASE myDatabase</span><br></pre></td></tr></table></figure>
+
+<p>(★) 创建一个名为 myDatabase 的数据库。如果已存在同名数据库，则删除现有数据库并创建一个新的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">STOP DATABASE myDatabase</span><br></pre></td></tr></table></figure>
+
+<p>(★) 停止名为 myDatabase 的数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">START DATABASE myDatabase</span><br></pre></td></tr></table></figure>
+
+<p>(★) 启动名为 myDatabase 的数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DATABASES</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中所有数据库及其相关信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DATABASES</span><br><span class="line">YIELD name, currentStatus</span><br><span class="line">WHERE name CONTAINS &#x27;my&#x27; AND currentStatus = &#x27;online&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>列出数据库的信息，根据名称和在线状态进行筛选，并进一步根据这些条件进行细分。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DATABASE myDatabase</span><br></pre></td></tr></table></figure>
+
+<p>显示有关数据库 myDatabase 的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DEFAULT DATABASE</span><br></pre></td></tr></table></figure>
+
+<p>显示默认数据库的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW HOME DATABASE</span><br></pre></td></tr></table></figure>
+
+<p>显示当前用户的主数据库的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP DATABASE myDatabase IF EXISTS</span><br></pre></td></tr></table></figure>
+
+<p>(★) 删除数据库 myDatabase，如果存在的话。</p>
+<h2 id="Neo4j安全性"><a href="#Neo4j安全性" class="headerlink" title="Neo4j安全性"></a>Neo4j安全性</h2><h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER alice SET PASSWORD $password</span><br></pre></td></tr></table></figure>
+
+<p>创建一个新用户和密码。这个密码在第一次登录时必须更改。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER alice SET PASSWORD $password CHANGE NOT REQUIRED</span><br></pre></td></tr></table></figure>
+
+<p>为用户设置一个新密码。该用户将不需要在下次登录时更改密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER alice IF EXISTS SET PASSWORD CHANGE REQUIRED</span><br></pre></td></tr></table></figure>
+
+<p>如果指定的用户存在，则强制该用户在下次登录时更改其密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER alice SET STATUS SUSPENDED</span><br></pre></td></tr></table></figure>
+
+<p>(★) 将用户状态更改为已暂停。使用 SET STATUS ACTIVE 来重新激活用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER alice SET HOME DATABASE otherDb</span><br></pre></td></tr></table></figure>
+
+<p>(★) 将用户的主数据库更改为 otherDb。使用 REMOVE HOME DATABASE 来取消用户的主数据库设置，并回退到默认数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER CURRENT USER SET PASSWORD FROM $old TO $new</span><br></pre></td></tr></table></figure>
+
+<p>更改当前登录用户的密码。用户不需要在下次登录时更改此密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW CURRENT USER</span><br></pre></td></tr></table></figure>
+
+<p>列出当前登录用户、他们的状态、角色以及是否需要更改他们的密码。<br>(★) 状态和角色仅适用于企业版。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW USERS</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中的所有用户、他们的状态、角色以及是否需要更改他们的密码。<br>(★) 状态和角色仅适用于企业版。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW USERS</span><br><span class="line">YIELD user, suspended</span><br><span class="line">WHERE suspended = true</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中的用户，根据他们的名称和状态进行过滤，并进一步根据他们是否被暂停进行筛选。<br>(★) 状态仅适用于企业版。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RENAME USER alice TO alice_delete</span><br></pre></td></tr></table></figure>
+
+<p>将用户 alice 重命名为 alice_delete。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP USER alice_delete</span><br></pre></td></tr></table></figure>
+
+<p>删除用户</p>
+<h3 id="★-图读取权限"><a href="#★-图读取权限" class="headerlink" title="(★) 图读取权限"></a>(★) 图读取权限</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT TRAVERSE ON GRAPH * NODES * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将遍历权限授予角色对所有节点和所有图。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY READ &#123;prop&#125; ON GRAPH foo RELATIONSHIP Type TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝角色对指定图中具有指定类型的所有关系的特定属性的读取权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT MATCH &#123;*&#125; ON HOME GRAPH ELEMENTS Label TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将读取权限和遍历权限授予角色对主图中具有指定标签的所有节点和关系。这里，两种权限都适用于图中具有指定标签&#x2F;类型的所有节点和关系。</p>
+<h3 id="★-角色管理"><a href="#★-角色管理" class="headerlink" title="(★) 角色管理"></a>(★) 角色管理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE ROLE my_role</span><br></pre></td></tr></table></figure>
+
+<p>创建一个角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE ROLE my_second_role IF NOT EXISTS AS COPY OF my_role</span><br></pre></td></tr></table></figure>
+
+<p>创建一个名为 my_second_role 的角色，除非它已经存在，作为现有 my_role 的副本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RENAME ROLE my_second_role TO my_other_role</span><br></pre></td></tr></table></figure>
+
+<p>将名为 my_second_role 的角色重命名为 my_other_role。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ROLE my_role, my_other_role TO alice</span><br></pre></td></tr></table></figure>
+
+<p>将角色分配给用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE ROLE my_other_role FROM alice</span><br></pre></td></tr></table></figure>
+
+<p>从用户中删除指定的角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW ROLES</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中的所有角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW ROLES</span><br><span class="line">YIELD role</span><br><span class="line">WHERE role CONTAINS &#x27;my&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>列出角色，根据角色名称进行过滤，并进一步根据名称是否包含 ‘my’ 进行筛选。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW POPULATED ROLES WITH USERS</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中至少分配给一个用户的所有角色，以及分配给这些角色的用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP ROLE my_role</span><br></pre></td></tr></table></figure>
+
+<p>删除一个角色。</p>
+<h3 id="★-图写入权限"><a href="#★-图写入权限" class="headerlink" title="(★) 图写入权限"></a>(★) 图写入权限</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE ON GRAPH * NODES Label TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将创建权限授予角色对所有图中具有指定标签的所有节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY DELETE ON GRAPH neo4j TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝角色对指定图中的所有节点和关系的删除权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE SET LABEL Label ON GRAPH * FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>撤销对角色在所有图中设置指定标签的权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT REMOVE LABEL * ON GRAPH foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将删除标签权限授予角色对指定图中的所有标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY SET PROPERTY &#123;prop&#125; ON GRAPH foo RELATIONSHIPS Type TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝角色对指定图中具有指定类型的所有关系的特定属性的设置权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT MERGE &#123;*&#125; ON GRAPH * NODES Label TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将合并权限授予角色对所有图中具有指定标签的所有节点的所有属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE WRITE ON GRAPH * FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>撤销对角色在所有图中的写入权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY ALL GRAPH PRIVILEGES ON GRAPH foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝角色对指定图的所有图权限。</p>
+<h3 id="★-显示权限"><a href="#★-显示权限" class="headerlink" title="(★) 显示权限"></a>(★) 显示权限</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW PRIVILEGES AS COMMANDS</span><br></pre></td></tr></table></figure>
+
+<p>以Cypher命令的形式列出系统中的所有权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW PRIVILEGES</span><br></pre></td></tr></table></figure>
+
+<p>列出系统中的所有权限，以及它们所分配的角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW PRIVILEGES</span><br><span class="line">YIELD role, action, access</span><br><span class="line">WHERE role = &#x27;my_role&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>列出关于权限的信息，根据角色、操作和访问进行筛选，并进一步根据角色名称进行细化。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW ROLE my_role PRIVILEGES AS COMMANDS</span><br></pre></td></tr></table></figure>
+
+<p>以Cypher命令的形式列出分配给角色的所有权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW ROLE my_role, my_second_role PRIVILEGES AS COMMANDS</span><br></pre></td></tr></table></figure>
+
+<p>以Cypher命令的形式列出分配给多个角色的所有权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW USER alice PRIVILEGES AS COMMANDS</span><br></pre></td></tr></table></figure>
+
+<p>以Cypher命令的形式列出用户的所有权限，以及他们所分配的角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW USER PRIVILEGES AS COMMANDS</span><br></pre></td></tr></table></figure>
+
+<p>以Cypher命令的形式列出当前登录用户的所有权限，以及他们所分配的角色。</p>
+<h3 id="★-数据库权限"><a href="#★-数据库权限" class="headerlink" title="(★) 数据库权限"></a>(★) 数据库权限</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ACCESS ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将访问权限授予角色，以便对所有数据库进行访问和运行查询。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT START ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将启动权限授予角色，以便启动所有数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT STOP ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将停止权限授予角色，以便停止所有数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE INDEX ON DATABASE foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将在指定数据库上创建索引的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT DROP INDEX ON DATABASE foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将在指定数据库上删除索引的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT SHOW INDEX ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将显示所有数据库上的索引的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY INDEX MANAGEMENT ON DATABASE bar TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝在指定数据库上创建和删除索引的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE CONSTRAINT ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将在所有数据库上创建约束的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY DROP CONSTRAINT ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝在所有数据库上删除约束的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY SHOW CONSTRAINT ON DATABASE foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝在指定数据库上显示约束的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE CONSTRAINT ON DATABASE * FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>撤销授予和拒绝在所有数据库上创建和删除约束的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE NEW LABELS ON DATABASE * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将在所有数据库上创建新标签的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY CREATE NEW TYPES ON DATABASE foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝在指定数据库上创建新关系类型的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE GRANT CREATE NEW PROPERTY NAMES ON DATABASE bar FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销在指定数据库上创建新属性名称的权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT NAME MANAGEMENT ON HOME DATABASE TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将在主数据库上创建标签、关系类型和属性名称的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL ON DATABASE baz TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将对指定数据库的访问、创建和删除索引和约束、创建新标签、类型和属性名称的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT SHOW TRANSACTION (*) ON DATABASE foo TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将列出在指定数据库上所有用户的事务和查询的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY TERMINATE TRANSACTION (user1, user2) ON DATABASES * TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝在所有数据库上终止来自用户1和用户2的事务和查询的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE GRANT TRANSACTION MANAGEMENT ON HOME DATABASE FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销在主数据库上列出和终止所有用户的事务和查询的权限授予</p>
+<h3 id="★-角色管理权限"><a href="#★-角色管理权限" class="headerlink" title="(★) 角色管理权限"></a>(★) 角色管理权限</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE ROLE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将创建角色的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT RENAME ROLE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将重命名角色的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT DROP ROLE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将删除角色的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY ASSIGN ROLE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝将角色分配给用户的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY REMOVE ROLE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝从用户中删除角色的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE DENY SHOW ROLE ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对显示角色的权限的拒绝。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ROLE MANAGEMENT ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将管理角色的所有权限授予角色。</p>
+<h3 id="★-用户管理权限"><a href="#★-用户管理权限" class="headerlink" title="(★) 用户管理权限"></a>(★) 用户管理权限</h3><!--rehype:wrap-class=row-span-3-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE USER ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将创建用户的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT RENAME USER ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将重命名用户的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY ALTER USER ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝更改用户的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE SET PASSWORDS ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对更改用户密码的授权和拒绝。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE GRANT SET USER STATUS ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对更改用户帐户状态的授权。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT SET USER HOME DATABASE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将更改用户主数据库的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT DROP USER ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将删除用户的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE DENY SHOW USER ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对显示用户的权限的拒绝。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT USER MANAGEMENT ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将管理用户的所有权限授予角色。</p>
+<h3 id="★-数据库管理权限"><a href="#★-数据库管理权限" class="headerlink" title="(★) 数据库管理权限"></a>(★) 数据库管理权限</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT CREATE DATABASE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将创建数据库的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE DENY DROP DATABASE ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对删除数据库的拒绝权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY DATABASE MANAGEMENT ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝所有管理数据库的权限授予角色。</p>
+<h3 id="★-权限管理权限"><a href="#★-权限管理权限" class="headerlink" title="(★) 权限管理权限"></a>(★) 权限管理权限</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT SHOW PRIVILEGE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将显示权限的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DENY ASSIGN PRIVILEGE ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>拒绝将权限分配给角色的权限授予角色。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE GRANT REMOVE PRIVILEGE ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销对从角色中删除权限的授权权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE PRIVILEGE MANAGEMENT ON DBMS FROM my_role</span><br></pre></td></tr></table></figure>
+
+<p>从角色撤销管理权限的所有授予和拒绝。</p>
+<h3 id="★-DBMS权限"><a href="#★-DBMS权限" class="headerlink" title="(★) DBMS权限"></a>(★) DBMS权限</h3><!--rehype:wrap-class=col-span-2-->
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL ON DBMS TO my_role</span><br></pre></td></tr></table></figure>
+
+<p>将执行所有角色管理、用户管理、数据库管理和权限管理的权限授予角色。</p>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>

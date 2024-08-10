@@ -1,0 +1,819 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Express 备忘清单 | 太空毅栈</title><meta name="author" content="太空毅栈"><meta name="copyright" content="太空毅栈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#6f42c1"><meta name="description" content="这是用于 Node.js 的快速、不拘一格、极简主义的 Web 框架，包含 Express.js 的 API 参考列表和一些示例   入门Hello World   创建项目，添加 package.json 配置 $ mkdir myapp # 创建目录$ cd myapp    # 进入目录$ npm init -y # 初始化一个配置  安装依赖 $ npm install express">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Express 备忘清单">
+<meta property="og:url" content="https://caoyixiong.com/reference/expressjs/index.html">
+<meta property="og:site_name" content="太空毅栈">
+<meta property="og:description" content="这是用于 Node.js 的快速、不拘一格、极简主义的 Web 框架，包含 Express.js 的 API 参考列表和一些示例   入门Hello World   创建项目，添加 package.json 配置 $ mkdir myapp # 创建目录$ cd myapp    # 进入目录$ npm init -y # 初始化一个配置  安装依赖 $ npm install express">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://caoyixiong.com/img/favicon.jpg">
+<meta property="article:published_time" content="2024-08-10T06:16:15.672Z">
+<meta property="article:modified_time" content="2024-08-10T06:16:15.672Z">
+<meta property="article:author" content="太空毅栈">
+<meta property="article:tag" content="博客，生活，技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caoyixiong.com/img/favicon.jpg"><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="https://caoyixiong.com/reference/expressjs/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"3NQ1I8Z7GZ","apiKey":"df5bcd27157ba7efa007752258f185fd","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 太空毅栈","link":"链接: ","source":"来源: 太空毅栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Express 备忘清单',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-10 14:16:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#6f42c1')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/home.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="太空毅栈"><img class="site-icon" src="/img/logo.png"/><span class="site-name">太空毅栈</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/reference/"><i class="fa-fw fas fa-list"></i><span> 快速参考</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Express 备忘清单</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p><a target="_blank" rel="noopener" href="https://npmjs.org/package/express"><img src="https://img.shields.io/npm/v/express.svg?style=flat" alt="NPM version"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/express"><img src="https://img.shields.io/npm/dm/express.svg?style=flat" alt="Downloads"></a><br><a target="_blank" rel="noopener" href="https://github.com/expressjs/express/network/dependents"><img src="https://badgen.net/github/dependents-repo/expressjs/express" alt="Repo Dependents"></a><br><a target="_blank" rel="noopener" href="https://github.com/expressjs/express"><img src="https://badgen.net/badge/icon/Github?icon=github&label" alt="Github repo"></a></p>
+<p>这是用于 Node.js 的快速、不拘一格、极简主义的 Web 框架，包含 <a target="_blank" rel="noopener" href="http://expressjs.com/">Express.js</a> 的 API 参考列表和一些示例</p>
+<!--rehype:style=padding-top: 12px;-->
+
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><!--rehype:wrap-class=row-span-2-->
+
+<ul>
+<li><p>创建项目，添加 <code>package.json</code> 配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> myapp <span class="comment"># 创建目录</span></span><br><span class="line">$ <span class="built_in">cd</span> myapp    <span class="comment"># 进入目录</span></span><br><span class="line">$ npm init -y <span class="comment"># 初始化一个配置</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install express <span class="comment"># 安装依赖</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>入口文件 <code>index.js</code> 添加代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`监听端口<span class="subst">$&#123;port&#125;</span>示例应用`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用以下命令运行应用程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node index.js</span><br></pre></td></tr></table></figure></li>
+</ul>
+<!--rehype:className=style-timeline-->
+
+<h3 id="express-h"><a href="#express-h" class="headerlink" title="express -h"></a>express -h</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: express [options] [<span class="built_in">dir</span>]</span><br><span class="line">Options:</span><br><span class="line">  -h, --<span class="built_in">help</span>          输出使用信息</span><br><span class="line">      --version       输出版本号</span><br><span class="line">  -e, --ejs           添加 ejs 引擎支持</span><br><span class="line">      --hbs           添加 hbs 引擎支持</span><br><span class="line">      --pug           添加 pug 引擎支持</span><br><span class="line">  -H, --hogan         添加 hogan.js 引擎支持</span><br><span class="line">      --no-view       无视图引擎生成</span><br><span class="line">  -v, --view &lt;engine&gt; 添加视图 &lt;engine&gt; 支持 (ejs|hbs|hjs|jade|pug|twig|vash) (默认jade) </span><br><span class="line">  -c, --css &lt;engine&gt;  添加样式表 &lt;engine&gt; 支持 (less|stylus|compass|sass) (默认css)</span><br><span class="line">      --git           添加 .gitignore</span><br><span class="line">  -f, --force         强制非空目录</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>创建一个 <code>myapp</code> 的项目</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ express --view=pug myapp</span><br><span class="line"><span class="comment"># 运行应用程序</span></span><br><span class="line">$ DEBUG=myapp:* npm start</span><br></pre></td></tr></table></figure>
+
+<h3 id="express"><a href="#express" class="headerlink" title="express()"></a>express()</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>express.json()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.json">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>express.raw()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.raw">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>express.Router()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.router">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>express.static()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.static">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>express.text()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.text">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>express.urlencoded()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#express.urlencoded">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>router.all()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#router.all">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>router.METHOD()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#router.METHOD">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>router.param()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#router.param">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>router.route()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#router.route">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>router.use()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#router.use">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(app.<span class="property">locals</span>.<span class="property">title</span>)</span><br><span class="line"><span class="comment">// =&gt; &#x27;My App&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(app.<span class="property">locals</span>.<span class="property">email</span>)</span><br><span class="line"><span class="comment">// =&gt; &#x27;me@myapp.com&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a><strong>属性</strong></h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>app.locals</code></td>
+<td align="left">应用程序中的局部变量 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.locals">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.mountpath</code></td>
+<td align="left">安装子应用程序的路径模式 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.mountpath">#</a></td>
+</tr>
+</tbody></table>
+<h4 id="Events"><a href="#Events" class="headerlink" title="Events"></a><strong>Events</strong></h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>mount</code></td>
+<td align="left">子应用挂载到父应用上，子应用上触发事件 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.onmount">#</a></td>
+</tr>
+</tbody></table>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>app.all()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.all">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.delete()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.delete.method">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.disable()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.disable">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.disabled()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.disabled">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.enable()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.enable">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.enabled()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.enabled">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.engine()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.engine">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.get(name)</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.get">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.get(path, callback)</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.get.method">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.listen()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.listen">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.METHOD()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.METHOD">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.param()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.param">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.path()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.path">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.post()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.post.method">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.put()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.put.method">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.render()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.render">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.route()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.route">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.set()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.set">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>app.use()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#app.use">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>req.app</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.app">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.baseUrl</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.baseUrl">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.body</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.body">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.cookies</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.cookies">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.fresh</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.fresh">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.hostname</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.hostname">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.ip</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.ip">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.ips</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.ips">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.method</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.method">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.originalUrl</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.originalUrl">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.params</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.params">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.path</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.path">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.protocol</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.protocol">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.query</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.query">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.route</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.route">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.secure</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.secure">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.signedCookies</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.signedCookies">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.stale</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.stale">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.subdomains</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.subdomains">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.xhr</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.xhr">#</a></td>
+</tr>
+</tbody></table>
+<h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>req.accepts()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.accepts">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.acceptsCharsets()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.acceptsCharsets">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.acceptsEncodings()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.acceptsEncodings">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.acceptsLanguages()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.acceptsLanguages">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.get()</code></td>
+<td align="left">获取HTTP 请求头字段 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.get">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.is()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.is">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.param()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.param">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>req.range()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#req.range">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">dir</span>(res.<span class="property">headersSent</span>) <span class="comment">// false</span></span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;OK&#x27;</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">dir</span>(res.<span class="property">headersSent</span>) <span class="comment">// true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>res.app</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.app">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.headersSent</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.headersSent">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.locals</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.locals">#</a></td>
+</tr>
+</tbody></table>
+<h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>res.append()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.append">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.attachment()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.attachment">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.cookie()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.cookie">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.clearCookie()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.clearCookie">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.download()</code></td>
+<td align="left">提示要下载的文件 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.download">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.end()</code></td>
+<td align="left">结束响应过程 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.end">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.format()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.format">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.get()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.get">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.json()</code></td>
+<td align="left">发送 JSON 响应 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.json">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.jsonp()</code></td>
+<td align="left">发送带有 JSONP 支持的响应 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.jsonp">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.links()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.links">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.location()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.location">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.redirect()</code></td>
+<td align="left">重定向请求 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.redirect">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.render()</code></td>
+<td align="left">渲染视图模板 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.render">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.send()</code></td>
+<td align="left">发送各种类型的响应 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.send">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.sendFile()</code></td>
+<td align="left">将文件作为八位字节流发送 <a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.sendFile">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.sendStatus()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.sendStatus">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.set()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.set">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.status()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.status">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.type()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.type">#</a></td>
+</tr>
+<tr>
+<td align="left"><code>res.vary()</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="http://expressjs.com/en/4x/api.html#res.vary">#</a></td>
+</tr>
+</tbody></table>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="Router-1"><a href="#Router-1" class="headerlink" title="Router"></a>Router</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>为传递给此路由器的任何请求调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="comment">// .. 这里有一些逻辑 .. 像任何其他中间件一样</span></span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>将处理任何以 <code>/events</code> 结尾的请求</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 取决于路由器在哪里 &quot;use()&quot;</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/events&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Response-1"><a href="#Response-1" class="headerlink" title="Response"></a>Response</h3><p><code>res</code> 对象表示 <code>Express</code> 应用程序在收到 HTTP 请求时发送的 HTTP 响应</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;user &#x27;</span> + req.<span class="property">params</span>.<span class="property">id</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Request-1"><a href="#Request-1" class="headerlink" title="Request"></a>Request</h3><p><code>req</code> 对象表示 <code>HTTP</code> 请求，并具有请求查询字符串、参数、正文、HTTP 标头等的属性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;user &#x27;</span> + req.<span class="property">params</span>.<span class="property">id</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-end"><a href="#res-end" class="headerlink" title="res.end()"></a>res.end()</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.<span class="title function_">end</span>()</span><br><span class="line">res.<span class="title function_">status</span>(<span class="number">404</span>).<span class="title function_">end</span>()</span><br></pre></td></tr></table></figure>
+
+<p>结束响应过程。这个方法其实来自 Node 核心，具体是 <code>http.ServerResponse</code> 的 <code>response.end()</code> 方法</p>
+<h3 id="res-json-body"><a href="#res-json-body" class="headerlink" title="res.json([body])"></a>res.json([body])</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.<span class="title function_">json</span>(<span class="literal">null</span>)</span><br><span class="line">res.<span class="title function_">json</span>(&#123; <span class="attr">user</span>: <span class="string">&#x27;tobi&#x27;</span> &#125;)</span><br><span class="line">res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;message&#x27;</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-all"><a href="#app-all" class="headerlink" title="app.all"></a>app.all</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">all</span>(<span class="string">&#x27;/secret&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;访问秘密部分...&#x27;</span>)</span><br><span class="line">  <span class="title function_">next</span>() <span class="comment">// 将控制权传递给下一个处理程序</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-delete"><a href="#app-delete" class="headerlink" title="app.delete"></a>app.delete</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">delete</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;DELETE request to homepage&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-disable-name"><a href="#app-disable-name" class="headerlink" title="app.disable(name)"></a>app.disable(name)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">disable</span>(<span class="string">&#x27;trust proxy&#x27;</span>)</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;trust proxy&#x27;</span>)</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="app-disabled-name"><a href="#app-disabled-name" class="headerlink" title="app.disabled(name)"></a>app.disabled(name)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">disabled</span>(<span class="string">&#x27;trust proxy&#x27;</span>)</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">enable</span>(<span class="string">&#x27;trust proxy&#x27;</span>)</span><br><span class="line">app.<span class="title function_">disabled</span>(<span class="string">&#x27;trust proxy&#x27;</span>)</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="app-engine-ext-callback"><a href="#app-engine-ext-callback" class="headerlink" title="app.engine(ext, callback)"></a>app.engine(ext, callback)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> engines = <span class="built_in">require</span>(<span class="string">&#x27;consolidate&#x27;</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">engine</span>(<span class="string">&#x27;haml&#x27;</span>, engines.<span class="property">haml</span>)</span><br><span class="line">app.<span class="title function_">engine</span>(<span class="string">&#x27;html&#x27;</span>, engines.<span class="property">hogan</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-listen-port-host-backlog-callback"><a href="#app-listen-port-host-backlog-callback" class="headerlink" title="app.listen([port[, host[, backlog]]][, callback])"></a>app.listen([port[, host[, backlog]]][, callback])</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向主页发出 GET 请求时响应“hello world”</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;hello world&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// GET 方法路由</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;GET request to the homepage&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// POST 方法路由</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;POST request to the homepage&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">logOriginalUrl</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;ReqURL:&#x27;</span>, req.<span class="property">originalUrl</span>)</span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logMethod</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Request Type:&#x27;</span>, req.<span class="property">method</span>)</span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> log = [logOriginalUrl, logMethod]</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id&#x27;</span>, log,</span><br><span class="line">  <span class="function">(<span class="params">req, res, next</span>)=&gt;</span>&#123;</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;User Info&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用模版"><a href="#使用模版" class="headerlink" title="使用模版"></a>使用模版</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>views</code> 目录下创建一个名为 <code>index.pug</code> 的 <code>Pug</code> 模板文件，内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">html</span><br><span class="line">  head</span><br><span class="line">    title= title</span><br><span class="line">  body</span><br><span class="line">    h1= message</span><br></pre></td></tr></table></figure>
+
+<p>创建一个路由来渲染 <code>index.pug</code> 文件。如果未设置视图引擎属性，则必须指定视图文件的扩展名</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">render</span>(<span class="string">&#x27;index&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;Hey&#x27;</span>, <span class="attr">message</span>: <span class="string">&#x27;Hello there!&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">太空毅栈</div><div class="author-info__description">个人博客，记录生活，分享技术。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/caoyixiong"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=409677557&amp;amp;site=qq&amp;amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/caoyixiong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:409677557@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果阅读过程中遇到了问题，请及时评论或者留言，看到了会在第一时间给出回复。</div></div><!-- !=partial('includes/widget/card_wx', {}, {cache: true})--><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/install/"><span class="card-category-list-name">install</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/01/"><span class="card-archive-list-date">2018</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2016-05-13T00:30:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-10T15:24:17.769Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/home.jpg')"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。</div><div class="btn-xz-box"><a class="btn-xz" href="https://caoyixiong.com/">主页</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">导航</p><ul class="ft-links"><li><a href="https://caoyixiong.com/about/">关于博主</a><a href="https://caoyixiong.com/categories/">文章分类</a></li><li><a href="https://caoyixiong.com/sponsor/">来杯咖啡</a><a href="https://caoyixiong.com/tags/">文章标签</a></li><li><a href="https://caoyixiong.com/comments/">说点什么</a><a href="https://caoyixiong.com/archives/">文章归档</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">友链</p><div class="ft-img-group"><div class="img-group-item"><a href="https://caoyixiong.com/"><img src="/img/logo.png" alt=""/></a></div></div></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-8sxa.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo-8sxa.vercel.app',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script data-pjax defer src="/js/cursor.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></body></html>
