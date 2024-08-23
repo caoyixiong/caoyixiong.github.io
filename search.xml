@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>第一个Go程序</title>
+      <link href="/post/5c3d4808.html"/>
+      <url>/post/5c3d4808.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><ol><li>在 <code>src</code> 目录下创建一个 <code>hello.go</code> 文件：</li></ol><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main  <span class="comment">// 声明 main 包，表明当前是一个可执行程序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span>  <span class="comment">// 导入 fmt 包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;  <span class="comment">// main函数，是程序执行的入口</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello World!&quot;</span>)  <span class="comment">// 在终端打印 Hello World!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="2"><li>在 <code>src</code> 目录下执行：<code>go run hello.go</code></li></ol><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go run hello.go</span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GOPATH</title>
       <link href="/post/65b9ed48.html"/>
       <url>/post/65b9ed48.html</url>
       
-        <content type="html"><![CDATA[<h2 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h2><p><code>GOPATH</code>是一个环境变量，用来表明你写的 <code>go</code> 项目的存放路径。</p><p><code>GOPATH</code>路径最好只设置一个，所有的项目代码都放到 <code>GOPATH</code> 的 <code>src</code> 目录下。</p><p>Linux 和 Mac 平台就参照上面配置环境变量的方式将自己的工作目录添加到环境变量中即可。 Windows平台按下面的步骤将（你的安装目录，例如：<code>D:\Go</code>）添加到环境变量：</p><p>1.我的电脑-&gt;属性-&gt;高级系统设置</p><p>检查一下你的电脑里面是否存在 <code>GOPATH</code> 并且设置值为你要存 <code>go</code> 代码的目录</p><p>同时在 <code>path</code> 里面添加 <code>go</code> 的安装目录和 <code>GOPATH</code> 目录</p><h2 id="Go-项目目录"><a href="#Go-项目目录" class="headerlink" title="Go 项目目录"></a>Go 项目目录</h2><p>在进行 <code>Go</code> 语言开发的时候，我们的代码总是会保存在 <code>$GOPATH/src</code> 目录下。在工程经过 <code>go build</code>、<code>go install</code> 或 <code>go get </code>等指令后，会将下载的第三方包源代码文件放在 <code>$GOPATH/src</code> 目录下， 产生的二进制可执行文件放在 <code>$GOPATH/bin</code> 目录下，生成的中间缓存文件会被保存在 <code>$GOPATH/pkg</code> 下。</p><p>如果我们使用版本管理工具（<code>Version Control System</code>，<code>VCS</code>。常用如<code>Git</code>）来管理我们的项目代码时，我们只需要添加<code>$GOPATH/src</code>目录的源代码即可。<code>bin</code> 和 <code>pkg</code> 目录的内容无需版本控制。</p><h3 id="适合个人开发者"><a href="#适合个人开发者" class="headerlink" title="适合个人开发者"></a>适合个人开发者</h3><p>我们知道源代码都是存放在 <code>GOPATH</code> 的 <code>src</code> 目录下，那我们可以按照下图来组织我们的代码。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin</span><br><span class="line">├── pkg</span><br><span class="line">└── src</span><br><span class="line">    ├── 项目一</span><br><span class="line">    │   ├── 模块一</span><br><span class="line">    │   ├── 模块二</span><br><span class="line">    │   └── 模块三</span><br><span class="line">    ├── 项目二</span><br><span class="line">    │   ├── 模块一</span><br><span class="line">    │   ├── 模块二</span><br><span class="line">    │   └── 模块三</span><br><span class="line">    └── 项目三</span><br><span class="line">        ├── 模块一</span><br><span class="line">        ├── 模块二</span><br><span class="line">        └── 模块三</span><br></pre></td></tr></table></figure><h3 id="目前流行的项目结构"><a href="#目前流行的项目结构" class="headerlink" title="目前流行的项目结构"></a>目前流行的项目结构</h3><p>Go 语言中也是通过包来组织代码文件，我们可以引用别人的包也可以发布自己的包，但是为了防止不同包的项目名冲突，我们通常使用顶级域名来作为包名的前缀，这样就不担心项目名冲突的问题了。</p><p>因为不是每个个人开发者都拥有自己的顶级域名，所以目前流行的方式是使用个人的 github 用户名来区分不同的包。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin</span><br><span class="line">├── pkg</span><br><span class="line">└── src</span><br><span class="line">    ├── github.com</span><br><span class="line">    │   ├── 项目一</span><br><span class="line">    │   │   ├── 模块一</span><br><span class="line">    │   │   ├── 模块二</span><br><span class="line">    │   │   └── 模块三</span><br><span class="line">    │   ├── 项目二</span><br><span class="line">    │   │   ├── 模块一</span><br><span class="line">    │   │   ├── 模块二</span><br><span class="line">    │   │   └── 模块三</span><br><span class="line">    │   └── 项目三</span><br><span class="line">    │       ├── 模块一</span><br><span class="line">    │       ├── 模块二</span><br><span class="line">    │       └── 模块三</span><br><span class="line">    ├── going.org</span><br><span class="line">    └── gopkg.in</span><br></pre></td></tr></table></figure><p>举个例子：张三和李四都有一个名叫 studygo 的项目，那么这两个包的路径就会是：</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/zhangsan/studygo&quot;</span></span><br></pre></td></tr></table></figure><p>和</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/lisi/studygo&quot;</span></span><br></pre></td></tr></table></figure><p>以后我们从<code>github</code>上下载别人包的时候，如：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go get github.com/gin-gonic/gin</span><br></pre></td></tr></table></figure><p>那么，这个包会下载到我们本地<code>GOPATH</code>目录下的<code>src/github.com/gin-gonic/gin</code></p><h3 id="适合企业开发者"><a href="#适合企业开发者" class="headerlink" title="适合企业开发者"></a>适合企业开发者</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin (存放编译后的二进制文件)</span><br><span class="line">├── pkg (存放编译后的库文件)</span><br><span class="line">└── src (存放源码文件)</span><br><span class="line">    ├── code.xxx.com (公司代码仓库域名)</span><br><span class="line">    │   ├── 前端组 (公司内部组织架构)</span><br><span class="line">    │   ├── 后端组</span><br><span class="line">    │   │   ├── 项目1</span><br><span class="line">    │   │   │   ├── 模块A</span><br><span class="line">    │   │   │   ├── 模块B</span><br><span class="line">    │   │   │   └── 模块C</span><br><span class="line">    │   │   ├── 项目2</span><br><span class="line">    │   │   │   ├── 模块A</span><br><span class="line">    │   │   │   ├── 模块B</span><br><span class="line">    │   │   │   └── 模块C</span><br><span class="line">    │   │   └── 项目N</span><br><span class="line">    │   └── 基础架构组</span><br><span class="line">    ├── gitee.com</span><br><span class="line">    └── github.com </span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h2 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h2><p><code>GOPATH</code>是一个环境变量，用来表明你写的 <code>Go</code> 项目的存放路径。</p><p><code>GOPATH</code>路径最好只设置一个，所有的项目代码都放到 <code>GOPATH</code> 的 <code>src</code> 目录下。</p><p>Linux 和 Mac 平台就参照上面配置环境变量的方式将自己的工作目录添加到环境变量中即可。 Windows平台按下面的步骤将（你的安装目录，例如：<code>D:\Go</code>）添加到环境变量：</p><ol><li><p>我的电脑-&gt;属性-&gt;高级系统设置</p></li><li><p>检查一下你的电脑里面是否存在 <code>GOPATH</code> 并且设置值为你要存 <code>Go</code> 代码的目录</p></li><li><p>同时在 <code>Path</code> 里面添加 <code>Go</code> 的安装目录和 <code>GOPATH</code> 目录</p></li></ol><h2 id="Go-项目目录"><a href="#Go-项目目录" class="headerlink" title="Go 项目目录"></a>Go 项目目录</h2><p>在进行 <code>Go</code> 语言开发的时候，我们的代码总是会保存在 <code>$GOPATH/src</code> 目录下。在工程经过 <code>go build</code>、<code>go install</code> 或 <code>go get </code>等指令后，会将下载的第三方包源代码文件放在 <code>$GOPATH/src</code> 目录下， 产生的二进制可执行文件放在 <code>$GOPATH/bin</code> 目录下，生成的中间缓存文件会被保存在 <code>$GOPATH/pkg</code> 下。</p><p>如果我们使用版本管理工具（<code>Version Control System</code>，<code>VCS</code>。常用如<code>Git</code>）来管理我们的项目代码时，我们只需要添加<code>$GOPATH/src</code>目录的源代码即可。<code>bin</code> 和 <code>pkg</code> 目录的内容无需版本控制。</p><h3 id="适合个人开发者"><a href="#适合个人开发者" class="headerlink" title="适合个人开发者"></a>适合个人开发者</h3><p>我们知道源代码都是存放在 <code>GOPATH</code> 的 <code>src</code> 目录下，那我们可以按照下图来组织我们的代码。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin</span><br><span class="line">├── pkg</span><br><span class="line">└── src</span><br><span class="line">    ├── 项目一</span><br><span class="line">    │   ├── 模块一</span><br><span class="line">    │   ├── 模块二</span><br><span class="line">    │   └── 模块三</span><br><span class="line">    ├── 项目二</span><br><span class="line">    │   ├── 模块一</span><br><span class="line">    │   ├── 模块二</span><br><span class="line">    │   └── 模块三</span><br><span class="line">    └── 项目三</span><br><span class="line">        ├── 模块一</span><br><span class="line">        ├── 模块二</span><br><span class="line">        └── 模块三</span><br></pre></td></tr></table></figure><h3 id="目前流行的项目结构"><a href="#目前流行的项目结构" class="headerlink" title="目前流行的项目结构"></a>目前流行的项目结构</h3><p>Go 语言中也是通过包来组织代码文件，我们可以引用别人的包也可以发布自己的包，但是为了防止不同包的项目名冲突，我们通常使用顶级域名来作为包名的前缀，这样就不担心项目名冲突的问题了。</p><p>因为不是每个个人开发者都拥有自己的顶级域名，所以目前流行的方式是使用个人的 Github 用户名来区分不同的包。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin</span><br><span class="line">├── pkg</span><br><span class="line">└── src</span><br><span class="line">    ├── github.com</span><br><span class="line">    │   ├── 项目一</span><br><span class="line">    │   │   ├── 模块一</span><br><span class="line">    │   │   ├── 模块二</span><br><span class="line">    │   │   └── 模块三</span><br><span class="line">    │   ├── 项目二</span><br><span class="line">    │   │   ├── 模块一</span><br><span class="line">    │   │   ├── 模块二</span><br><span class="line">    │   │   └── 模块三</span><br><span class="line">    │   └── 项目三</span><br><span class="line">    │       ├── 模块一</span><br><span class="line">    │       ├── 模块二</span><br><span class="line">    │       └── 模块三</span><br><span class="line">    ├── going.org</span><br><span class="line">    └── gopkg.in</span><br></pre></td></tr></table></figure><p>举个例子：张三和李四都有一个名叫 study 的项目，那么这两个包的路径就会是：</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/zhangsan/study&quot;</span></span><br></pre></td></tr></table></figure><p>和</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/lisi/study&quot;</span></span><br></pre></td></tr></table></figure><h3 id="适合企业开发者"><a href="#适合企业开发者" class="headerlink" title="适合企业开发者"></a>适合企业开发者</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GOPATH</span><br><span class="line">├── bin (存放编译后的二进制文件)</span><br><span class="line">├── pkg (存放编译后的库文件)</span><br><span class="line">└── src (存放源码文件)</span><br><span class="line">    ├── code.xxx.com (公司代码仓库域名)</span><br><span class="line">    │   ├── 前端组 (公司内部组织架构)</span><br><span class="line">    │   ├── 后端组</span><br><span class="line">    │   │   ├── 项目1</span><br><span class="line">    │   │   │   ├── 模块A</span><br><span class="line">    │   │   │   ├── 模块B</span><br><span class="line">    │   │   │   └── 模块C</span><br><span class="line">    │   │   ├── 项目2</span><br><span class="line">    │   │   │   ├── 模块A</span><br><span class="line">    │   │   │   ├── 模块B</span><br><span class="line">    │   │   │   └── 模块C</span><br><span class="line">    │   │   └── 项目N</span><br><span class="line">    │   └── 基础架构组</span><br><span class="line">    ├── gitee.com</span><br><span class="line">    └── github.com </span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -46,6 +71,31 @@
         <tags>
             
             <tag> Gin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Go 环境搭建</title>
+      <link href="/post/a25657cf.html"/>
+      <url>/post/a25657cf.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>首先去 <a href="https://golang.google.cn/dl/">Go官网</a> 下载 Go 的安装包，根据自己的操作系统，选择相应的安装包下载</p><blockquote><p>说明：本文以 Windows 为例来安装 Go 环境</p></blockquote><p>下载完安装包后，双击安装包，安装即可，Windows 的 Go 默认安装路径为 <code>C:\Program Files\Go\</code>，可修改至 D 盘: <code>D:\Program Files\Go\</code></p><p>执行以下命令来验证是否安装成功</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看版本信息</span></span><br><span class="line">go version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Go默认环境变量</span></span><br><span class="line">go <span class="built_in">env</span></span><br></pre></td></tr></table></figure><p>如果看到正确的打印结果，说明环境安装成功。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
             
         </tags>
       
