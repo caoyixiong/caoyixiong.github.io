@@ -188,14 +188,14 @@
       
       <categories>
           
-          <category> Linux </category>
+          <category> Ubuntu </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Ubuntu </tag>
+            <tag> LNMP </tag>
             
         </tags>
       
@@ -213,6 +213,31 @@
       
       <categories>
           
+          <category> Ubuntu </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 主题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux Crontab 计划任务</title>
+      <link href="/post/23e9f638.html"/>
+      <url>/post/23e9f638.html</url>
+      
+        <content type="html"><![CDATA[<p>主要工作：</p><ul><li>系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存。</li><li>个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置。</li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">crontab(选项)(参数)</span><br><span class="line">-l : 列出该用户的计时器设置 crontab -l</span><br><span class="line">-e : 编辑该用户的计时器设置 crontab -e</span><br><span class="line">-r : 删除该用户的计时器设置 crontab -r</span><br><span class="line">-u&lt;用户名称&gt; : 指定要设定计时器的用户名称 crontab -u yi -e</span><br><span class="line"></span><br><span class="line">计划任务</span><br><span class="line">minute   hour   day   month   week   <span class="built_in">command</span> &gt;&gt; log.log</span><br><span class="line">分 时 日 月 周 命令 &gt;&gt; 日志</span><br><span class="line">0-59   0-23   1-31   1-12     0-6</span><br><span class="line">星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</span><br><span class="line">逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，<span class="string">&#x27;1,2,5,7,8,9&#x27;</span></span><br><span class="line">中杠（-）：可以用整数之间的中杠表示一个整数范围，例如<span class="string">&#x27;2-6&#x27;</span>表示<span class="string">&#x27;2,3,4,5,6&#x27;</span></span><br><span class="line">正斜线（/）：可以用正斜线指定时间的间隔频率，例如<span class="string">&#x27;0-23/2&#x27;</span>表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次</span><br><span class="line">Example ： * * * * * php /var/www/html/test.php &gt;&gt; /var/www/html/log.log</span><br><span class="line"><span class="comment"># 每分钟运行一次test.php文件，将日志记录到log文件</span></span><br><span class="line">crontab修改编辑器直接执行命令：select-editor</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
           <category> Linux </category>
           
       </categories>
@@ -220,7 +245,7 @@
       
         <tags>
             
-            <tag> Ubuntu </tag>
+            <tag> Crontab </tag>
             
         </tags>
       
@@ -238,6 +263,31 @@
       
       <categories>
           
+          <category> Ubuntu </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LAMP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux AWK命令</title>
+      <link href="/post/d486874b.html"/>
+      <url>/post/d486874b.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="AWK命令"><a href="#AWK命令" class="headerlink" title="AWK命令"></a>AWK命令</h1><p><code>awk</code> 是用于 Unix 和类 Unix 系统的强大文本解析工具，但是由于它有可编程函数，因此你可以用它来执行常规解析任务，因此它也被视为一种编程语言。你可能不会使用 <code>awk</code> 开发下一个 GUI 应用，并且它可能不会代替你的默认脚本语言，但是它是用于特定任务的强大程序。</p><p>这些任务或许是惊人的多样化。了解 <code>awk</code> 可以解决你的哪些问题的最好方法是学习 <code>awk</code>。你会惊讶于 <code>awk</code> 如何帮助你完成更多工作，却花费更少的精力。</p><p><code>awk</code> 的基本语法是：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk [options] <span class="string">&#x27;pattern &#123;action&#125;&#x27;</span> file</span><br></pre></td></tr></table></figure><p>首先，创建此示例文件并将其保存为 <code>colours.txt</code>。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">name       color  amount</span><br><span class="line">apple      red    4</span><br><span class="line">banana     yellow 6</span><br><span class="line">strawberry red    3</span><br><span class="line">grape      purple 10</span><br><span class="line">apple      green  8</span><br><span class="line">plum       purple 2</span><br><span class="line">kiwi       brown  4</span><br><span class="line">potato     brown  9</span><br><span class="line">pineapple  yellow 5</span><br></pre></td></tr></table></figure><p>数据被一个或多个空格分隔为列。以某种方式组织要分析的数据是很常见的。它不一定总是由空格分隔的列，甚至可以不是逗号或分号，但尤其是在日志文件或数据转储中，通常有一个可预测的格式。你可以使用数据格式来帮助 <code>awk</code> 提取和处理你关注的数据。</p><h3 id="打印列"><a href="#打印列" class="headerlink" title="打印列"></a>打印列</h3><p>在 <code>awk</code> 中，<code>print</code> 函数显示你指定的内容。你可以使用许多预定义的变量，但是最常见的是文本文件中以整数命名的列。试试看：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ awk <span class="string">&#x27;&#123;print $2;&#125;&#x27;</span> colours.txt</span><br><span class="line">color</span><br><span class="line">red</span><br><span class="line">yellow</span><br><span class="line">red</span><br><span class="line">purple</span><br><span class="line">green</span><br><span class="line">purple</span><br><span class="line">brown</span><br><span class="line">brown</span><br><span class="line">yellow</span><br></pre></td></tr></table></figure><p>在这里，<code>awk</code> 显示第二列，用 <code>$2</code> 表示。这是相对直观的，因此你可能会猜测 <code>print $1</code> 显示第一列，而 <code>print $3</code> 显示第三列，依此类推。</p><p>要显示<em>全部</em>列，请使用 <code>$0</code>。</p><p>美元符号（<code>$</code>）后的数字是<em>表达式</em>，因此 <code>$2</code> 和 <code>$(1+1)</code> 是同一意思。</p><h3 id="有条件地选择列"><a href="#有条件地选择列" class="headerlink" title="有条件地选择列"></a>有条件地选择列</h3><p>你使用的示例文件非常结构化。它有一行充当标题，并且各列直接相互关联。通过定义<em>条件</em>，你可以限定 <code>awk</code> 在找到此数据时返回的内容。例如，要查看第二列中与 <code>yellow</code> 匹配的项并打印第一列的内容：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;$2==&quot;yellow&quot;&#123;print $1&#125;&#x27;</span> file1.txt</span><br><span class="line">banana</span><br><span class="line">pineapple</span><br></pre></td></tr></table></figure><p>正则表达式也可以工作。此表达式近似匹配 <code>$2</code> 中以 <code>p</code> 开头跟上任意数量（一个或多个）字符后继续跟上 <code>p</code> 的值：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ awk <span class="string">&#x27;$2 ~ /p.+p/ &#123;print $0&#125;&#x27;</span> colours.txt</span><br><span class="line">grape   purple  10</span><br><span class="line">plum    purple  2</span><br></pre></td></tr></table></figure><p>数字能被 <code>awk</code> 自然解释。例如，要打印第三列包含大于 5 的整数的行：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;$3&gt;5 &#123;print $1, $2&#125;&#x27;</span> colours.txt</span><br><span class="line">name    color</span><br><span class="line">banana  yellow</span><br><span class="line">grape   purple</span><br><span class="line">apple   green</span><br><span class="line">potato  brown</span><br></pre></td></tr></table></figure><h3 id="字段分隔符"><a href="#字段分隔符" class="headerlink" title="字段分隔符"></a>字段分隔符</h3><p>默认情况下，<code>awk</code> 使用空格作为字段分隔符。但是，并非所有文本文件都使用空格来定义字段。例如，用以下内容创建一个名为 <code>colours.csv</code> 的文件：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">name,color,amount</span><br><span class="line">apple,red,4</span><br><span class="line">banana,yellow,6</span><br><span class="line">strawberry,red,3</span><br><span class="line">grape,purple,10</span><br><span class="line">apple,green,8</span><br><span class="line">plum,purple,2</span><br><span class="line">kiwi,brown,4</span><br><span class="line">potato,brown,9</span><br><span class="line">pineapple,yellow,5</span><br></pre></td></tr></table></figure><p>只要你指定将哪个字符用作命令中的字段分隔符，<code>awk</code> 就能以完全相同的方式处理数据。使用 <code>--field-separator</code>（或简称为 <code>-F</code>）选项来定义分隔符：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ awk -F<span class="string">&quot;,&quot;</span> <span class="string">&#x27;$2==&quot;yellow&quot; &#123;print $1&#125;&#x27;</span> file1.csv</span><br><span class="line">banana</span><br><span class="line">pineapple</span><br></pre></td></tr></table></figure><h3 id="保存输出"><a href="#保存输出" class="headerlink" title="保存输出"></a>保存输出</h3><p>使用输出重定向，你可以将结果写入文件。例如：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ awk -F, <span class="string">&#x27;$3&gt;5 &#123;print $1, $2&#125; colours.csv &gt; output.txt</span></span><br></pre></td></tr></table></figure><p>这将创建一个包含 <code>awk</code> 查询内容的文件。</p><p>你还可以将文件拆分为按列数据分组的多个文件。例如，如果要根据每行显示的颜色将 <code>colours.txt</code> 拆分为多个文件，你可以在 <code>awk</code> 中包含重定向语句来重定向<em>每条查询</em>：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ awk <span class="string">&#x27;&#123;print &gt; $2&quot;.txt&quot;&#125;&#x27;</span> colours.txt</span><br></pre></td></tr></table></figure><p>这将生成名为 <code>yellow.txt</code>、<code>red.txt</code> 等文件。</p><h3 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h3><h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> urlogfile | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -c | <span class="built_in">sort</span> -nr -k1 | <span class="built_in">head</span> -n 10</span><br><span class="line"></span><br><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> /usr/local/nginx/logs/localhost.access.log | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -c | <span class="built_in">sort</span> -nr -k1 | <span class="built_in">head</span> -n 10</span><br></pre></td></tr></table></figure><h4 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/log/httpd/&amp;&amp;\</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> access_log | awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> | <span class="built_in">uniq</span> -c | <span class="built_in">sort</span> -rn -k1 | <span class="built_in">head</span> -n 10</span><br></pre></td></tr></table></figure><blockquote><p>说明：</p><p>awk ‘{ print $1}’：取数据的低1域（第1列）</p><p>sort：对IP部分进行排序。</p><p>uniq -c：打印每一重复行出现的次数。（并去掉重复行）</p><p>sort -nr -k1：按照重复行出现的次序倒序排列,-k1以第一列为标准排序。</p><p>head -n 10：取排在前5位的IP 。</p></blockquote><p><code>apache</code> 日志分析可以获得很多有用的信息，现在来试试最基本的，获取最多访问的前 10 个 <code>IP</code> 地址及访问次数。</p><p>既然是统计，那么 <code>awk</code> 是必不可少的，好用而高效。</p><p>命令如下：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;a[$1] += 1;&#125; END &#123;for (i in a) printf(&quot;%d %s\n&quot;, a[i], i);&#125;&#x27;</span> 日志文件 | <span class="built_in">sort</span> -n | <span class="built_in">tail</span></span><br></pre></td></tr></table></figure><p>首先用 <code>awk</code> 统计出来一个列表，然后用 <code>sort</code> 进行排序，最后用 <code>tail</code> 取最后的 10 个。</p><p>以上参数可以略作修改显示更多的数据，比如将 <code>tail</code> 加上 <code>-n</code> 参数等，另外日志格式不同命令也可能需要稍作修改。</p><p>当前WEB服务器中联接次数最多的 <code>IP</code> 地址</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -ntu |awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span> |<span class="built_in">sort</span> | <span class="built_in">uniq</span> -c| <span class="built_in">sort</span> -nr</span><br></pre></td></tr></table></figure><p>查看日志中访问次数最多的前 10 个 <code>IP</code> 地址</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log |<span class="built_in">cut</span> -d <span class="string">&#x27; &#x27;</span> -f 1 |<span class="built_in">sort</span> |<span class="built_in">uniq</span> -c | <span class="built_in">sort</span> -nr | awk <span class="string">&#x27;&#123;print $0 &#125;&#x27;</span> | <span class="built_in">head</span> -n 10 |less</span><br></pre></td></tr></table></figure><p>查看日志中出现100次以上的 <code>IP</code> 地址</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log |<span class="built_in">cut</span> -d <span class="string">&#x27; &#x27;</span> -f 1 |<span class="built_in">sort</span> |<span class="built_in">uniq</span> -c | awk <span class="string">&#x27;&#123;if ($1 &gt; 100) print $0&#125;&#x27;</span>｜<span class="built_in">sort</span> -nr |less</span><br></pre></td></tr></table></figure><p>查看最近访问量最高的文件</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log |<span class="built_in">tail</span> -10000|awk <span class="string">&#x27;&#123;print $7&#125;&#x27;</span>|<span class="built_in">sort</span>|<span class="built_in">uniq</span> -c|<span class="built_in">sort</span> -nr|less</span><br></pre></td></tr></table></figure><p>查看日志中访问超过100次的页面</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log | <span class="built_in">cut</span> -d <span class="string">&#x27; &#x27;</span> -f 7 | <span class="built_in">sort</span> |<span class="built_in">uniq</span> -c | awk <span class="string">&#x27;&#123;if ($1 &gt; 100) print $0&#125;&#x27;</span> | less</span><br></pre></td></tr></table></figure><p>统计某url，一天的访问次数</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log|grep <span class="string">&#x27;12/Aug/2009&#x27;</span>|grep <span class="string">&#x27;/images/index/e1.gif&#x27;</span>|<span class="built_in">wc</span>|awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span></span><br></pre></td></tr></table></figure><p>前五天的访问次数最多的网页</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log|awk <span class="string">&#x27;&#123;print $7&#125;&#x27;</span>|<span class="built_in">uniq</span> -c |<span class="built_in">sort</span> -n -r|<span class="built_in">head</span> -20</span><br></pre></td></tr></table></figure><p>从日志里查看该 <code>IP</code> 在干嘛</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log | grep 218.66.36.119| awk <span class="string">&#x27;&#123;print $1&quot;\t&quot;$7&#125;&#x27;</span> | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -c | <span class="built_in">sort</span> -nr | less</span><br></pre></td></tr></table></figure><p>列出传输时间超过 30 秒的文件</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log|awk <span class="string">&#x27;($NF &gt; 30)&#123;print $7&#125;&#x27;</span> |<span class="built_in">sort</span> -n|<span class="built_in">uniq</span> -c|<span class="built_in">sort</span> -nr|<span class="built_in">head</span> -20</span><br></pre></td></tr></table></figure><p>列出最最耗时的页面(超过60秒的)</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> access_log |awk <span class="string">&#x27;($NF &gt; 60 &amp;&amp; $7~/\.php/)&#123;print $7&#125;&#x27;</span> |<span class="built_in">sort</span> -n|<span class="built_in">uniq</span> -c|<span class="built_in">sort</span> -nr|<span class="built_in">head</span> -100</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
           <category> Linux </category>
           
       </categories>
@@ -245,7 +295,7 @@
       
         <tags>
             
-            <tag> Ubuntu </tag>
+            <tag> AWK </tag>
             
         </tags>
       
