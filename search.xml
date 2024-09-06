@@ -54,6 +54,31 @@
     
     
     <entry>
+      <title>Yarn 命令</title>
+      <link href="/post/bf4e276d.html"/>
+      <url>/post/bf4e276d.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn init</span><br></pre></td></tr></table></figure><h3 id="添加依赖包"><a href="#添加依赖包" class="headerlink" title="添加依赖包"></a>添加依赖包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn add [package]</span><br><span class="line">$ yarn add [package]@[version]</span><br><span class="line">$ yarn add [package]@[tag]</span><br></pre></td></tr></table></figure><ul><li>将依赖项添加到不同依赖项类别中，分别添加到 <code>devDependencies</code>、<code>peerDependencies</code> 和 <code>optionalDependencies</code> 类别中：</li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn add [package] --dev</span><br><span class="line">$ yarn add [package] --peer</span><br><span class="line">$ yarn add [package] --optional</span><br></pre></td></tr></table></figure><h3 id="升级依赖包"><a href="#升级依赖包" class="headerlink" title="升级依赖包"></a>升级依赖包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn upgrade [package]</span><br><span class="line">$ yarn upgrade [package]@[version]</span><br><span class="line">$ yarn upgrade [package]@[tag]</span><br></pre></td></tr></table></figure><h3 id="移除依赖包"><a href="#移除依赖包" class="headerlink" title="移除依赖包"></a>移除依赖包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn remove [package]</span><br></pre></td></tr></table></figure><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn</span><br><span class="line">$ yarn install</span><br></pre></td></tr></table></figure><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>通过 <code>yarn</code> 包管理器安装 <code>yarn install</code></p><p><strong>报错：</strong></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">info No lockfile found.</span><br><span class="line">[1/4] Resolving packages...</span><br><span class="line">error Error: certificate has expired</span><br><span class="line">    at TLSSocket.onConnectSecure (node:_tls_wrap:1539:34)</span><br><span class="line">    at TLSSocket.emit (node:events:513:28)</span><br><span class="line">    at TLSSocket._finishInit (node:_tls_wrap:953:8)</span><br><span class="line">    at TLSWrap.ssl.onhandshakedone (node:_tls_wrap:734:12)</span><br><span class="line">info Visit https://yarnpkg.com/en/docs/cli/install <span class="keyword">for</span> documentation about this <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure><p><strong>原因：</strong></p><p>​开始以为是下载源的问题，但是切换到淘宝源后依然无法解决问题，还是报这个问题。并且自己通过 <code>npm</code> 包管理器安装时，也会报同样的错误，各种查找了一圈，发现是【HTTPS 证书验证失败】导致的。</p><p><strong>解决方案：</strong></p><p>​将 <code>yarn</code> 配置中的 <code>strict-ssl</code> 设置为 <code>flase</code> , 在 <code>yarn config</code> 信息中， <code>strict-ssl</code> 为 <code>true</code>，表示需要验证 HTTPS 证书。我们可以将 <code>strict-ssl</code> 设置为 <code>false</code>，跳过 HTTPS 证书验证。</p><p><strong>设置：</strong></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看yarn的配置清单里的strict-ssl</span></span><br><span class="line">$ yarn config list </span><br><span class="line"><span class="comment"># 将其改为 false 即可</span></span><br><span class="line">$ yarn config <span class="built_in">set</span> strict-ssl <span class="literal">false</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> yarn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NPM 命令</title>
       <link href="/post/51188a9b.html"/>
       <url>/post/51188a9b.html</url>
